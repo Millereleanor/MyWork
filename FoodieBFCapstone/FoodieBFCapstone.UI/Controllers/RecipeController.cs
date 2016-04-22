@@ -6,28 +6,30 @@ using System.Web.Mvc;
 
 namespace FoodieBFCapstone.UI.Controllers
 {
-    public class HomeController : BaseController
+    public class RecipeController : Controller
     {
-        public ActionResult Index()
+        // GET: Recipe
+        public ActionResult Breakfast()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Lunch()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Dinner()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
-        public ActionResult Static()
+        public ActionResult Dessert()
+        {
+            return View();
+        }
+
+        public ActionResult Drink()
         {
             return View();
         }

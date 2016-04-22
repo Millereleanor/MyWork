@@ -1,5 +1,4 @@
-USE [master]
-GO
+
 /****** Object:  Database [FoodieAndTheBlowFish]    Script Date: 4/22/2016 4:01:18 PM ******/
 CREATE DATABASE [FoodieAndTheBlowFish]
  CONTAINMENT = NONE
