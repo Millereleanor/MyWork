@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodieBFCapstone.Identity",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodieBFCapstone.UI", "FoodieBFCapstone.UI\FoodieBFCapstone.UI.csproj", "{0B097DD2-1755-4300-883D-6907D7477553}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodieBFCapstone.Models", "FoodieBFCapstone.Models\FoodieBFCapstone.Models.csproj", "{19994E4D-64D7-45BC-9653-FDDBECC610EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0B097DD2-1755-4300-883D-6907D7477553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B097DD2-1755-4300-883D-6907D7477553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B097DD2-1755-4300-883D-6907D7477553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19994E4D-64D7-45BC-9653-FDDBECC610EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19994E4D-64D7-45BC-9653-FDDBECC610EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19994E4D-64D7-45BC-9653-FDDBECC610EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19994E4D-64D7-45BC-9653-FDDBECC610EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
