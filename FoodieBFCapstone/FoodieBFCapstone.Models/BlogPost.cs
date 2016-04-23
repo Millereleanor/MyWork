@@ -16,20 +16,23 @@ namespace FoodieBFCapstone.Models
         public Subcategory Subcategory { get; set; }
 
         public Status Status { get; set; }
+        public bool IsFeatured { get; set; }
 
         public string Title { get; set; }
+
+        public string MainPictureUrl { get; set; }
 
         //this is the info is gotten by the tinymce ...
         public string Content { get; set; }
 
         public DateTime PublishDate { get; set; }
 
-        public DateTime ExpirationDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
 
-        public DateTime ApprovedOn { get; set; }
+        public DateTime? ApprovedOn { get; set; }
 
-        public DateTime CreateOn { get; set; }
-      
-        //tags??????????????????????????????????????????????????
+        public DateTime CreatedOn { get; set; }
+
+        public List<Tag> Tags { get; set; }
     }
 }

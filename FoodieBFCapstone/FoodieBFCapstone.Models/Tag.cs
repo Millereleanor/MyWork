@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace FoodieBFCapstone.Models
 {
-    public enum Status
+    public class Tag
     {
-        Pending,
-        Active,
-        Inactive,
-        Denied,
-        Featured
+        public int TagId;
+        public string TagName;
     }
 }
