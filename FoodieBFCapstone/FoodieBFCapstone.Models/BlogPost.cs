@@ -19,6 +19,8 @@ namespace FoodieBFCapstone.Models
 
         public string Title { get; set; }
 
+        public string MainPictureUrl { get; set; }
+
         //this is the info is gotten by the tinymce ...
         public string Content { get; set; }
 
@@ -28,8 +30,8 @@ namespace FoodieBFCapstone.Models
 
         public DateTime ApprovedOn { get; set; }
 
-        public DateTime CreateOn { get; set; }
-      
+        public DateTime CreatedOn { get; set; }
+
         //tags??????????????????????????????????????????????????
     }
 }

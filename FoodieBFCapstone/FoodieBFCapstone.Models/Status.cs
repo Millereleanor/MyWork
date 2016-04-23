@@ -12,6 +12,6 @@ namespace FoodieBFCapstone.Models
         Active,
         Inactive,
         Denied,
-        Fetured
+        Featured
     }
 }
