@@ -1,16 +1,18 @@
+﻿
+
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace FoodieBFCapstone.Models
 {
     public class BlogPost
     {
-        public int BlogPostId { get; set; }
+        public int BlogId { get; set; }
 
         //not sure about this one???
         //public int ContributorId { get; set; }
@@ -38,4 +40,5 @@ namespace FoodieBFCapstone.Models
 
         public List<Tag> Tags { get; set; }
     }
+
 }
