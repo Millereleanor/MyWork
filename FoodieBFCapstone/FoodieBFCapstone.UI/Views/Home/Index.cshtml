@@ -1,15 +1,18 @@
-﻿@{
+﻿@model FoodieBFCapstone.UI.Models.IndexVM
+@using FoodieBFCapstone.Models
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a.
-        </p>
-    </div>
+<div class="row">
+    @foreach (var fpost in Model.FeaturedPosts)
+    {
+        <div class="col-md-4">
+            <img src="@fpost.MainPictureUrl" />
+            <h3>@fpost.Title</h3>
+        </div>
+    }
     <div class="col-md-4">
         <h2>Get more libraries</h2>
         <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
@@ -19,3 +22,12 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
     </div>
 </div>
+@foreach (var post in Model.AllPosts)
+{
+    <div class="row">
+        <div class="col-sm-2">
+            <img src="@post.MainPictureUrl" size="200px 150px" />
+        </div>
+        <div class="col-sm-10">@post.Title</div>
+    </div>
+}

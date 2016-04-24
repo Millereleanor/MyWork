@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FoodieBFCapstone.Data;
+using FoodieBFCapstone.UI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +12,12 @@ namespace FoodieBFCapstone.UI.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var repo = new BlogPostRepository();
+            var vm = new IndexVM();
+            vm.FeaturedPosts = repo.GetActivePosts();
+            vm.AllPosts = repo.GetFeatured();
+
+            return View(vm);
         }
 
         public ActionResult About()
