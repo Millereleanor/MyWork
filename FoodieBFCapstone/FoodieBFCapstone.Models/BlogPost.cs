@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace FoodieBFCapstone.Models
 {
@@ -23,7 +25,7 @@ namespace FoodieBFCapstone.Models
         public string MainPictureUrl { get; set; }
         public string Summary { get; set; }
 
-        //this is the info is gotten by the tinymce ...
+        [UIHint("tinymce_jquery_full"), AllowHtml]
         public string Content { get; set; }
 
         public DateTime PublishDate { get; set; }
