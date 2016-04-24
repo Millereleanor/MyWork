@@ -7,7 +7,7 @@
 
 <h2>Breakfast</h2>
 
-<table class="table">
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.MainPictureUrl)
@@ -18,19 +18,19 @@
 
         <th>
             @Html.DisplayNameFor(model => model.PublishDate)
-        </th>
-        @*<th></th>*@
-    </tr>
+        </th>*@
+        @*<th></th>
+    </tr>*@
     @if (Model != null && Model.Any())
     {
 
         foreach (var item in Model)
         {
-            <tr>
+            @*<tr>
 
                 <td>
                     <a href="@Url.Action("Details", new {id = item.BlogId})">
-                        <img src="@Html.DisplayFor(modelItem => item.MainPictureUrl)" alt="Blog Post Picture url @Html.DisplayFor(modelItem => item.MainPictureUrl)">
+                        <img style="width: 300px" src="@Html.DisplayFor(modelItem => item.MainPictureUrl)" alt="Blog Post Picture url @Html.DisplayFor(modelItem => item.MainPictureUrl)">
                     </a>
                 </td>
                 <td>
@@ -43,8 +43,21 @@
 
                         @Html.ActionLink("Details", "Details", new {id = item.BlogId}) |
                     </td>*@
-            </tr>
+            @*</tr>*@
+            <div class="row" style="max-height:255px">
+                <div class="col-md-4">
+                    <a href="@Url.Action("Details", new
+                             {
+                                 id = item.BlogId})">
+                        <img width="300px" src="@item.MainPictureUrl" alt=""/></a>
+                </div>
+                <div class="col-md-8">
+                    <h3>@item.Title - <span style="font-weight: normal; font-size: medium">@item.PublishDate.ToShortDateString()</span></h3>
+                    <div class="blogContent">@Html.Raw(item.Content)</div>
+                </div>
+            </div>
+        
+
         }
     }
 
-</table>
