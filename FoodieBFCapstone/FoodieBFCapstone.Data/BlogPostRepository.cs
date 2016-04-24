@@ -48,6 +48,29 @@ namespace FoodieBFCapstone.Data
             }
         }
 
+        public BlogPost GetById(int id)
+        {
+            BlogPost blogPost = new BlogPost();
+            using (var _cn = new SqlConnection(constr))
+            {
+                blogPost = _cn.Query<BlogPost>("SELECT * " +
+                                               "FROM BlogPosts " +
+                                               "WHERE BlogId = @BlogId", new { BlogId = id }).FirstOrDefault();
+            }
+            return blogPost;
+        }
+
+        public List<BlogPost> GetByUserId(string userId)
+        {
+            using (var _cn = new SqlConnection(constr))
+            {
+                Posts = _cn.Query<BlogPost>("SELECT * " +
+                                               "FROM BlogPosts " +
+                                               "WHERE UserId = @UserId", new { UserId = userId }).ToList();
+            }
+            return Posts;
+        }
+
         public List<BlogPost> GetByAuthorUserName(string userName)
         {
             throw new NotImplementedException();
