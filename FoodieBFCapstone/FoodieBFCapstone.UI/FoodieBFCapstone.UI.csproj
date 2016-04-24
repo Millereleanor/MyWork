@@ -191,6 +191,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ContributorVM.cs" />
     <Compile Include="Models\IndexVM.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -201,6 +202,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\pictures\logo22.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\flat-ui-icons-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

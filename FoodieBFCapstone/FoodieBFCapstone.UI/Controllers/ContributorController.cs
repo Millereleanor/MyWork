@@ -6,17 +6,36 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using FoodieBFCapstone.Data;
 using FoodieBFCapstone.Models;
+using FoodieBFCapstone.UI.Models;
+using PagedList;
 
 namespace FoodieBFCapstone.UI.Controllers
 {
     public class ContributorController : Controller
     {
+        //[Authorize(Roles = "Contributor")]
+        //public ActionResult Index()
+        //{
+        //    BlogPostRepository repo = new BlogPostRepository();
+        //    ContributorVM vm = new ContributorVM();
+        //    vm.BlogPosts = repo.GetByUserId(User.Identity.GetUserId());
+        //    return View(vm);
+        //}
+
         [Authorize(Roles = "Contributor")]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             BlogPostRepository repo = new BlogPostRepository();
-            List<BlogPost> blogs = repo.GetByUserId(User.Identity.GetUserId());
-            return View(blogs);
+            ContributorVM vm = new ContributorVM();
+            vm.BlogPosts.AddRange(repo.GetByUserId(User.Identity.GetUserId()));
+
+            var pageNumber = page ?? 1;
+            var onePageOfProducts = vm.BlogPosts.ToPagedList(pageNumber, 2);
+
+            ViewBag.OnePageOfProducts = onePageOfProducts;
+
+            return View();
         }
     }
+
 }
