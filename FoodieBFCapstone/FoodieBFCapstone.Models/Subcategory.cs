@@ -10,7 +10,7 @@ namespace FoodieBFCapstone.Models
     {
         public int SubcategoryId { get; set; }
 
-        public string Subcategory { get; set; }
+        public string SubcategoryName { get; set; }
 
         public int CategoryId { get; set; }
 
