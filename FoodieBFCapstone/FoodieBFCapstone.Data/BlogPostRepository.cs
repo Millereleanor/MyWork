@@ -82,10 +82,12 @@ namespace FoodieBFCapstone.Data
             List<BlogPost> subgategoryPosts = new List<BlogPost>();
             using (var _cn = new SqlConnection(constr))
             {
-                subgategoryPosts = _cn.Query<BlogPost>("Select B.* FROM BlogPosts B " +
-                                                       "INNER JOIN SubCategories C " +
-                                                       "ON B.SubCategoryId = C.SubCategoryId " +
-                                                       "WHERE C.SubCategory = @subcategoryType; ", new { subcategoryType = subcategoryType }).ToList();
+                subgategoryPosts = _cn.Query<BlogPost>("SELECT BlogPosts.BlogId, BlogPosts.UserId, BlogPosts.SubCategoryId, " +
+                                                       "BlogPosts.StatusId, BlogPosts.MainPictureUrl, BlogPosts.Title, " +
+                                                       "BlogPosts.PostContent AS [Content], BlogPosts.Summary, BlogPosts.CreatedOn, " +
+                                                       "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn " +
+                                                       "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
+                                                       "WHERE (SubCategories.SubCategory = @subcategoryType)", new { subcategoryType = subcategoryType }).ToList();
                 return subgategoryPosts;
             }
 
