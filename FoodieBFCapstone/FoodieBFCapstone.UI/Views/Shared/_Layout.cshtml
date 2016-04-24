@@ -21,6 +21,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Foodie & the BlowFish <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recipes <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Breakfast", "Breakfast", "Recipe")</li>
@@ -42,14 +49,12 @@
                             <li>@Html.ActionLink("Antarctica", "Antarctica", "Review")</li>
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("UnNamed", "Static", "Home")</li>
+                    <li>@Html.ActionLink("BlowFish's Travels", "Static", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
 
                 <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
+                    <div class="form-group" style="margin-left: 50px;">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
