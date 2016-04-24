@@ -16,7 +16,7 @@ namespace FoodieBFCapstone.UI.Controllers
             var repo = new BlogPostRepository();
             var blogPost = repo.GetBySubcategory("Breakfast");
 
-            return View();
+            return View(blogPost);
         }
 
         public ActionResult Lunch()
