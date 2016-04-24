@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,7 +56,15 @@ namespace FoodieBFCapstone.Data
 
         public List<BlogPost> GetBySubcategory(string subcategoryType)
         {
-            throw new NotImplementedException();
+            List<BlogPost> subgategoryPosts = new List<BlogPost>();
+            using (var _cn = new SqlConnection(constr))
+            {
+               subgategoryPosts = _cn.Query<BlogPost>("Select * FROM BlogPosts B " +
+                                                      "INNER JOIN SubCategories C " +
+                                                      "ON B.SubCategoryId = C.SubCategoryId " +
+                                                      "WHERE B.SubCategoryId = @subcategoryType; ",new { subcategoryType = subgategoryPosts}).ToList();
+                return subgategoryPosts;
+            }
         }
 
         public List<BlogPost> GetByTag(string tagName)

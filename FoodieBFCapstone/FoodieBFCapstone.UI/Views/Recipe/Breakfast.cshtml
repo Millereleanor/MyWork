@@ -15,36 +15,36 @@
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
-      
+
         <th>
             @Html.DisplayNameFor(model => model.PublishDate)
         </th>
         @*<th></th>*@
     </tr>
+    @if (Model != null && Model.Any())
+    {
 
-@foreach (var item in Model) {
-    BlogPost blogPost = new BlogPost();
-    @if (blogPost.Subcategory.Subcategory == "Breakfast")
-     {
-         <tr>
+        foreach (var item in Model)
+        {
+            <tr>
 
-             <td>
-                 <a href="@Url.Action("Details", new {id = item.BlogPostId}))">
-                     <img src="@Html.DisplayFor(modelItem => item.MainPictureUrl)" alt="Blog Post Picture url @Html.DisplayFor(modelItem => item.MainPictureUrl)">
-                 </a>
-             </td>
-             <td>
-                 @Html.DisplayFor(modelItem => item.Title)
-             </td>
-             <td>
-                 @Html.DisplayFor(modelItem => item.PublishDate)
-             </td>
-             @*<td>
+                <td>
+                    <a href="@Url.Action("Details", new {id = item.BlogPostId}))">
+                        <img src="@Html.DisplayFor(modelItem => item.MainPictureUrl)" alt="Blog Post Picture url @Html.DisplayFor(modelItem => item.MainPictureUrl)">
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishDate)
+                </td>
+                @*<td>
 
-                 @Html.ActionLink("Details", "Details", new {id = item.BlogPostId}) |
-             </td>*@
-         </tr>
-     }
-}
+                        @Html.ActionLink("Details", "Details", new {id = item.BlogPostId}) |
+                    </td>*@
+            </tr>
+        }
+    }
 
 </table>
