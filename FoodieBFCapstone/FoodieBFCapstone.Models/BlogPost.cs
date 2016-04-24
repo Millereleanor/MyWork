@@ -21,6 +21,7 @@ namespace FoodieBFCapstone.Models
         public string Title { get; set; }
 
         public string MainPictureUrl { get; set; }
+        public string Summary { get; set; }
 
         //this is the info is gotten by the tinymce ...
         public string Content { get; set; }

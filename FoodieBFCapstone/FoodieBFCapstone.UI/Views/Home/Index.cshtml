@@ -4,22 +4,24 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
-<div class="row">
-    @foreach (var fpost in Model.FeaturedPosts)
-    {
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var fpost in Model.FeaturedPosts)
+        {
+            <div class="col-md-4">
+                <img src="@fpost.MainPictureUrl" style="height: 100%; width: 100%; object-fit: contain; margin-top: 25px;" />
+                <h3 align="center">@fpost.Title</h3>
+                <p align="center">@fpost.Summary</p>
+            </div>
+        }
         <div class="col-md-4">
-            <img src="@fpost.MainPictureUrl" />
-            <h3>@fpost.Title</h3>
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
         </div>
-    }
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        </div>
     </div>
 </div>
 @foreach (var post in Model.AllPosts)

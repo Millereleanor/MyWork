@@ -34,7 +34,7 @@ namespace FoodieBFCapstone.Data
         {
             using (var _cn = new SqlConnection(constr))
             {
-                Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPost.StatusId=1").ToList();
+                Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPosts.StatusId=1").ToList();
                 return Posts;
             }
         }
@@ -43,7 +43,7 @@ namespace FoodieBFCapstone.Data
         {
             using (var _cn = new SqlConnection(constr))
             {
-                Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPost.StatusId=4").ToList();
+                Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPosts.StatusId=4").ToList();
                 return Posts;
             }
         }
