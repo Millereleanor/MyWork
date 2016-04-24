@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FoodieBFCapstone.Data;
+using FoodieBFCapstone.Models;
 
 namespace FoodieBFCapstone.UI.Controllers
 {
@@ -11,7 +13,10 @@ namespace FoodieBFCapstone.UI.Controllers
         // GET: Recipe
         public ActionResult Breakfast()
         {
-            return View();
+            var repo = new BlogPostRepository();
+            var blogPost = repo.GetBySubcategory("Breakfast");
+
+            return View(blogPost);
         }
 
         public ActionResult Lunch()

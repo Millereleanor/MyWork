@@ -32,8 +32,6 @@ namespace FoodieBFCapstone.UI.Controllers
             var pageNumber = page ?? 1;
             var onePageOfProducts = vm.BlogPosts.ToPagedList(pageNumber, 2);
 
-            var peek = vm.BlogPosts;
-
             ViewBag.OnePageOfProducts = onePageOfProducts;
 
             return View();
