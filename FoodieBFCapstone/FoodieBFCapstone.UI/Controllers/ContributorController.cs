@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using FoodieBFCapstone.Data;
+using FoodieBFCapstone.Models;
 
 namespace FoodieBFCapstone.UI.Controllers
 {
@@ -11,7 +14,9 @@ namespace FoodieBFCapstone.UI.Controllers
         [Authorize(Roles = "Contributor")]
         public ActionResult Index()
         {
-            return View();
+            BlogPostRepository repo = new BlogPostRepository();
+            List<BlogPost> blogs = repo.GetByUserId(User.Identity.GetUserId());
+            return View(blogs);
         }
     }
 }
