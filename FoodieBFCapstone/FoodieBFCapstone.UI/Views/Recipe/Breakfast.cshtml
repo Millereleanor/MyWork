@@ -29,7 +29,7 @@
             <tr>
 
                 <td>
-                    <a href="@Url.Action("Details", new {id = item.BlogPostId}))">
+                    <a href="@Url.Action("Details", new {id = item.BlogId})">
                         <img src="@Html.DisplayFor(modelItem => item.MainPictureUrl)" alt="Blog Post Picture url @Html.DisplayFor(modelItem => item.MainPictureUrl)">
                     </a>
                 </td>
@@ -41,7 +41,7 @@
                 </td>
                 @*<td>
 
-                        @Html.ActionLink("Details", "Details", new {id = item.BlogPostId}) |
+                        @Html.ActionLink("Details", "Details", new {id = item.BlogId}) |
                     </td>*@
             </tr>
         }

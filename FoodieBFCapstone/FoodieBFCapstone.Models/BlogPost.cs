@@ -8,7 +8,7 @@ namespace FoodieBFCapstone.Models
 {
     public class BlogPost
     {
-        public int BlogPostId { get; set; }
+        public int BlogId { get; set; }
 
         //not sure about this one???
         //public int ContributorId { get; set; }
