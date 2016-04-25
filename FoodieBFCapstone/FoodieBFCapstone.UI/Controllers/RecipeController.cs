@@ -11,7 +11,7 @@ namespace FoodieBFCapstone.UI.Controllers
     public class RecipeController : Controller
     {
         // GET: Recipe
-        public ActionResult Breakfast(string subcategory)
+        public ActionResult RecipeSubCategory(string subcategory)
         {
             var repo = new BlogPostRepository();
             var blogPost = repo.GetBySubcategory(subcategory);
@@ -19,24 +19,6 @@ namespace FoodieBFCapstone.UI.Controllers
             return View(blogPost);
         }
 
-        public ActionResult Lunch()
-        {
-            return View();
-        }
-
-        public ActionResult Dinner()
-        {
-            return View();
-        }
-
-        public ActionResult Dessert()
-        {
-            return View();
-        }
-
-        public ActionResult Drink()
-        {
-            return View();
-        }
+        
     }
 }

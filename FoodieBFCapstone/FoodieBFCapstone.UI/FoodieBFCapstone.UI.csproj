@@ -180,7 +180,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-	<Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContributorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -260,7 +260,7 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-	<Content Include="Views\Admin\Home.cshtml" />
+    <Content Include="Views\Admin\Home.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -269,13 +269,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Recipe\Breakfast.cshtml" />
+    <Content Include="Views\Recipe\RecipeSubCategory.cshtml" />
     <Content Include="Views\Contributor\Index.cshtml" />
+    <Content Include="Views\Review\ReviewSubCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Review\" />
     <Folder Include="Views\SubCategory\" />
   </ItemGroup>
   <ItemGroup>
