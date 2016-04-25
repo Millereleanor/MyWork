@@ -24,6 +24,8 @@
 
 @foreach (var post in ViewBag.OnePageOfProducts)
 {
+    var p = (BlogPost)post;
+
     <div class="row">
         <div class="col-sm-2 item">
             <img src="@post.MainPictureUrl" class="item" />
@@ -36,10 +38,10 @@
             <p>@post.Summary</p>
             <p>
                 Posted on:
-                @*@if (post.ApprovedOn != null)
-                    {
-                        @post.ApprovedOn.Value.ToShortDateString();
-                    }*@
+                @if (p.ApprovedOn != null)
+                {
+                    @p.ApprovedOn.Value.ToShortDateString();
+                }
             </p>
         </div>
     </div>
