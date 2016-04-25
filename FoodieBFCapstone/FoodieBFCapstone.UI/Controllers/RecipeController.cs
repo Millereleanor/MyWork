@@ -11,10 +11,10 @@ namespace FoodieBFCapstone.UI.Controllers
     public class RecipeController : Controller
     {
         // GET: Recipe
-        public ActionResult Breakfast()
+        public ActionResult Breakfast(string subcategory)
         {
             var repo = new BlogPostRepository();
-            var blogPost = repo.GetBySubcategory("Breakfast");
+            var blogPost = repo.GetBySubcategory(subcategory);
 
             return View(blogPost);
         }

@@ -1,12 +1,10 @@
-﻿
-
 ﻿using System;
 using System.Collections.Generic;
-﻿using System.ComponentModel.DataAnnotations;
-﻿using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-﻿using System.Web.Mvc;
+using System.Web.Mvc;
 
 namespace FoodieBFCapstone.Models
 {
@@ -23,7 +21,7 @@ namespace FoodieBFCapstone.Models
         public string MainPictureUrl { get; set; }
 
         public bool IsFeatured { get; set; }
-
+        
         public string Title { get; set; }
 
         [UIHint("tinymce_jquery_full"), AllowHtml]
@@ -34,9 +32,10 @@ namespace FoodieBFCapstone.Models
         public DateTime CreatedOn { get; set; }
         public DateTime PublishDate { get; set; }
         public DateTime? ExpirationDate { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime? ApprovedOn { get; set; }
 
         public List<Tag> Tags { get; set; }
     }
-
 }
