@@ -3,45 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FoodieBFCapstone.Data;
 
 namespace FoodieBFCapstone.UI.Controllers
 {
     public class ReviewController : Controller
     {
         // GET: Review
-        public ActionResult NorthAmerica()
+        public ActionResult ReviewSubCategory(string subcategory)
         {
-            return View();
-        }
+            var repo = new BlogPostRepository();
+            var blogPost = repo.GetBySubcategory(subcategory);
 
-        public ActionResult SouthAmerica()
-        {
-            return View();
+            return View(blogPost);
         }
-
-        public ActionResult Asia()
-        {
-            return View();
-        }
-
-        public ActionResult Antarctica()
-        {
-            return View();
-        }
-
-        public ActionResult Europe()
-        {
-            return View();
-        }
-
-        public ActionResult Africa()
-        {
-            return View();
-        }
-
-        public ActionResult Australia()
-        {
-            return View();
-        }
+        
     }
 }
