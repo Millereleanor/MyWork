@@ -205,7 +205,7 @@ namespace FoodieBFCapstone.Data
                                         "BlogPosts.PostContent AS [Content], BlogPosts.Summary, BlogPosts.CreatedOn, " +
                                         "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn " +
                                         "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
-                                        "WHERE (SubCategories.SubCategory = @subcategoryType) AND BlogPosts.StatusId = 2 " +
+                                        "WHERE (SubCategories.SubCategory = @subcategoryType) AND BlogPosts.StatusId in (5,2) " +
                                         "ORDER BY ApprovedOn Desc", new {subcategoryType = subcategoryType}).ToList();
                 return subgategoryPosts;
             }
