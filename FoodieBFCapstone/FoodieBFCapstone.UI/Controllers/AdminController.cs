@@ -15,7 +15,7 @@ namespace FoodieBFCapstone.UI.Controllers
         // GET: Admin
         public ActionResult Home()
         {
-            var posts = repo.GetPostByStatus2(1);
+            List<BlogPost> posts = repo.GetPostByStatus(Status.Pending);
             return View(posts);
         }
     }

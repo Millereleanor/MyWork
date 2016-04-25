@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using FoodieBFCapstone.Identity;
 using FoodieBFCapstone.Models;
 using System;
 using System.Collections.Generic;
@@ -31,17 +32,6 @@ namespace FoodieBFCapstone.Data
         }
 
 
-        public List<BlogPost> GetPostByStatus(int id)
-        {
-            using (var _cn = new SqlConnection(constr))
-            {
-
-                Posts = _cn.Query<BlogPost>("SELECT * " +
-                                               "FROM BlogPosts " +
-                                               "WHERE StatusId = @StatusID", new { StatusID = id }).ToList();
-                return Posts;
-            }
-        }
 
         public List<BlogPost> GetPostByStatus2(int id)
         {
@@ -156,13 +146,31 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        public void UpdateStatusByBlogId(int blogId, Status status)
+        public IdentityProfile GetAuthorUserNameByBlogId(int id)
+        {
+            IdentityProfile Author = new IdentityProfile();
+            using (var _cn = new SqlConnection(constr))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("ID", id);
+                Author = _cn.Query<IdentityProfile>("SELECT * FROM BlogPosts " +
+                                                    "INNER JOIN IdentityUser " +
+                                                    "ON BlogPosts.UserId = IdentityUser.UserId " +
+                                                    "INNER JOIN IdentityProfile " +
+                                                    "ON IdentityUser.UserId = IdentityProfile.UserId " +
+                                                    "Where BlogPosts.BlogId = @ID", parameters).FirstOrDefault();
+                return Author;
+            }
+        }
+
+        public
+            void UpdateStatusByBlogId(int blogId, Status status)
         {
             using (var _cn = new SqlConnection(constr))
             {
                 _cn.Query("UPDATE BlogPosts " +
                           "SET StatusId = @StatusId " +
-                          "WHERE BlogId = @BlogId", new {StatusId = status, BlogId = blogId});
+                          "WHERE BlogId = @BlogId", new { StatusId = status, BlogId = blogId });
             }
         }
 

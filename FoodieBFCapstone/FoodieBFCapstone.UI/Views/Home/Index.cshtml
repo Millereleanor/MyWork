@@ -1,5 +1,7 @@
 ﻿@model FoodieBFCapstone.UI.Models.IndexVM
 @using FoodieBFCapstone.Models
+@using PagedList
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "Home Page";
@@ -10,9 +12,10 @@
     @foreach (var fpost in Model.FeaturedPosts)
             {
 
-        <div class="col-sm-4">
+        <div class="col-sm-4" href="@Url.Action("Details", "Home", new {id = fpost.BlogId})">
             <img src="@fpost.MainPictureUrl" style="height: 250px; margin-top: 15px;" class="thumbnail" />
             <h4 align="center">@fpost.Title</h4>
+            <p aling="center">Author: @fpost.Author.FirstName  @fpost.Author.LastName</p>
             <p align="center">@fpost.Summary</p>
         </div>
 
@@ -29,8 +32,13 @@
             <p>
                 <h4>@post.Title</h4>
             </p>
+            <p>Author: @post.Author.FirstName  @post.Author.LastName</p>
             <p>@post.Summary</p>
             <p>Posted on: @post.ApprovedOn</p>
         </div>
     </div>
 }
+
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }))
+</div>
