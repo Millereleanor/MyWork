@@ -54,6 +54,10 @@
     <None Include="Views\Shared\EditorTemplates\tinymce_jquery_full.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FoodieBFCapstone.Identity\FoodieBFCapstone.Identity.csproj">
+      <Project>{1A8ECF8C-5F1B-4274-8A8C-7B976DAD1E3B}</Project>
+      <Name>FoodieBFCapstone.Identity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FoodieBFCapstone.Models\FoodieBFCapstone.Models.csproj">
       <Project>{19994e4d-64d7-45bc-9653-fddbecc610ef}</Project>
       <Name>FoodieBFCapstone.Models</Name>

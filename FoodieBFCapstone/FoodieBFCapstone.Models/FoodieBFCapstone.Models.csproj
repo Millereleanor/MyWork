@@ -79,6 +79,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FoodieBFCapstone.Identity\FoodieBFCapstone.Identity.csproj">
+      <Project>{1A8ECF8C-5F1B-4274-8A8C-7B976DAD1E3B}</Project>
+      <Name>FoodieBFCapstone.Identity</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

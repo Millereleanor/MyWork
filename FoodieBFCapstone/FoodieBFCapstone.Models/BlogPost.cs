@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodieBFCapstone.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,8 +22,9 @@ namespace FoodieBFCapstone.Models
         public string MainPictureUrl { get; set; }
 
         public bool IsFeatured { get; set; }
-        
+
         public string Title { get; set; }
+        public IdentityProfile Author { get; set; }
 
         [UIHint("tinymce_jquery_full"), AllowHtml]
         public string PostContent { get; set; }
