@@ -43,11 +43,21 @@ namespace FoodieBFCapstone.UI.Controllers
             return View(blogPost);
         }
 
-        //[Authorize(Roles = "Contributor")]
-        //public ActionResult DeleteBlog()
-        //{
-        //    return View();
-        //}
+        [Authorize(Roles = "Contributor")]
+        public ActionResult DeactivateBlog(int blogId)
+        {
+            BlogPostRepository repo = new BlogPostRepository();
+            repo.UpdateStatusByBlogId(blogId, Status.Inactive);
+            return RedirectToAction("Index", "Contributor");
+        }
+
+        [Authorize(Roles = "Contributor")]
+        public ActionResult FilterBlogsByStatus(int? page, Status status)
+        {
+            BlogPostRepository repo = new BlogPostRepository();
+
+            return View();
+        }
     }
 
 }

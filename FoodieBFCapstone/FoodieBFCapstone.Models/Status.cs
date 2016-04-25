@@ -8,7 +8,7 @@ namespace FoodieBFCapstone.Models
 {
     public enum Status
     {
-        Pending,
+        Pending = 1,
         Active,
         Inactive,
         Denied,
