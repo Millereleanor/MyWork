@@ -1,3 +1,4 @@
+
 ﻿@using System.Activities.Statements
 @model List<FoodieBFCapstone.Models.BlogPost>
 
@@ -17,5 +18,7 @@
 @foreach (var blog in Model)
 {
     <label>@blog.Title</label>
-    <div>@Html.Raw(@blog.Content)</div>
+    <div>@Html.Raw(@blog.PostContent)</div>
 }
+
+

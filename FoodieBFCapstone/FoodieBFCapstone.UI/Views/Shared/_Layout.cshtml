@@ -31,23 +31,23 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recipes <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Breakfast", "Breakfast", "Recipe", new { subcategory = "Breakfast" }, null)</li>
-                            <li>@Html.ActionLink("Lunch", "Breakfast", "Recipe",new {subcategory = "Lunch" },null)</li>
-                            <li>@Html.ActionLink("Dinner", "Dinner", "Recipe")</li>
-                            <li>@Html.ActionLink("Dessert", "Dessert", "Recipe")</li>
-                            <li>@Html.ActionLink("Drink", "Drink", "Recipe")</li>
+                            <li>@Html.ActionLink("Breakfast", "RecipeSubCategory", "Recipe", new { subcategory = "Breakfast" }, null)</li>
+                            <li>@Html.ActionLink("Lunch", "RecipeSubCategory", "Recipe", new { subcategory = "Lunch" }, null)</li>
+                            <li>@Html.ActionLink("Dinner", "RecipeSubCategory", "Recipe", new { subcategory = "Dinner" }, null)</li>
+                            <li>@Html.ActionLink("Dessert", "RecipeSubCategory", "Recipe", new { subcategory = "Dessert" }, null)</li>
+                            <li>@Html.ActionLink("Drinks", "RecipeSubCategory", "Recipe", new { subcategory = "Drinks" }, null)</li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Around The World <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("North America", "NorthAmerica", "Review")</li>
-                            <li>@Html.ActionLink("South America", "SouthAmerica", "Review")</li>
-                            <li>@Html.ActionLink("Asia", "Asia", "Review")</li>
-                            <li>@Html.ActionLink("Europe", "Europe", "Review")</li>
-                            <li>@Html.ActionLink("Australia", "Australia", "Review")</li>
-                            <li>@Html.ActionLink("Africa", "Africa", "Review")</li>
-                            <li>@Html.ActionLink("Antarctica", "Antarctica", "Review")</li>
+                            <li>@Html.ActionLink("North America", "ReviewSubCategory", "Review", new { subcategory = "NorthAmerica" }, null)</li>
+                            <li>@Html.ActionLink("South America", "ReviewSubCategory", "Review", new { subcategory = "SouthAmerica" }, null)</li>
+                            <li>@Html.ActionLink("Asia", "ReviewSubCategory", "Review", new { subcategory = "Asia" }, null)</li>
+                            <li>@Html.ActionLink("Europe", "ReviewSubCategory", "Review", new { subcategory = "Europe" }, null)</li>
+                            <li>@Html.ActionLink("Australia", "ReviewSubCategory", "Review", new { subcategory = "Australia" }, null)</li>
+                            <li>@Html.ActionLink("Africa", "ReviewSubCategory", "Review", new { subcategory = "Africa" }, null)</li>
+                            <li>@Html.ActionLink("Antarctica", "ReviewSubCategory", "Review", new { subcategory = "Antarctica" }, null)</li>
                         </ul>
                     </li>
                     <li>@Html.ActionLink("BlowFish's Travels", "Static", "Home")</li>
@@ -55,7 +55,7 @@
                 @Html.Partial("_LoginPartial")
 
                 <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group" style="margin-left: 50px;">
+                    <div class="form-group" style="margin-left: 35px;">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
@@ -64,14 +64,18 @@
         </div>
     </div>
     <div class="container body-content">
+        <br />
+        <br />
+        <br />
+        <br />
+
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Foodie and the BlowFish</p>
         </footer>
     </div>
 
-    
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

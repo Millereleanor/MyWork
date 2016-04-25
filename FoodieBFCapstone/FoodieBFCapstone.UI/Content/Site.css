@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 0px;
     padding-bottom: 20px;
 }
 
@@ -36,9 +36,34 @@ textarea {
     }
 
 .centered-and-cropped {
+    display: inline-block;
+    vertical-align: middle;
     object-fit: cover;
     overflow: hidden;
 }
+
+.thumbnail {
+    position: relative;
+    width: 375px;
+    height: 200px;
+    overflow: hidden;
+}
+
+    .thumbnail img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 100%;
+        width: auto;
+        -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    }
+
+        .thumbnail img.portrait {
+            width: 100%;
+            height: auto;
+        }
 
 /*-----------------------------Contributor CSS Section--------------------------*/
 
@@ -46,21 +71,21 @@ textarea {
     opacity: 0.6;
 }
 
-.blog-Preview:hover button {
+.blog-Preview:hover a.btn {
     display: block;
 }
 
-.blog-Preview button {
+.blog-Preview a.btn {
     position: absolute;
     display: none;
 }
 
-.blog-Update {
-    bottom: 2%;
+a.blog-Update {
+    bottom: 18%;
     left: 15%;
 }
 
-.blog-Delete {
-    bottom: 2%;
+a.blog-Delete {
+    bottom: 18%;
     right: 15%;
 }
