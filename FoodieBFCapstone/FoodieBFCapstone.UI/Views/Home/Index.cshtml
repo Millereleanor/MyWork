@@ -11,13 +11,14 @@
 
     @foreach (var fpost in Model.FeaturedPosts)
             {
-
-        <div class="col-sm-4" href="@Url.Action("Details", "Home", new {id = fpost.BlogId})">
-            <img src="@fpost.MainPictureUrl" style="height: 250px; margin-top: 15px;" class="thumbnail" />
-            <h4 align="center">@fpost.Title</h4>
-            <p align="center">Author: @fpost.Author.FirstName  @fpost.Author.LastName</p>
-            <p align="center">@fpost.Summary</p>
-        </div>
+        <a href="@Url.Action("Details", "Home", new {blogId = fpost.BlogId})">
+            <div class="col-sm-4">
+                <img src="@fpost.MainPictureUrl" style="height: 250px; margin-top: 15px;" class="thumbnail" />
+                <h4 align="center">@fpost.Title</h4>
+                <p align="center" style="color:teal">Author: @fpost.Author.FirstName  @fpost.Author.LastName</p>
+                <p align="center">@fpost.Summary</p>
+            </div>
+        </a>
 
     }
 </div>
@@ -25,26 +26,28 @@
 @foreach (var post in ViewBag.OnePageOfProducts)
 {
     var p = (BlogPost)post;
-
-    <div class="row">
-        <div class="col-sm-2 item">
-            <img src="@post.MainPictureUrl" class="item" />
-        </div>
-        <div class="col-sm-8" style="margin: 10px;">
-            <p>
-                <h4>@post.Title</h4>
-            </p>
-            <p>Author: @post.Author.FirstName  @post.Author.LastName</p>
-            <p>@post.Summary</p>
-            <p>
-                Posted on:
-                @if (p.ApprovedOn != null)
+    <a href="@Url.Action("Details", "Home", new {blogId = post.BlogId})">>
+        <div class="row">
+            <div class="col-sm-2 item">
+                <img src="@post.MainPictureUrl" class="item" />
+            </div>
+            <div class="col-sm-8" style="margin: 10px;">
+                <p>
+                    <h4>@post.Title</h4>
+                </p>
+                <p style="color:teal">Author: @post.Author.FirstName @post.Author.LastName</p>
+                <p>@post.Summary</p>
+                <p>
+                    Posted on:
+                    @if (p.ApprovedOn != null)
                 {
-                    @p.ApprovedOn.Value.ToShortDateString();
-                }
-            </p>
+                        @p.ApprovedOn.Value.ToShortDateString()
+
+                    }
+                </p>
+            </div>
         </div>
-    </div>
+    </a>
 }
 
 <div class="text-center">
