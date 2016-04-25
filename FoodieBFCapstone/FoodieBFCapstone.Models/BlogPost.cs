@@ -35,7 +35,7 @@ namespace FoodieBFCapstone.Models
         public DateTime PublishDate { get; set; }
         public DateTime? ExpirationDate { get; set; }
 
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         public DateTime? ApprovedOn { get; set; }
 
         public List<Tag> Tags { get; set; }
