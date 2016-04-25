@@ -15,14 +15,14 @@
         <div class="col-sm-4" href="@Url.Action("Details", "Home", new {id = fpost.BlogId})">
             <img src="@fpost.MainPictureUrl" style="height: 250px; margin-top: 15px;" class="thumbnail" />
             <h4 align="center">@fpost.Title</h4>
-            <p aling="center">Author: @fpost.Author.FirstName  @fpost.Author.LastName</p>
+            <p align="center">Author: @fpost.Author.FirstName  @fpost.Author.LastName</p>
             <p align="center">@fpost.Summary</p>
         </div>
 
     }
 </div>
 
-@foreach (var post in Model.AllPosts)
+@foreach (var post in ViewBag.OnePageOfProducts)
 {
     <div class="row">
         <div class="col-sm-2 item">
@@ -34,7 +34,13 @@
             </p>
             <p>Author: @post.Author.FirstName  @post.Author.LastName</p>
             <p>@post.Summary</p>
-            <p>Posted on: @post.ApprovedOn</p>
+            <p>
+                Posted on:
+                @*@if (post.ApprovedOn != null)
+                    {
+                        @post.ApprovedOn.Value.ToShortDateString();
+                    }*@
+            </p>
         </div>
     </div>
 }
