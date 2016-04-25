@@ -138,9 +138,9 @@ namespace FoodieBFCapstone.Data
                 subgategoryPosts = _cn.Query<BlogPost>("SELECT BlogPosts.BlogId, BlogPosts.UserId, BlogPosts.SubCategoryId, " +
                                                        "BlogPosts.StatusId, BlogPosts.MainPictureUrl, BlogPosts.Title, " +
                                                        "BlogPosts.PostContent AS [Content], BlogPosts.Summary, BlogPosts.CreatedOn, " +
-                                                       "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn " +
+                                                       "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn, SubCategories.SubCategory AS [SubcategoryName]" +
                                                        "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
-                                                       "WHERE (SubCategories.SubCategory = @subcategoryType) " +
+                                                       "WHERE (SubCategories.SubCategory = @subcategoryType) " +  
                                                        "ORDER BY ApprovedOn DESC", new { subcategoryType = subcategoryType }).ToList();
                 return subgategoryPosts;
             }
@@ -203,7 +203,7 @@ namespace FoodieBFCapstone.Data
                     _cn.Query<BlogPost>("SELECT BlogPosts.BlogId, BlogPosts.UserId, BlogPosts.SubCategoryId, " +
                                         "BlogPosts.StatusId, BlogPosts.MainPictureUrl, BlogPosts.Title, " +
                                         "BlogPosts.PostContent AS [Content], BlogPosts.Summary, BlogPosts.CreatedOn, " +
-                                        "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn " +
+                                        "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn, SubCategories.SubCategory AS [SubcategoryName] " +
                                         "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
                                         "WHERE (SubCategories.SubCategory = @subcategoryType) AND BlogPosts.StatusId in (5,2) " +
                                         "ORDER BY ApprovedOn Desc", new {subcategoryType = subcategoryType}).ToList();
