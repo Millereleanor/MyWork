@@ -1,3 +1,4 @@
+
 ﻿@using System.Activities.Statements
 @model List<FoodieBFCapstone.Models.BlogPost>
 
@@ -11,12 +12,25 @@
 <br/>
 <h2 align="center">Pending Articles</h2>
 
-@Html.BeginForm("Home", "Admin", FormMethod.Post){
-<div>
-    @foreach (var blog in Model)
-    {
-        <label>@blog.Title</label>
-    }
-</div>
+
+
+
+@foreach (var blog in Model)
+{
+    <div class="row">
+        <div class="col-md-3">
+            <img src="@blog.MainPictureUrl" class="item" />
+        </div>
+        <div class="col-md-6">
+            <h3>@blog.Title</h3>
+            <br/>
+            <br/>
+            <h6>Created On: @blog.CreatedOn.ToShortDateString()</h6>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary" ></button>
+        </div>
+    </div>
 }
+
 
