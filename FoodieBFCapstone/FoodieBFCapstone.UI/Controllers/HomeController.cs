@@ -14,8 +14,8 @@ namespace FoodieBFCapstone.UI.Controllers
         {
             var repo = new BlogPostRepository();
             var vm = new IndexVM();
-            vm.FeaturedPosts = repo.GetActivePosts();
-            vm.AllPosts = repo.GetFeatured();
+            vm.AllPosts = repo.GetActivePosts();
+            vm.FeaturedPosts = repo.GetFeatured();
 
             return View(vm);
         }
