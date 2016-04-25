@@ -13,15 +13,6 @@ namespace FoodieBFCapstone.UI.Controllers
 {
     public class ContributorController : Controller
     {
-        //[Authorize(Roles = "Contributor")]
-        //public ActionResult Index()
-        //{
-        //    BlogPostRepository repo = new BlogPostRepository();
-        //    ContributorVM vm = new ContributorVM();
-        //    vm.BlogPosts = repo.GetByUserId(User.Identity.GetUserId());
-        //    return View(vm);
-        //}
-
         [Authorize(Roles = "Contributor")]
         public ActionResult Index(int? page)
         {
@@ -30,12 +21,33 @@ namespace FoodieBFCapstone.UI.Controllers
             vm.BlogPosts.AddRange(repo.GetByUserId(User.Identity.GetUserId()));
 
             var pageNumber = page ?? 1;
-            var onePageOfProducts = vm.BlogPosts.ToPagedList(pageNumber, 2);
+            var onePageOfProducts = vm.BlogPosts.ToPagedList(pageNumber, 6);
 
             ViewBag.OnePageOfProducts = onePageOfProducts;
 
             return View();
         }
+
+        //[Authorize(Roles = "Contributor")]
+        //public ActionResult CreateNewBlog()
+        //{
+        //    return View();
+        //}
+
+        [Authorize(Roles = "Contributor")]
+        public ActionResult UpdateBlog(int blogId)
+        {
+            BlogPostRepository repo = new BlogPostRepository();
+            var blogPost = repo.GetById(blogId);
+
+            return View(blogPost);
+        }
+
+        //[Authorize(Roles = "Contributor")]
+        //public ActionResult DeleteBlog()
+        //{
+        //    return View();
+        //}
     }
 
 }

@@ -9,8 +9,8 @@
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -23,28 +23,44 @@ textarea {
     max-width: 280px;
 }
 
+.item {
+    width: 200px;
+    height: 150px;
+    margin: 3px;
+    padding: 3px;
+}
+
+    .item p {
+        margin: 5px;
+        padding: 5px;
+    }
+
+.centered-and-cropped {
+    object-fit: cover;
+    overflow: hidden;
+}
+
 /*-----------------------------Contributor CSS Section--------------------------*/
 
 .blog-Preview:hover img {
     opacity: 0.6;
 }
 
-.blog-Preview:hover button {
+.blog-Preview:hover a.btn {
     display: block;
 }
 
-.blog-Preview button {
+.blog-Preview a.btn {
     position: absolute;
     display: none;
 }
 
-.blog-Update {
+a.blog-Update {
     bottom: 2%;
     left: 15%;
 }
 
-.blog-Delete {
+a.blog-Delete {
     bottom: 2%;
     right: 15%;
 }
-

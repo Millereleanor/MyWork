@@ -1,4 +1,3 @@
-﻿
 ﻿using Dapper;
 using FoodieBFCapstone.Models;
 using System;
@@ -31,11 +30,20 @@ namespace FoodieBFCapstone.Data
             }
         }
 
+        public List<BlogPost> GetPostByStatus(int Id)
+        {
+            using (var _cn = new SqlConnection(constr))
+            {
+                Posts = _cn.Query<BlogPost>("Select * From BlogPosts B Where B.StatusId = @StatusId", new {StatusId = Id}).ToList();
+                return Posts;
+            }
+        } 
+
         public List<BlogPost> GetActivePosts()
         {
             using (var _cn = new SqlConnection(constr))
             {
-                Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPosts.StatusId=1").ToList();
+                Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPosts.StatusId=2 Order by BlogPosts.ApprovedOn Desc ").ToList();
                 return Posts;
             }
         }
@@ -44,7 +52,7 @@ namespace FoodieBFCapstone.Data
         {
             using (var _cn = new SqlConnection(constr))
             {
-                Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPosts.StatusId=4").ToList();
+                Posts = _cn.Query<BlogPost>("SELECT TOP 3 * FROM BlogPosts WHERE BlogPosts.StatusId=5 ORDER BY Rand()").ToList();
                 return Posts;
             }
         }
@@ -90,7 +98,6 @@ namespace FoodieBFCapstone.Data
                                                        "WHERE (SubCategories.SubCategory = @subcategoryType)", new { subcategoryType = subcategoryType }).ToList();
                 return subgategoryPosts;
             }
-
         }
 
         public List<BlogPost> GetByTag(string tagName)

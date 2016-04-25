@@ -1,8 +1,22 @@
-﻿@model List<FoodieBFCapstone.Models.BlogPost>
+﻿@using System.Activities.Statements
+@model List<FoodieBFCapstone.Models.BlogPost>
 
 @{
     ViewBag.Title = "Home";
 }
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<h2 align="center">Pending Articles</h2>
 
-<h2>Home</h2>
+@Html.BeginForm("Home", "Admin", FormMethod.Post){
+<div>
+    @foreach (var blog in Model)
+    {
+        <label>@blog.Title</label>
+    }
+</div>
+}
 
