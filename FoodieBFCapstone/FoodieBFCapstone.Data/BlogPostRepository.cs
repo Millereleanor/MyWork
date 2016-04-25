@@ -31,8 +31,6 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-
-
         public List<BlogPost> GetPostByStatus2(int id)
         {
             List<BlogPost> blogs = new List<BlogPost>();
@@ -44,7 +42,7 @@ namespace FoodieBFCapstone.Data
                                   "Inner Join SubCategories s2 on b.SubCategoryId = s2.SubCategoryId " +
                                   "Inner Join BlogPostsTags bp on b.BlogId = bp.BlogId " +
                                   "Where b.StatusId = " + id;
-               
+
                 cmd.Connection = cn;
                 cn.Open();
 
@@ -59,30 +57,31 @@ namespace FoodieBFCapstone.Data
             return blogs;
         }
 
-
         private BlogPost PopulateFromDataReader(SqlDataReader dr)
         {
             BlogPost blog = new BlogPost();
             blog.Subcategory = new Subcategory();
-            blog.Status = (Status) dr["StatusId"];
+            blog.Status = (Status)dr["StatusId"];
             blog.Title = dr["Title"].ToString();
             blog.PostContent = dr["PostContent"].ToString();
             blog.Summary = dr["Summary"].ToString();
-            
-            blog.BlogId = (int) dr["BlogId"];
+
+            blog.BlogId = (int)dr["BlogId"];
             blog.MainPictureUrl = dr["MainPictureUrl"].ToString();
             blog.Subcategory.SubcategoryName = dr["SubCategory"].ToString();
-            blog.CreatedOn = (DateTime) dr["CreatedOn"];
+            blog.CreatedOn = (DateTime)dr["CreatedOn"];
 
             return blog;
-
         }
 
-
-
-        
-    
-
+        public List<Subcategory> GetAllSubcategories()
+        {
+            using (var _cn = new SqlConnection(constr))
+            {
+                var Subcategories = _cn.Query<Subcategory>("SELECT * FROM SubCategories ").ToList();
+                return Subcategories;
+            }
+        }
 
         public List<BlogPost> GetActivePosts()
         {
@@ -206,7 +205,7 @@ namespace FoodieBFCapstone.Data
                                         "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn " +
                                         "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
                                         "WHERE (SubCategories.SubCategory = @subcategoryType) AND BlogPosts.StatusId = 2 " +
-                                        "ORDER BY ApprovedOn Desc", new {subcategoryType = subcategoryType}).ToList();
+                                        "ORDER BY ApprovedOn Desc", new { subcategoryType = subcategoryType }).ToList();
                 return subgategoryPosts;
             }
         }

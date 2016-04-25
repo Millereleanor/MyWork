@@ -192,6 +192,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContributorVM.cs" />
+    <Compile Include="Models\CreatePostVM.cs" />
     <Compile Include="Models\IndexVM.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -275,6 +276,7 @@
     <Content Include="Views\Admin\Home.cshtml" />
     <Content Include="Views\Contributor\FilterBlogsByStatus.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Contributor\CreateNewBlog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
