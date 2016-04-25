@@ -31,8 +31,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recipes <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Breakfast", "Breakfast", "Recipe")</li>
-                            <li>@Html.ActionLink("Lunch", "Lunch", "Recipe")</li>
+                            <li>@Html.ActionLink("Breakfast", "Breakfast", "Recipe", new { subcategory = "Breakfast" }, null)</li>
+                            <li>@Html.ActionLink("Lunch", "Breakfast", "Recipe",new {subcategory = "Lunch" },null)</li>
                             <li>@Html.ActionLink("Dinner", "Dinner", "Recipe")</li>
                             <li>@Html.ActionLink("Dessert", "Dessert", "Recipe")</li>
                             <li>@Html.ActionLink("Drink", "Drink", "Recipe")</li>
