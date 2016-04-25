@@ -31,14 +31,58 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        public List<BlogPost> GetPostByStatus(Status status)
+
+
+        public List<BlogPost> GetPostByStatus2(int id)
         {
-            using (var _cn = new SqlConnection(constr))
+            List<BlogPost> blogs = new List<BlogPost>();
+            using (var cn = new SqlConnection(constr))
             {
-                Posts = _cn.Query<BlogPost>("Select * From BlogPosts B Where B.StatusId = @StatusId", new { StatusId = status }).ToList();
-                return Posts;
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "Select * From BlogPosts b " +
+                                  "Inner Join Statuses s on b.StatusId = s.StatusId " +
+                                  "Inner Join SubCategories s2 on b.SubCategoryId = s2.SubCategoryId " +
+                                  "Inner Join BlogPostsTags bp on b.BlogId = bp.BlogId " +
+                                  "Where b.StatusId = " + id;
+               
+                cmd.Connection = cn;
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        blogs.Add(PopulateFromDataReader(dr));
+                    }
+                }
             }
+            return blogs;
         }
+
+
+        private BlogPost PopulateFromDataReader(SqlDataReader dr)
+        {
+            BlogPost blog = new BlogPost();
+            blog.Subcategory = new Subcategory();
+            blog.Status = (Status) dr["StatusId"];
+            blog.Title = dr["Title"].ToString();
+            blog.PostContent = dr["PostContent"].ToString();
+            blog.Summary = dr["Summary"].ToString();
+            
+            blog.BlogId = (int) dr["BlogId"];
+            blog.MainPictureUrl = dr["MainPictureUrl"].ToString();
+            blog.Subcategory.SubcategoryName = dr["SubCategory"].ToString();
+            blog.CreatedOn = (DateTime) dr["CreatedOn"];
+
+            return blog;
+
+        }
+
+
+
+        
+    
+
 
         public List<BlogPost> GetActivePosts()
         {
@@ -107,12 +151,14 @@ namespace FoodieBFCapstone.Data
             IdentityProfile Author = new IdentityProfile();
             using (var _cn = new SqlConnection(constr))
             {
+                var parameters = new DynamicParameters();
+                parameters.Add("ID", id);
                 Author = _cn.Query<IdentityProfile>("SELECT * FROM BlogPosts " +
                                                     "INNER JOIN IdentityUser " +
                                                     "ON BlogPosts.UserId = IdentityUser.UserId " +
                                                     "INNER JOIN IdentityProfile " +
                                                     "ON IdentityUser.UserId = IdentityProfile.UserId " +
-                                                    "Where BlogPosts.BlogId = @ID").FirstOrDefault();
+                                                    "Where BlogPosts.BlogId = @ID", parameters).FirstOrDefault();
                 return Author;
             }
         }
