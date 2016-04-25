@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,9 @@ namespace FoodieBFCapstone.UI.Controllers
         // GET: Admin
         public ActionResult Home()
         {
-            List<BlogPost> posts = repo.GetPostByStatus(Status.Pending);
+            List<BlogPost> posts = repo.GetPostByStatus2(1);
             return View(posts);
         }
     }
 }
+

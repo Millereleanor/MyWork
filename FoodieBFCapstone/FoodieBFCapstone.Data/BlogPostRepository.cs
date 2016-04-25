@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using FoodieBFCapstone.Identity;
 using FoodieBFCapstone.Models;
 using System;
 using System.Collections.Generic;
@@ -30,14 +31,58 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        public List<BlogPost> GetPostByStatus(Status status)
+
+
+        public List<BlogPost> GetPostByStatus2(int id)
         {
-            using (var _cn = new SqlConnection(constr))
+            List<BlogPost> blogs = new List<BlogPost>();
+            using (var cn = new SqlConnection(constr))
             {
-                Posts = _cn.Query<BlogPost>("Select * From BlogPosts B Where B.StatusId = @StatusId", new { StatusId = status }).ToList();
-                return Posts;
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "Select * From BlogPosts b " +
+                                  "Inner Join Statuses s on b.StatusId = s.StatusId " +
+                                  "Inner Join SubCategories s2 on b.SubCategoryId = s2.SubCategoryId " +
+                                  "Inner Join BlogPostsTags bp on b.BlogId = bp.BlogId " +
+                                  "Where b.StatusId = " + id;
+               
+                cmd.Connection = cn;
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        blogs.Add(PopulateFromDataReader(dr));
+                    }
+                }
             }
+            return blogs;
         }
+
+
+        private BlogPost PopulateFromDataReader(SqlDataReader dr)
+        {
+            BlogPost blog = new BlogPost();
+            blog.Subcategory = new Subcategory();
+            blog.Status = (Status) dr["StatusId"];
+            blog.Title = dr["Title"].ToString();
+            blog.PostContent = dr["PostContent"].ToString();
+            blog.Summary = dr["Summary"].ToString();
+            
+            blog.BlogId = (int) dr["BlogId"];
+            blog.MainPictureUrl = dr["MainPictureUrl"].ToString();
+            blog.Subcategory.SubcategoryName = dr["SubCategory"].ToString();
+            blog.CreatedOn = (DateTime) dr["CreatedOn"];
+
+            return blog;
+
+        }
+
+
+
+        
+    
+
 
         public List<BlogPost> GetActivePosts()
         {
@@ -96,18 +141,36 @@ namespace FoodieBFCapstone.Data
                                                        "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn " +
                                                        "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
                                                        "WHERE (SubCategories.SubCategory = @subcategoryType) " +
-                                                       "ORDER BY ApprovedOn", new { subcategoryType = subcategoryType }).ToList();
+                                                       "ORDER BY ApprovedOn DESC", new { subcategoryType = subcategoryType }).ToList();
                 return subgategoryPosts;
             }
         }
 
-        public void UpdateStatusByBlogId(int blogId, Status status)
+        public IdentityProfile GetAuthorUserNameByBlogId(int id)
+        {
+            IdentityProfile Author = new IdentityProfile();
+            using (var _cn = new SqlConnection(constr))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("ID", id);
+                Author = _cn.Query<IdentityProfile>("SELECT * FROM BlogPosts " +
+                                                    "INNER JOIN IdentityUser " +
+                                                    "ON BlogPosts.UserId = IdentityUser.UserId " +
+                                                    "INNER JOIN IdentityProfile " +
+                                                    "ON IdentityUser.UserId = IdentityProfile.UserId " +
+                                                    "Where BlogPosts.BlogId = @ID", parameters).FirstOrDefault();
+                return Author;
+            }
+        }
+
+        public
+            void UpdateStatusByBlogId(int blogId, Status status)
         {
             using (var _cn = new SqlConnection(constr))
             {
                 _cn.Query("UPDATE BlogPosts " +
                           "SET StatusId = @StatusId " +
-                          "WHERE BlogId = @BlogId", new {StatusId = status, BlogId = blogId});
+                          "WHERE BlogId = @BlogId", new { StatusId = status, BlogId = blogId });
             }
         }
 
@@ -129,6 +192,23 @@ namespace FoodieBFCapstone.Data
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public List<BlogPost> GetActivePostsinSubCategory(string subcategoryType)
+        {
+            List<BlogPost> subgategoryPosts = new List<BlogPost>();
+            using (var _cn = new SqlConnection(constr))
+            {
+                subgategoryPosts =
+                    _cn.Query<BlogPost>("SELECT BlogPosts.BlogId, BlogPosts.UserId, BlogPosts.SubCategoryId, " +
+                                        "BlogPosts.StatusId, BlogPosts.MainPictureUrl, BlogPosts.Title, " +
+                                        "BlogPosts.PostContent AS [Content], BlogPosts.Summary, BlogPosts.CreatedOn, " +
+                                        "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn " +
+                                        "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
+                                        "WHERE (SubCategories.SubCategory = @subcategoryType) AND BlogPosts.StatusId = 2 " +
+                                        "ORDER BY ApprovedOn Desc", new {subcategoryType = subcategoryType}).ToList();
+                return subgategoryPosts;
+            }
         }
     }
 }

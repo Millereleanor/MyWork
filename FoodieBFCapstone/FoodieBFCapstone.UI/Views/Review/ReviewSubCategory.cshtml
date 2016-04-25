@@ -5,7 +5,7 @@
     ViewBag.Title = "ReviewSubCategory";
 }
 
-<h2>Review</h2>
+<h2>Reviews</h2>
 @*want this to dynamicly change to reflect what subcategory you are displaying
     <h3></h2>*@
 
@@ -15,16 +15,19 @@
 
     foreach (var item in Model)
     {
-        <div class="row" style="max-height:255px">
+        <div class="row">
             <div class="col-md-3">
-                <a href="@Url.Action("Details", new
-                             {
-                                 id = item.BlogId})">
-                    <img class="item" src="@item.MainPictureUrl" alt="" />
-                </a>
+                <div class="item">
+                    <a href="@Url.Action("Details","Home", new
+                         {
+                             id = item.BlogId
+                         })">
+                        <img class="item" src="@item.MainPictureUrl" alt="" />
+                    </a>
+                </div>
             </div>
             <div class="col-md-8">
-                <h3>@item.Title - <span style="font-weight: normal; font-size: medium">@item.PublishDate.ToShortDateString()</span></h3>
+                <h4>@item.Title - <span style="font-weight: normal; font-size: medium">@item.CreatedOn.ToShortDateString()</span></h4>
                 <div class="blogContent">@item.Summary</div>
             </div>
         </div>
