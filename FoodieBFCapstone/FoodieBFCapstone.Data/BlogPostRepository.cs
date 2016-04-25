@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using FoodieBFCapstone.Identity;
 using FoodieBFCapstone.Models;
 using System;
 using System.Collections.Generic;
@@ -98,6 +99,21 @@ namespace FoodieBFCapstone.Data
                                                        "WHERE (SubCategories.SubCategory = @subcategoryType) " +
                                                        "ORDER BY ApprovedOn", new { subcategoryType = subcategoryType }).ToList();
                 return subgategoryPosts;
+            }
+        }
+
+        public IdentityProfile GetAuthorUserNameByBlogId(int id)
+        {
+            IdentityProfile Author = new IdentityProfile();
+            using (var _cn = new SqlConnection(constr))
+            {
+                Author = _cn.Query<IdentityProfile>("SELECT * FROM BlogPosts " +
+                                                    "INNER JOIN IdentityUser " +
+                                                    "ON BlogPosts.UserId = IdentityUser.UserId " +
+                                                    "INNER JOIN IdentityProfile " +
+                                                    "ON IdentityUser.UserId = IdentityProfile.UserId " +
+                                                    "Where BlogPosts.BlogId = @ID").FirstOrDefault();
+                return Author;
             }
         }
 
