@@ -15,28 +15,26 @@ namespace FoodieBFCapstone.Models
         public int BlogId { get; set; }
 
         //not sure about this one???
-        //public int ContributorId { get; set; }
+        //public int UserId { get; set; }
 
         public Subcategory Subcategory { get; set; }
 
         public Status Status { get; set; }
+        public string MainPictureUrl { get; set; }
+
         public bool IsFeatured { get; set; }
 
         public string Title { get; set; }
 
-        public string MainPictureUrl { get; set; }
+        [UIHint("tinymce_jquery_full"), AllowHtml]
+        public string PostContent { get; set; }
+
         public string Summary { get; set; }
 
-        [UIHint("tinymce_jquery_full"), AllowHtml]
-        public string Content { get; set; }
-
-        public DateTime PublishDate { get; set; }
-
-        public DateTime? ExpirationDate { get; set; }
-
-        public DateTime? ApprovedOn { get; set; }
-
         public DateTime CreatedOn { get; set; }
+        public DateTime PublishDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
+        public DateTime? ApprovedOn { get; set; }
 
         public List<Tag> Tags { get; set; }
     }

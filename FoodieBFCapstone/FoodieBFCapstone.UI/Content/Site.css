@@ -29,21 +29,21 @@ textarea {
     opacity: 0.6;
 }
 
-.blog-Preview:hover button {
+.blog-Preview:hover a.btn {
     display: block;
 }
 
-.blog-Preview button {
+.blog-Preview a.btn {
     position: absolute;
     display: none;
 }
 
-.blog-Update {
+a.blog-Update {
     bottom: 2%;
     left: 15%;
 }
 
-.blog-Delete {
+a.blog-Delete {
     bottom: 2%;
     right: 15%;
 }
