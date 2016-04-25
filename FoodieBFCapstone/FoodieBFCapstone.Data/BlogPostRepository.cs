@@ -30,14 +30,65 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        public List<BlogPost> GetPostByStatus(int Id)
+
+        public List<BlogPost> GetPostByStatus(int id)
         {
             using (var _cn = new SqlConnection(constr))
             {
-                Posts = _cn.Query<BlogPost>("Select * From BlogPosts B Where B.StatusId = @StatusId", new {StatusId = Id}).ToList();
+                Posts = _cn.Query<BlogPost>("SELECT * " +
+                                               "FROM BlogPosts " +
+                                               "WHERE StatusId = @StatusID", new { StatusID = id }).ToList();
                 return Posts;
             }
-        } 
+        }
+
+        public List<BlogPost> GetPostByStatus2(int id)
+        {
+            List<BlogPost> blogs = new List<BlogPost>();
+            using (var cn = new SqlConnection(constr))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "Select * From BlogPosts b " +
+                                  "Inner Join Statuses s on b.StatusId = s.StatusId " +
+                                  "Inner Join SubCategories s2 on b.SubCategoryId = s2.SubCategoryId " +
+                                  "Inner Join BlogPostsTags bp on b.BlogId = bp.BlogId " +
+                                  "Where b.StatusId = " + id;
+               
+                cmd.Connection = cn;
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        blogs.Add(PopulateFromDataReader(dr));
+                    }
+                }
+            }
+            return blogs;
+        }
+
+
+        private BlogPost PopulateFromDataReader(SqlDataReader dr)
+        {
+            BlogPost blog = new BlogPost();
+            blog.Subcategory = new Subcategory();
+            blog.Status = (Status) dr["StatusId"];
+            blog.Title = dr["Title"].ToString();
+            blog.Content = dr["PostContent"].ToString();
+            blog.Summary = dr["Summary"].ToString();
+            
+            blog.BlogId = (int) dr["BlogId"];
+            blog.MainPictureUrl = dr["MainPictureUrl"].ToString();
+            blog.Subcategory.SubcategoryName = dr["SubCategory"].ToString();
+            blog.CreatedOn = (DateTime) dr["CreatedOn"];
+
+            return blog;
+
+        }
+
+
+
 
         public List<BlogPost> GetActivePosts()
         {
