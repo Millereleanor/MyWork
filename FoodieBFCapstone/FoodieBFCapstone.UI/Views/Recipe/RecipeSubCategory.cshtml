@@ -16,14 +16,17 @@
     {
         <div class="row" style="max-height:255px">
             <div class="col-md-3">
-                <a href="@Url.Action("Details", new
+                <div class="item">
+                    <a href="@Url.Action("Details", new
                              {
-                                 id = item.BlogId})">
-                    <img class="item" src="@item.MainPictureUrl" alt="" />
-                </a>
+                                 id = item.BlogId
+                             })">
+                        <img class="item" src="@item.MainPictureUrl" alt="" />
+                    </a>
+                </div>
             </div>
             <div class="col-md-8">
-                <h3>@item.Title - <span style="font-weight: normal; font-size: medium">@item.PublishDate.ToShortDateString()</span></h3>
+                <h4>@item.Title - <span style="font-weight: normal; font-size: medium">@item.PublishDate.ToShortDateString()</span></h4>
                 <div class="blogContent">@item.Summary</div>
             </div>
         </div>
