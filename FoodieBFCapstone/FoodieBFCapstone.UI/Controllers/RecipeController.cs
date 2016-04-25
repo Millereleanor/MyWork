@@ -14,10 +14,10 @@ namespace FoodieBFCapstone.UI.Controllers
         public ActionResult RecipeSubCategory(string subcategory)
         {
             var repo = new BlogPostRepository();
-            var blogPost = repo.GetBySubcategory(subcategory);
-            
 
-            return View(blogPost);
+            var activeBlogPost = repo.GetActivePostsinSubCategory(subcategory);
+
+            return View(activeBlogPost);
         }
 
         
