@@ -141,7 +141,7 @@ namespace FoodieBFCapstone.Data
                                                        "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn " +
                                                        "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
                                                        "WHERE (SubCategories.SubCategory = @subcategoryType) " +
-                                                       "ORDER BY CreatedOn", new { subcategoryType = subcategoryType }).ToList();
+                                                       "ORDER BY ApprovedOn DESC", new { subcategoryType = subcategoryType }).ToList();
                 return subgategoryPosts;
             }
         }
@@ -192,6 +192,23 @@ namespace FoodieBFCapstone.Data
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public List<BlogPost> GetActivePostsinSubCategory(string subcategoryType)
+        {
+            List<BlogPost> subgategoryPosts = new List<BlogPost>();
+            using (var _cn = new SqlConnection(constr))
+            {
+                subgategoryPosts =
+                    _cn.Query<BlogPost>("SELECT BlogPosts.BlogId, BlogPosts.UserId, BlogPosts.SubCategoryId, " +
+                                        "BlogPosts.StatusId, BlogPosts.MainPictureUrl, BlogPosts.Title, " +
+                                        "BlogPosts.PostContent AS [Content], BlogPosts.Summary, BlogPosts.CreatedOn, " +
+                                        "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn " +
+                                        "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
+                                        "WHERE (SubCategories.SubCategory = @subcategoryType) AND BlogPosts.StatusId = 2 " +
+                                        "ORDER BY AprrovedOn Desc", new {subcategoryType = subcategoryType}).ToList();
+                return subgategoryPosts;
+            }
         }
     }
 }
