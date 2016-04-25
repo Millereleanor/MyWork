@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FoodieBFCapstone.BLL;
 using Microsoft.AspNet.Identity;
 using FoodieBFCapstone.Data;
 using FoodieBFCapstone.Models;
@@ -25,7 +26,7 @@ namespace FoodieBFCapstone.UI.Controllers
 
             ViewBag.OnePageOfProducts = onePageOfProducts;
 
-            return View();
+            return View(vm);
         }
 
         //[Authorize(Roles = "Contributor")]
@@ -55,6 +56,15 @@ namespace FoodieBFCapstone.UI.Controllers
         public ActionResult FilterBlogsByStatus(int? page, Status status)
         {
             BlogPostRepository repo = new BlogPostRepository();
+            BlogPostOperations ops = new BlogPostOperations();
+            ContributorVM vm = new ContributorVM();
+            vm.BlogPosts.AddRange(ops.FilterBlogPostsByStatus(repo.GetByUserId(User.Identity.GetUserId()), status));
+
+            var pageNumber = page ?? 1;
+            var onePageOfProducts = vm.BlogPosts.ToPagedList(pageNumber, 6);
+
+            ViewBag.CurrentStatus = status;
+            ViewBag.OnePageOfProducts = onePageOfProducts;
 
             return View();
         }
