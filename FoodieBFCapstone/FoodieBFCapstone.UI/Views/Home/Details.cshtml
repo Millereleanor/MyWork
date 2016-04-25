@@ -6,5 +6,11 @@
 
 <h2>@Model.Title</h2>
 <h4 align="right">Posted by: @Model.Author.FirstName @Model.Author.LastName</h4>
-<h5 align="right">Posted on: @Model.ApprovedOn.Value.ToShortDateString()</h5>
+<h5 align="right">
+    Posted on:
+    @if (Model.ApprovedOn != null)
+    {
+        @Model.ApprovedOn.Value.ToShortDateString()
+    }
+</h5>
 <p align="justify">@Html.Raw(Model.PostContent)</p>
