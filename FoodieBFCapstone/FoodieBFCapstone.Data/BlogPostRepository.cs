@@ -101,6 +101,16 @@ namespace FoodieBFCapstone.Data
             }
         }
 
+        public void UpdateStatusByBlogId(int blogId, Status status)
+        {
+            using (var _cn = new SqlConnection(constr))
+            {
+                _cn.Query("UPDATE BlogPosts " +
+                          "SET StatusId = @StatusId " +
+                          "WHERE BlogId = @BlogId", new {StatusId = status, BlogId = blogId});
+            }
+        }
+
         public List<BlogPost> GetByTag(string tagName)
         {
             throw new NotImplementedException();
