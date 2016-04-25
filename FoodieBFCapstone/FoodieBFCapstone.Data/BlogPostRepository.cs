@@ -30,11 +30,11 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        public List<BlogPost> GetPostByStatus(int Id)
+        public List<BlogPost> GetPostByStatus(Status status)
         {
             using (var _cn = new SqlConnection(constr))
             {
-                Posts = _cn.Query<BlogPost>("Select * From BlogPosts B Where B.StatusId = @StatusId", new { StatusId = Id }).ToList();
+                Posts = _cn.Query<BlogPost>("Select * From BlogPosts B Where B.StatusId = @StatusId", new { StatusId = status }).ToList();
                 return Posts;
             }
         }
