@@ -26,8 +26,13 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <h4>@item.Title - <span style="font-weight: normal; font-size: medium">@item.CreatedOn.ToShortDateString()</span></h4>
-                <div class="blogContent">@item.Summary</div>
+                <a href="@Url.Action("Details","Home", new
+                             {
+                                 id = item.BlogId
+                             })">
+                    <h4>@item.Title - <span style="font-weight: normal; font-size: medium">@item.CreatedOn.ToShortDateString()</span></h4>
+                    <div class="blogContent">@item.Summary</div>
+                </a>
             </div>
         </div>
 
