@@ -9,8 +9,8 @@
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -21,6 +21,23 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.item {
+    width: 200px;
+    height: 150px;
+    margin: 3px;
+    padding: 3px;
+}
+
+    .item p {
+        margin: 5px;
+        padding: 5px;
+    }
+
+.centered-and-cropped {
+    object-fit: cover;
+    overflow: hidden;
 }
 
 /*-----------------------------Contributor CSS Section--------------------------*/
@@ -47,4 +64,3 @@ textarea {
     bottom: 2%;
     right: 15%;
 }
-
