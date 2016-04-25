@@ -1,5 +1,5 @@
 ﻿@using FoodieBFCapstone.Models
-@model IEnumerable<FoodieBFCapstone.Models.BlogPost>
+@model List<BlogPost>
 
 @{
     ViewBag.Title = "ReviewSubCategory";
@@ -15,22 +15,24 @@
 
     foreach (var item in Model)
     {
-        <div class="row">
-            <div class="col-md-3">
-                <div class="item">
-                    <a href="@Url.Action("Details","Home", new
+        <a href="@Url.Action("Details","Home", new
                          {
                              id = item.BlogId
                          })">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="item">
+
                         <img class="item" src="@item.MainPictureUrl" alt="" />
-                    </a>
+
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <h4>@item.Title - <span style="font-weight: normal; font-size: medium">@item.CreatedOn.ToShortDateString()</span></h4>
+                    <div class="blogContent">@item.Summary</div>
+                    <p style="color:teal">Author: @item.Author.FirstName @item.Author.LastName</p>
                 </div>
             </div>
-            <div class="col-md-8">
-                <h4>@item.Title - <span style="font-weight: normal; font-size: medium">@item.CreatedOn.ToShortDateString()</span></h4>
-                <div class="blogContent">@item.Summary</div>
-            </div>
-        </div>
-
+        </a>
     }
 }
