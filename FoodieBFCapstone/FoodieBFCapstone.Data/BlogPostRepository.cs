@@ -107,12 +107,14 @@ namespace FoodieBFCapstone.Data
             IdentityProfile Author = new IdentityProfile();
             using (var _cn = new SqlConnection(constr))
             {
+                var parameters = new DynamicParameters();
+                parameters.Add("ID", id);
                 Author = _cn.Query<IdentityProfile>("SELECT * FROM BlogPosts " +
                                                     "INNER JOIN IdentityUser " +
                                                     "ON BlogPosts.UserId = IdentityUser.UserId " +
                                                     "INNER JOIN IdentityProfile " +
                                                     "ON IdentityUser.UserId = IdentityProfile.UserId " +
-                                                    "Where BlogPosts.BlogId = @ID").FirstOrDefault();
+                                                    "Where BlogPosts.BlogId = @ID", parameters).FirstOrDefault();
                 return Author;
             }
         }

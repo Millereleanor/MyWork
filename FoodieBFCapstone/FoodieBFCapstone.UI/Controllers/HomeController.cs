@@ -1,5 +1,6 @@
 ﻿using FoodieBFCapstone.Data;
 using FoodieBFCapstone.UI.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,24 @@ namespace FoodieBFCapstone.UI.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var repo = new BlogPostRepository();
             var vm = new IndexVM();
             vm.AllPosts = repo.GetActivePosts();
+            foreach (var post in vm.AllPosts)
+            {
+                post.Author = repo.GetAuthorUserNameByBlogId(post.BlogId);
+            }
             vm.FeaturedPosts = repo.GetFeatured();
+            foreach (var post in vm.FeaturedPosts)
+            {
+                post.Author = repo.GetAuthorUserNameByBlogId(post.BlogId);
+            }
+            var pageNumber = page ?? 1;
+            var onePageOfProducts = vm.AllPosts.ToPagedList(pageNumber, 5);
 
+            ViewBag.OnePageOfProducts = onePageOfProducts;
             return View(vm);
         }
 

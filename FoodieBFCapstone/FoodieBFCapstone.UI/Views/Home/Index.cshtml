@@ -1,5 +1,7 @@
 ﻿@model FoodieBFCapstone.UI.Models.IndexVM
 @using FoodieBFCapstone.Models
+@using PagedList
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "Home Page";
@@ -36,3 +38,7 @@
         </div>
     </div>
 }
+
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }))
+</div>
