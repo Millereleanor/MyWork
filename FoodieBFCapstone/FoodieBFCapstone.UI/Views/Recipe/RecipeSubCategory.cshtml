@@ -6,28 +6,27 @@
 }
 <h2>Recipes</h2>
 @*want this to dynamicly change to reflect what subcategory you are displaying
-<h3></h2>*@
+    <h3></h2>*@
 
-<br/>
-    @if (Model != null && Model.Any())
+<br />
+@if (Model != null && Model.Any())
+{
+
+    foreach (var item in Model)
     {
-
-        foreach (var item in Model)
-        {
-            <div class="row" style="max-height:255px">
-                <div class="col-md-4">
-                    <a href="@Url.Action("Details", new
+        <div class="row" style="max-height:255px">
+            <div class="col-md-3">
+                <a href="@Url.Action("Details", new
                              {
                                  id = item.BlogId})">
-                        <img width="300px" src="@item.MainPictureUrl" alt=""/></a>
-                </div>
-                <div class="col-md-8">
-                    <h3>@item.Title - <span style="font-weight: normal; font-size: medium">@item.PublishDate.ToShortDateString()</span></h3>
-                    <div class="blogContent">@item.Summary</div>
-                </div>
+                    <img class="item" src="@item.MainPictureUrl" alt="" />
+                </a>
             </div>
-        
+            <div class="col-md-8">
+                <h3>@item.Title - <span style="font-weight: normal; font-size: medium">@item.PublishDate.ToShortDateString()</span></h3>
+                <div class="blogContent">@item.Summary</div>
+            </div>
+        </div>
 
-        }
     }
-
+}
