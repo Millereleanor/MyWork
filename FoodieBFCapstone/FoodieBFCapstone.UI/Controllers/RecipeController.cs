@@ -17,6 +17,11 @@ namespace FoodieBFCapstone.UI.Controllers
 
             var activeBlogPost = repo.GetActivePostsinSubCategory(subcategory);
 
+            foreach (var post in activeBlogPost)
+            {
+                post.Author = repo.GetAuthorUserNameByBlogId(post.BlogId);
+            }
+            
             return View(activeBlogPost);
         }
 
