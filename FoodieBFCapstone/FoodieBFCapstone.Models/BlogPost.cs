@@ -17,8 +17,7 @@ namespace FoodieBFCapstone.Models
         }
         public int BlogId { get; set; }
 
-        //not sure about this one???
-        //public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public Subcategory Subcategory { get; set; }
 
