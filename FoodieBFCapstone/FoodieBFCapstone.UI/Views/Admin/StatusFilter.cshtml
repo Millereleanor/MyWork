@@ -1,28 +1,25 @@
-
-﻿@using System.Activities.Statements
-@using System.Web.Mvc.Html
-@using FoodieBFCapstone.Models
-@using Microsoft.Ajax.Utilities
-@model FoodieBFCapstone.UI.Models.AdminVM
+﻿@model FoodieBFCapstone.UI.Models.AdminVM
 
 @{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "StatusFilter";
 }
 
-<h2 align="center">Pending Articles</h2>
+<h2>Articles</h2>
 
-@using(Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new {@class = "form-group"})){
+@using (Html.BeginForm("StatusFilter", "Admin", FormMethod.Post))
+{
 
-<br />
-<br />
-<br />
-<br />
-<br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
     <div>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Search by Status <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Pending", "StatusFilter", "Admin", new { id = "1" }, null)</li>
+                <li>@Html.ActionLink("Pending", "Home", "Admin", new { id = "1" }, null)</li>
                 <li>@Html.ActionLink("Active", "StatusFilter", "Admin", new { id = "2" }, null)</li>
                 <li>@Html.ActionLink("Inactive", "StatusFilter", "Admin", new { id = "3" }, null)</li>
                 <li>@Html.ActionLink("Denied", "StatusFilter", "Admin", new { id = "4" }, null)</li>
@@ -34,7 +31,7 @@
     <div>
         @foreach (var item in Model.Blog)
         {
-            <div class="row">
+            <div class="row" id="@item.BlogId">
                 <div class="col-md-2">
                     <img src="@item.MainPictureUrl" class="item"/>
                 </div>
@@ -42,23 +39,17 @@
                     <p>
                         <h4>@item.Title</h4>
                     </p>
-                    <br/>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
+                    <br />
                     <p>Created On: @item.CreatedOn.ToShortDateString()</p>
                 </div>
                 <div class="col-md-2">
                     <label style="margin-right: 10px;">Status: @item.Status</label>
-                    <br/>
-                    <button class="btn btn-primary" href="@Url.Action("Details", "Home", new {Id = item.BlogId})" onclick="@item.BlogId" type="submit">Review</button>
-                    <br/>
-                    <br/>
-                    <div>
-                        <label>Update Status</label>
-                        @Html.DropDownListFor(m => m.BlogPost.Status, Model.BlogStatus,  new {@class="form-control"})
-
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
+                    <br />
+                    <button class="btn btn-primary" href="@Url.Action("Details", "Home", new {Id = item.BlogId})" onclick="@item.BlogId" type="submit">View</button>
+                    <br />
+                    <br />
                 </div>
             </div>
         }
@@ -68,6 +59,3 @@
 
 
 }
-
-
-
