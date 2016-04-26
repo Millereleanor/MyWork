@@ -29,7 +29,6 @@ namespace FoodieBFCapstone.UI.Controllers
             return View(vm);
         }
 
-        
         public ActionResult CreateNewBlog()
         {
             var vm = new CreatePostVM();
@@ -41,6 +40,7 @@ namespace FoodieBFCapstone.UI.Controllers
         {
             var repo = new BlogPostRepository();
             model.NewBlog.UserId = new Guid(User.Identity.GetUserId());
+            model.NewBlog.Author = repo.GetAuthorUserGuId(model.NewBlog.UserId);
             repo.Add(model.NewBlog);
             if (ModelState.IsValid)
             {

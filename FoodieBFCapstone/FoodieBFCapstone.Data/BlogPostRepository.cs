@@ -161,6 +161,21 @@ namespace FoodieBFCapstone.Data
             }
         }
 
+        public IdentityProfile GetAuthorUserGuId(Guid id)
+        {
+            IdentityProfile Author = new IdentityProfile();
+            using (var _cn = new SqlConnection(constr))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("ID", id);
+                Author = _cn.Query<IdentityProfile>("SELECT * FROM IdentityUser " +
+                                                    "INNER JOIN IdentityProfile " +
+                                                    "ON IdentityUser.UserId = IdentityProfile.UserId " +
+                                                    "Where IdentityUser.UserId = @ID", parameters).FirstOrDefault();
+                return Author;
+            }
+        }
+
         public void UpdateStatusByBlogId(int blogId, Status status)
         {
             using (var _cn = new SqlConnection(constr))
@@ -176,10 +191,10 @@ namespace FoodieBFCapstone.Data
             List<BlogPost> blogPostsWithATag = new List<BlogPost>();
             using (var _cn = new SqlConnection(constr))
             {
-               blogPostsWithATag = _cn.Query<BlogPost>("select bp.*, t.Tag as [TagName] from BlogPosts bp " +
-                          "inner join BlogPostsTags bpt on bp.BlogId = bpt.BlogId " +
-                          "inner join Tags t on bpt.TagId = t.TagId " +
-                          "where Tag = @tagName; ", new {TagName = tagName}).ToList();
+                blogPostsWithATag = _cn.Query<BlogPost>("select bp.*, t.Tag as [TagName] from BlogPosts bp " +
+                           "inner join BlogPostsTags bpt on bp.BlogId = bpt.BlogId " +
+                           "inner join Tags t on bpt.TagId = t.TagId " +
+                           "where Tag = @tagName; ", new { TagName = tagName }).ToList();
                 return blogPostsWithATag;
             }
         }
@@ -196,17 +211,33 @@ namespace FoodieBFCapstone.Data
                 var parameters = new DynamicParameters();
                 //[BlogId],[UserId],[SubCategoryId],[StatusId],[MainPictureUrl],[Title],[PostContent],[CreatedOn],
                 //[PublishDate],[ExpirationDate],[ApprovedOn] FROM[FoodieAndTheBlowFish].[dbo].[BlogPosts]
-                parameters.Add("UserId", model.Author.UserId);
+                parameters.Add("UserId", model.UserId);
+                parameters.Add("SubCategoryId", model.Subcategory.SubcategoryId);
+                parameters.Add("Summary", model.Summary);
                 parameters.Add("StatusId", statusId);
                 parameters.Add("MainPictureUrl", model.MainPictureUrl);
                 parameters.Add("Title", model.Title);
                 parameters.Add("PostContent", model.PostContent);
-                parameters.Add("CreatedOn", model.CreatedOn);
-                parameters.Add("PublishDate", model.PublishDate);
-                parameters.Add("ExpirationDate", model.ExpirationDate);
+                parameters.Add("CreatedOn", model.CreatedOn.ToShortDateString());
+                if (model.PublishDate != null)
+                {
+                    parameters.Add("PublishDate", model.PublishDate.Value.ToShortDateString());
+                }
+                else
+                {
+                    parameters.Add("PublishDate", null);
+                }
 
-                string query = "INSERT INTO BlogPosts (UserId, StatusId, MainPictureUrl, Title, PostContent, CreatedOn, PublishDate, ExpirationDate) " +
-                    " VALUES (@UserId, @StatusId, @MainPictureUrl, @Title, @PostContent, @CreatedOn, @PublishDate, @ExpirationDate) ";
+                if (model.ExpirationDate != null)
+                {
+                    parameters.Add("ExpirationDate", model.ExpirationDate.Value.ToShortDateString());
+                }
+                else
+                {
+                    parameters.Add("ExpirationDate", null);
+                }
+                string query = "INSERT INTO BlogPosts (UserId, StatusId, SubCategoryId, Summary, MainPictureUrl, Title, PostContent, CreatedOn, PublishDate, ExpirationDate) " +
+                    " VALUES (@UserId, @StatusId, @SubCategoryId, @Summary, @MainPictureUrl, @Title, @PostContent, @CreatedOn, @PublishDate, @ExpirationDate) ";
                 _cn.Execute(query, parameters);
             }
         }
@@ -249,6 +280,6 @@ namespace FoodieBFCapstone.Data
                            "where bp.BlogId = @blogId ; ", new { BlogId = blogId }).ToList();
                 return Tags;
             }
-        } 
+        }
     }
 }
