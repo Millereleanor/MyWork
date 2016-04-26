@@ -10,7 +10,7 @@
         <br />
         @foreach (var tag in Model.Tags)
         {
-            <a href="@Url.Action("TagList", "Home", new {TagId = Model.Tags[0].TagId})">#@tag.TagName</a>
+            <a href="@Url.Action("TagList", "Home", new {tagName = tag.TagName})">#@tag.TagName</a>
         }
   
 </div>
