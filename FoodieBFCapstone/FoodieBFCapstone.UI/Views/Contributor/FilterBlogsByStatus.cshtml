@@ -1,4 +1,5 @@
 ﻿
+@using FoodieBFCapstone.Models
 @using PagedList.Mvc;
 @using PagedList;
 
@@ -8,11 +9,26 @@
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-<h2>@ViewBag.Title</h2>
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Filter Posts <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a href=@Url.Action("Index", "Contributor")>All</a></li>
+        <li><a href=@Url.Action("FilterBlogsByStatus", "Contributor", new { status = Status.Pending })>Pending</a></li>
+        <li><a href=@Url.Action("FilterBlogsByStatus", "Contributor", new { status = Status.Active })>Active</a></li>
+        <li><a href=@Url.Action("FilterBlogsByStatus", "Contributor", new { status = Status.Inactive })>Inactive</a></li>
+        <li><a href=@Url.Action("FilterBlogsByStatus", "Contributor", new { status = Status.Denied })>Denied</a></li>
+        <li><a href=@Url.Action("FilterBlogsByStatus", "Contributor", new { status = Status.Featured })>Featured</a></li>
+    </ul>
+</div>
 
 <div class="row">
-    @foreach (var blog in ViewBag.OnePageOfProducts)
+    @foreach (var blogPost in ViewBag.OnePageOfProducts)
     {
+        var blog = (BlogPost)blogPost;
         if (blog.Title == "Create New")
         {
             <div class="col-md-4 blog-Preview">
@@ -36,6 +52,7 @@
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Deactivate
                 </a>
                 <h4 class="text-center">@blog.Title</h4>
+                <h6 class="text-center">@((Status) blog.StatusId)</h6>
             </div>
         }
     }
