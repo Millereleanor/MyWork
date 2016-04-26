@@ -2,3 +2,4 @@
 //Stickyfill.add(sidebar);
 
 $('#sidebar').Stickyfill();
+$('#sidebarleft').Stickyfill();
