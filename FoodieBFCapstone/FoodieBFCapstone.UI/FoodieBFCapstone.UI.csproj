@@ -525,6 +525,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Recipe\RecipeSubCategory.cshtml" />
+    <Content Include="Views\Review\ReviewSubCategory.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\SubCategory\SubCategory.cshtml" />
     <Content Include="Views\Contributor\Index.cshtml" />
     <Content Include="Views\Contributor\UpdateBlog.cshtml" />

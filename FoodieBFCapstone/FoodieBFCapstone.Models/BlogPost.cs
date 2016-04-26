@@ -22,6 +22,7 @@ namespace FoodieBFCapstone.Models
 
         public Subcategory Subcategory { get; set; }
 
+        public int StatusId { get; set; }
         public Status Status { get; set; }
         public string MainPictureUrl { get; set; }
 
