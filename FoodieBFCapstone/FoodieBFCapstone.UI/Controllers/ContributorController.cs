@@ -58,6 +58,7 @@ namespace FoodieBFCapstone.UI.Controllers
             BlogPostRepository repo = new BlogPostRepository();
             CreatePostVM vm = new CreatePostVM();
             vm.NewBlog = repo.GetById(blogId);
+            vm.NewBlog.Tags = repo.GetBlogPostTags(blogId);
 
             return View(vm);
         }
