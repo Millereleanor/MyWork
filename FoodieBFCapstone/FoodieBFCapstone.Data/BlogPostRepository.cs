@@ -176,13 +176,13 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        public void UpdateStatusByBlogId(int blogId, Status status)
+        public void UpdateStatusByBlogId(int blogId, int StatusId)
         {
             using (var _cn = new SqlConnection(constr))
             {
                 _cn.Query("UPDATE BlogPosts " +
-                          "SET StatusId = @StatusId " +
-                          "WHERE BlogId = @BlogId", new { StatusId = status, BlogId = blogId });
+                          "SET StatusId = @statusId " +
+                          "WHERE BlogId = @BlogId", new { statusId = StatusId, BlogId = blogId });
             }
         }
 

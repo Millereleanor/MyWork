@@ -18,11 +18,11 @@ namespace FoodieBFCapstone.UI.Models
         public AdminVM()
         {
             BlogStatus =  new List<SelectListItem>();
-            BlogStatus.Add(new SelectListItem() {Text = "Pending", Value = "Pending"});
-            BlogStatus.Add(new SelectListItem() { Text = "Active", Value = "Active" });
-            BlogStatus.Add(new SelectListItem() { Text = "Inactive", Value = "Inactive" });
-            BlogStatus.Add(new SelectListItem() { Text = "Denied", Value = "Inactive" });
-            BlogStatus.Add(new SelectListItem() { Text = "Featured", Value = "Inactive" });
+            BlogStatus.Add(new SelectListItem() {Text = "Pending", Value = "1"});
+            BlogStatus.Add(new SelectListItem() { Text = "Active", Value = "2" });
+            BlogStatus.Add(new SelectListItem() { Text = "Inactive", Value = "3" });
+            BlogStatus.Add(new SelectListItem() { Text = "Denied", Value = "4" });
+            BlogStatus.Add(new SelectListItem() { Text = "Featured", Value = "5" });
         }
 
 

@@ -1,12 +1,10 @@
-﻿@using System.Web.Mvc.Html
+@using System.Web.Mvc.Html
 @using FoodieBFCapstone.Models
 @using Microsoft.AspNet.Identity
 @model FoodieBFCapstone.UI.Models.CreatePostVM
-
 @{
     ViewBag.Title = "CreateNewBlog";
 }
-
 <h2>CreateNewBlog</h2>
 @using (Html.BeginForm("CreateNewBlog", "Contributor", FormMethod.Post, new { @class = "form-group" }))
 {
@@ -50,7 +48,6 @@
     <button class="btn btn-danger" type="reset">Cancel</button>
     <button class="btn btn-success" type="submit">Submit</button>
 }
-
 @section scripts{
     <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
     <script type="text/javascript">
@@ -66,4 +63,3 @@
             toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
         });
     </script>
-}
