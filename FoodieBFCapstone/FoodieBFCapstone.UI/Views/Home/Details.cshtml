@@ -4,31 +4,30 @@
     ViewBag.Title = "Details";
 }
 
-
 <div id="sidebar" class="sidebar">
     <h4>Tags</h4>
-   <br/>
+    <br />
     @foreach (var tag in Model.Tags)
     {
         <p>#@tag.TagName</p>
     }
 </div>
-
-<h2>@Model.Title</h2>
-<h4 align="left">Posted by: @Model.Author.FirstName @Model.Author.LastName</h4>
-<h5 align="left">
-    Posted on:
-    @if (Model.ApprovedOn != null)
-    {
-        @Model.ApprovedOn.Value.ToShortDateString()
-    }
-</h5>
-<p align="justify">@Html.Raw(Model.PostContent)</p>
-
+<div class="col-md-10">
+    <h2>@Model.Title</h2>
+    <br />
+    <h4 align="left">Posted by: @Model.Author.FirstName @Model.Author.LastName</h4>
+    <h5 align="left">
+        Posted on:
+        @if (Model.ApprovedOn != null)
+        {
+            @Model.ApprovedOn.Value.ToShortDateString()
+        }
+    </h5>
+    <p align="justify">@Html.Raw(Model.PostContent)</p>
+</div>
 
 @section scripts
 {
     <script src="~/Scripts/stickyfill.min.js"></script>
     <script src="~/Scripts/App/sidebar.js"></script>
 }
-

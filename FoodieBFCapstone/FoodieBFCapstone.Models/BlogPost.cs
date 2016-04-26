@@ -15,9 +15,10 @@ namespace FoodieBFCapstone.Models
         {
             this.Subcategory = new Subcategory();
         }
+
         public int BlogId { get; set; }
 
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
 
         public Subcategory Subcategory { get; set; }
 

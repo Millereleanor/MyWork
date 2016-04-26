@@ -40,7 +40,7 @@ namespace FoodieBFCapstone.UI.Controllers
         public ActionResult CreateNewBlog(CreatePostVM model)
         {
             var repo = new BlogPostRepository();
-            model.NewBlog.UserId = User.Identity.GetUserId();
+            model.NewBlog.UserId = new Guid(User.Identity.GetUserId());
             repo.Add(model.NewBlog);
             if (ModelState.IsValid)
             {
