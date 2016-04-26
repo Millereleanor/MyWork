@@ -23,6 +23,10 @@ textarea {
     max-width: 100%;
 }
 
+textarea {
+    height: 400px;
+}
+
 .item {
     width: 200px;
     height: 150px;
@@ -96,20 +100,22 @@ a.blog-Delete {
 }
 /*-------------for side bar-------------------*/
 .sidebar {
-    position: -webkit-sticky;  /* required for Safari*/
+    position: -webkit-sticky; /* required for Safari*/
     position: sticky;
     top: 65px; /* required as well.*/
 }
+
 .sidebar {
     padding: 20px;
     width: 190px;
     background-color: #e53c37;
     color: #ffffff;
 }
-.sidebar h4 {
-    margin:0
-}
+
+    .sidebar h4 {
+        margin: 0;
+    }
+
 .sidebar {
     float: right;
 }
-

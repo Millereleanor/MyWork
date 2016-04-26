@@ -6,26 +6,43 @@ using System.Web;
 using System.Web.Mvc;
 using FoodieBFCapstone.Data;
 using FoodieBFCapstone.Models;
+﻿using FoodieBFCapstone.UI.Models;
 
 namespace FoodieBFCapstone.UI.Controllers
 {
     public class AdminController : Controller
     {
 
-        BlogPostRepository repo = new BlogPostRepository();
+        
         // GET: Admin
+        
         public ActionResult Home()
         {
+            BlogPostRepository repo = new BlogPostRepository();
+            AdminVM posts = new AdminVM();
+            List<BlogPost> stuff = repo.GetPostByStatus2(1);
+            posts.Blog = stuff; //passing in status enum/db id 
 
-            List<BlogPost> posts = repo.GetPostByStatus2(1);
             return View(posts);
         }
 
-        [HttpPost]
-        public ActionResult UpdateStatus(Status status, int blogId)
+        
+        public ActionResult UpdateStatus(BlogPost status, int blogId)
         {
-            repo.UpdateStatusByBlogId(blogId, status);
+            BlogPostRepository repo = new BlogPostRepository();
+            repo.UpdateStatusByBlogId(blogId, status.Status);
             return View("Home");
+        }
+
+
+        
+        public ActionResult StatusFilter(int id)
+        {
+            BlogPostRepository repo = new BlogPostRepository();
+            AdminVM posts = new AdminVM();
+            List<BlogPost> stuff = repo.GetPostByStatus2(id);
+            posts.Blog = stuff;
+            return View(posts);
         }
     }
 }
