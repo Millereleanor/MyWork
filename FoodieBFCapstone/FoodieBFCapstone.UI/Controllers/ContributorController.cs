@@ -33,17 +33,16 @@ namespace FoodieBFCapstone.UI.Controllers
         public ActionResult CreateNewBlog()
         {
             var repo = new BlogPostRepository();
-            var subcategories = repo.GetAllSubcategories();
-            var vm = new CreatePostVM(subcategories);
+            var vm = new CreatePostVM();
             return View(vm);
         }
 
-        [Authorize(Roles = "Contributor")]
         [HttpPost]
-        public ActionResult CreateNewBlog(BlogPost model)
+        public ActionResult CreateNewBlog(CreatePostVM model)
         {
             var repo = new BlogPostRepository();
-            repo.Add(model);
+            model.NewBlog.UserId = User.Identity.GetUserId();
+            repo.Add(model.NewBlog);
             if (ModelState.IsValid)
             {
                 return RedirectToAction("Index");
