@@ -6,8 +6,12 @@
 
 
 <div id="sidebar" class="sidebar">
-    <h4>Sidebar</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab maxime fugiat perspiciatis.</p>
+    <h4>Tags</h4>
+   <br/>
+    @foreach (var tag in Model.Tags)
+    {
+        <p>#@tag.TagName</p>
+    }
 </div>
 
 <h2>@Model.Title</h2>

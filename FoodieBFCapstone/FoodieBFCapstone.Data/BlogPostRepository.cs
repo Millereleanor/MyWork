@@ -175,7 +175,15 @@ namespace FoodieBFCapstone.Data
 
         public List<BlogPost> GetByTag(string tagName)
         {
-            throw new NotImplementedException();
+            List<BlogPost> blogPostsWithATag = new List<BlogPost>();
+            using (var _cn = new SqlConnection(constr))
+            {
+               blogPostsWithATag = _cn.Query<BlogPost>("select bp.*, t.Tag as [TagName] from BlogPosts bp " +
+                          "inner join BlogPostsTags bpt on bp.BlogId = bpt.BlogId " +
+                          "inner join Tags t on bpt.TagId = t.TagId " +
+                          "where Tag = @tagName; ", new {TagName = tagName}).ToList();
+                return blogPostsWithATag;
+            }
         }
 
         public void Add(BlogPost model)
@@ -209,5 +217,18 @@ namespace FoodieBFCapstone.Data
                 return subgategoryPosts;
             }
         }
+
+        public List<Tag> GetBlogPostTags(int blogId)
+        {
+            List<Tag> Tags = new List<Tag>();
+            using (var _cn = new SqlConnection(constr))
+            {
+                Tags = _cn.Query<Tag>("select bp.BlogId, t.Tag as [TagName],t.TagId from BlogPosts bp " +
+                           "inner join BlogPostsTags bpt on bp.BlogId = bpt.BlogId " +
+                           "inner join Tags t on bpt.TagId = t.TagId " +
+                           "where bp.BlogId = @blogId ; ", new { BlogId = blogId }).ToList();
+                return Tags;
+            }
+        } 
     }
 }
