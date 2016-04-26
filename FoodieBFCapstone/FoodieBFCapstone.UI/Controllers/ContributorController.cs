@@ -56,9 +56,22 @@ namespace FoodieBFCapstone.UI.Controllers
         public ActionResult UpdateBlog(int blogId)
         {
             BlogPostRepository repo = new BlogPostRepository();
-            var blogPost = repo.GetById(blogId);
+            CreatePostVM vm = new CreatePostVM();
+            vm.NewBlog = repo.GetById(blogId);
+            vm.NewBlog.Tags = repo.GetBlogPostTags(blogId);
 
-            return View(blogPost);
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateBlog(CreatePostVM vm)
+        {
+            if (ModelState.IsValid)
+            {
+                BlogPostRepository repo = new BlogPostRepository();
+            }
+
+            return View(vm);
         }
 
         [Authorize(Roles = "Contributor")]
@@ -80,7 +93,7 @@ namespace FoodieBFCapstone.UI.Controllers
             var pageNumber = page ?? 1;
             var onePageOfProducts = vm.BlogPosts.ToPagedList(pageNumber, 6);
 
-            ViewBag.CurrentStatus = status;
+            ViewBag.Status = status;
             ViewBag.OnePageOfProducts = onePageOfProducts;
 
             return View();

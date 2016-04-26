@@ -23,6 +23,10 @@ textarea {
     max-width: 100%;
 }
 
+textarea {
+    height: 400px;
+}
+
 .item {
     width: 200px;
     height: 150px;
