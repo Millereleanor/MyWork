@@ -9,7 +9,21 @@
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-<h2>@ViewBag.Title</h2>
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Filter Posts <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a href="#!">All</a></li>
+        <li><a href="#!">Pending</a></li>
+        <li><a href="#!">Active</a></li>
+        <li><a href="#!">Inactive</a></li>
+        <li><a href="#!">Denied</a></li>
+        <li><a href="#!">Featured</a></li>
+    </ul>
+</div>
 
 <div class="row">
     @foreach (var blog in ViewBag.OnePageOfProducts)
@@ -46,5 +60,9 @@
 <br/>
 
 <div class="text-center">
-    @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }))
+    @Html.PagedListPager((IPagedList) ViewBag.OnePageOfProducts, page => Url.Action("Index", new {page}))
 </div>
+
+@section scripts{
+    <script src="~/Scripts/app/filter-button.js"></script>
+}

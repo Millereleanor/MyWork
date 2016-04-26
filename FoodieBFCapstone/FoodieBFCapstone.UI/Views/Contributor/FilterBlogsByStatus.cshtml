@@ -45,5 +45,5 @@
 <br />
 
 <div class="text-center">
-    @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("FilterBlogsByStatus", new { page }))
+    @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("FilterBlogsByStatus", new { page, ViewBag.CurrentStatus }))
 </div>
