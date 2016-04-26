@@ -79,7 +79,7 @@ namespace FoodieBFCapstone.Data
         {
             using (var _cn = new SqlConnection(constr))
             {
-                var Subcategories = _cn.Query<Subcategory>("SELECT * FROM SubCategories ").ToList();
+                var Subcategories = _cn.Query<Subcategory>("SELECT SubCategoryId, CategoryId, SubCategory AS SubCategoryName FROM SubCategories ").ToList();
                 return Subcategories;
             }
         }
