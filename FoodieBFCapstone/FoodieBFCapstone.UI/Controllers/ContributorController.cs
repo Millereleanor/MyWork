@@ -32,7 +32,6 @@ namespace FoodieBFCapstone.UI.Controllers
         [Authorize(Roles = "Contributor")]
         public ActionResult CreateNewBlog()
         {
-            var repo = new BlogPostRepository();
             var vm = new CreatePostVM();
             return View(vm);
         }
