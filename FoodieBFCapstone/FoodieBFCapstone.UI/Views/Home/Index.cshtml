@@ -22,11 +22,11 @@
 
     }
 </div>
-
+<hr />
 @foreach (var post in ViewBag.OnePageOfProducts)
 {
     var p = (BlogPost)post;
-    <a href="@Url.Action("Details", "Home", new {blogId = post.BlogId})">>
+    <a href="@Url.Action("Details", "Home", new {blogId = post.BlogId})">
         <div class="row">
             <div class="col-sm-2 item">
                 <img src="@post.MainPictureUrl" class="item" />
@@ -47,7 +47,7 @@
                 </p>
             </div>
         </div>
-    </a>
+    </a><hr />
 }
 
 <div class="text-center">

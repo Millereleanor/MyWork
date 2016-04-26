@@ -11,6 +11,10 @@ namespace FoodieBFCapstone.Models
 {
     public class BlogPost
     {
+        public BlogPost()
+        {
+            this.Subcategory = new Subcategory();
+        }
         public int BlogId { get; set; }
 
         //not sure about this one???
@@ -40,5 +44,7 @@ namespace FoodieBFCapstone.Models
         public DateTime? ApprovedOn { get; set; }
 
         public List<Tag> Tags { get; set; }
+
+        public string SubcategoryName { get; set; }
     }
 }
