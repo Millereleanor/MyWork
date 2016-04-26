@@ -1,4 +1,4 @@
-﻿var sidebar = document.getElementById('sidebar');
-Stickyfill.add(sidebar);
+﻿//var sidebar = document.getElementById('sidebar');
+//Stickyfill.add(sidebar);
 
-//$('#sidebar').Stickyfill();
+$('#sidebar').Stickyfill();
