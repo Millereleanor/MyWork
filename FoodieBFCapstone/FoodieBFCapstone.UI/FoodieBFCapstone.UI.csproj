@@ -204,6 +204,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\pictures\Alfred.png" />
+    <Content Include="Content\pictures\Elle.png" />
+    <Content Include="Content\pictures\James.png" />
+    <Content Include="Content\pictures\Jeane.png" />
     <Content Include="Content\pictures\logo22.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\flat-ui-icons-regular.svg" />
