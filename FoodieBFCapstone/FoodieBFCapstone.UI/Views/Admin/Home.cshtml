@@ -1,36 +1,62 @@
 
 ﻿@using System.Activities.Statements
+@using System.Web.Mvc.Html
+@using FoodieBFCapstone.Models
+@using Microsoft.Ajax.Utilities
 @model List<FoodieBFCapstone.Models.BlogPost>
 
 @{
     ViewBag.Title = "Home";
 }
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+
 <h2 align="center">Pending Articles</h2>
 
+@using(Html.BeginForm("Home", "Admin", FormMethod.Post)){
+
+<br />
+<br />
+<br />
+<br />
+<br />
 
 
+    <div>
+        @foreach (var item in Model)
+        {
+            <div class="row" id="@item.BlogId">
+                <div class="col-md-2">
+                    <img src="@item.MainPictureUrl" class="item" />
+                </div>
+                <div class="col-md-7" style="margin: 10px;">
+                    <p>
+                        <h4>@item.Title</h4>
+                    </p>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p>Created On: @item.CreatedOn.ToShortDateString()</p>
+                </div>
+                <div class="col-md-2">
+                    <label style="margin-right: 10px;">Status: @item.Status</label>
+                    <br/>
+                    <button class="btn btn-primary" href="@Url.Action("Details", "Home", new {Id = item.BlogId})" onclick="@item.BlogId" type="submit">Review</button>
+                    <br/>
+                    <br/>
+                    <div>
+                        <label>Update Status</label>
+                        @Html.DropDownListFor(model => item.Status, Enum.GetValues(typeof(Status)))
 
-@foreach (var blog in Model)
-{
-    <div class="row">
-        <div class="col-md-3">
-            <img src="@blog.MainPictureUrl" class="item" />
-        </div>
-        <div class="col-md-6">
-            <h3>@blog.Title</h3>
-            <br/>
-            <br/>
-            <h6>Created On: @blog.CreatedOn.ToShortDateString()</h6>
-        </div>
-        <div class="col-md-3">
-            <button class="btn btn-primary" ></button>
-        </div>
+                        <button class="btn btn-primary" type="submit" href="@Url.Action("UpdateStatus","Admin", new {blogId = item.BlogId, status = item.Status})">Save</button>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
+
+
+
+
 }
+
 
 

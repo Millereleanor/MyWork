@@ -31,7 +31,7 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-
+        
 
         public List<BlogPost> GetPostByStatus2(int id)
         {
@@ -163,8 +163,7 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        public
-            void UpdateStatusByBlogId(int blogId, Status status)
+        public void UpdateStatusByBlogId(int blogId, Status status)
         {
             using (var _cn = new SqlConnection(constr))
             {
