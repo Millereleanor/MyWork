@@ -50,5 +50,13 @@ namespace FoodieBFCapstone.UI.Controllers
         {
             return View();
         }
+
+        public ActionResult Details(int blogId)
+        {
+            var repo = new BlogPostRepository();
+            var post = repo.GetById(blogId);
+            post.Author = repo.GetAuthorUserNameByBlogId(blogId);
+            return View(post);
+        }
     }
 }
