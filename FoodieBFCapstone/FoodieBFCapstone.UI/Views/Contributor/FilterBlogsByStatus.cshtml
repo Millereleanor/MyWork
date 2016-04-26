@@ -53,6 +53,7 @@
                 </a>
                 <h4 class="text-center">@blog.Title</h4>
                 <h6 class="text-center">@((Status) blog.StatusId)</h6>
+                
             </div>
         }
     }
@@ -62,5 +63,5 @@
 <br />
 
 <div class="text-center">
-    @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("FilterBlogsByStatus", new { page, ViewBag.CurrentStatus }))
+    @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("FilterBlogsByStatus", new { page, ViewBag.Status }))
 </div>
