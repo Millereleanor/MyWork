@@ -1,0 +1,59 @@
+﻿@using System.Web.Mvc.Html
+@using FoodieBFCapstone.Models
+@model FoodieBFCapstone.UI.Models.CreatePostVM
+
+@{
+    ViewBag.Title = "CreateNewBlog";
+}
+
+<h2>CreateNewBlog</h2>
+@using (Html.BeginForm("CreateNewBlog", "Contributor", FormMethod.Post, new { @class = "form-group" }))
+{
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Subcategory:</label> @Html.DropDownListFor(m => m.NewBlog.Subcategory, Model.Subcats, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-md-9">
+            <label>Title:</label> @Html.EditorFor(m => m.NewBlog.Title, new { HtmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(m => m.NewBlog.Summary, "Summary:", new { @class = "control-label" })
+            @Html.EditorFor(m => m.NewBlog.Summary, new { HtmlAttributes = new { @class = "form-control form-inline" } })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(m => m.NewBlog.MainPictureUrl, "Main Picture URL:", new { @class = "control-label" })
+            @Html.EditorFor(m => m.NewBlog.MainPictureUrl, new { HtmlAttributes = new { @class = "form-control form-inline" } })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(m => m.NewBlog.PostContent, "Content:", new { @class = "control-label" })
+            @Html.TextAreaFor(m => m.NewBlog.PostContent, new { @id = "Textarea" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(m => m.NewBlog.Tags, "Tags:", new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.NewBlog.Tags, new { @class = "form-control input-lg" })
+        </div>
+    </div>
+    <button class="btn btn-danger" type="reset">Cancel</button>
+    <button class="btn btn-success" type="submit">Submit</button>
+}
+
+@section scripts{
+    <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#Textarea',
+            theme: 'modern',
+            plugins: [
+              'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+              'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+              'save table contextmenu directionality emoticons template paste textcolor'
+            ],
+            content_css: 'css/content.css',
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
+        });
+    </script>
+}

@@ -1,14 +1,14 @@
-﻿using System;
+﻿using FoodieBFCapstone.BLL;
+using FoodieBFCapstone.Data;
+using FoodieBFCapstone.Models;
+using FoodieBFCapstone.UI.Models;
+using Microsoft.AspNet.Identity;
+using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FoodieBFCapstone.BLL;
-using Microsoft.AspNet.Identity;
-using FoodieBFCapstone.Data;
-using FoodieBFCapstone.Models;
-using FoodieBFCapstone.UI.Models;
-using PagedList;
 
 namespace FoodieBFCapstone.UI.Controllers
 {
@@ -29,11 +29,30 @@ namespace FoodieBFCapstone.UI.Controllers
             return View(vm);
         }
 
-        //[Authorize(Roles = "Contributor")]
-        //public ActionResult CreateNewBlog()
-        //{
-        //    return View();
-        //}
+        [Authorize(Roles = "Contributor")]
+        public ActionResult CreateNewBlog()
+        {
+            var repo = new BlogPostRepository();
+            var subcategories = repo.GetAllSubcategories();
+            var vm = new CreatePostVM(subcategories);
+            return View(vm);
+        }
+
+        [Authorize(Roles = "Contributor")]
+        [HttpPost]
+        public ActionResult CreateNewBlog(BlogPost model)
+        {
+            var repo = new BlogPostRepository();
+            repo.Add(model);
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
 
         [Authorize(Roles = "Contributor")]
         public ActionResult UpdateBlog(int blogId)
@@ -69,5 +88,4 @@ namespace FoodieBFCapstone.UI.Controllers
             return View();
         }
     }
-
 }
