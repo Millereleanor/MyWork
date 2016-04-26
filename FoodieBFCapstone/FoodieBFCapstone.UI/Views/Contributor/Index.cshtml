@@ -1,5 +1,6 @@
 @model FoodieBFCapstone.UI.Models.ContributorVM
 
+@using FoodieBFCapstone.Models
 @using PagedList.Mvc;
 @using PagedList;
 
@@ -9,17 +10,32 @@
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-<h2>@ViewBag.Title</h2>
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Filter Posts <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a href=@Url.Action("Index", "Contributor")>All</a></li>
+        <li><a href=@Url.Action("FilterBlogsByStatus", "Contributor", new { status = Status.Pending })>Pending</a></li>
+        <li><a href=@Url.Action("FilterBlogsByStatus", "Contributor", new { status = Status.Active })>Active</a></li>
+        <li><a href=@Url.Action("FilterBlogsByStatus", "Contributor", new { status = Status.Inactive })>Inactive</a></li>
+        <li><a href=@Url.Action("FilterBlogsByStatus", "Contributor", new { status = Status.Denied })>Denied</a></li>
+        <li><a href=@Url.Action("FilterBlogsByStatus", "Contributor", new { status = Status.Featured })>Featured</a></li>
+    </ul>
+</div>
 
 <div class="row">
-    @foreach (var blog in ViewBag.OnePageOfProducts)
+    @foreach (var blogPost in ViewBag.OnePageOfProducts)
     {
+        var blog = (BlogPost) blogPost;
         if (blog.Title == "Create New")
         {
             <div class="col-md-4 blog-Preview">
                 @*<h2 class="text-center">Create New</h2>*@
                 <img class="img-rounded text-center" src="~/Content/pictures/logo22.png" style="width: 300px; height: 200px; display: block; margin-left: auto; margin-right: auto" />
-                <a href=@Url.Action("CreateNewBlog", "Contributor") class="btn btn-primary blog-Update">
+                <a href=@Url.Action("CreateNewBlog", "Contributor") class="btn btn-danger blog-New">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New
                 </a>
                 <h4 class="text-center">Create New</h4>
@@ -30,13 +46,14 @@
             <div class="col-md-4 blog-Preview">
                 @*<h2 class="text-center">@blog.Title</h2>*@
                 <img class="img-rounded text-center" src="@blog.MainPictureUrl" style="width: 300px; height: 200px; display: block; margin-left: auto; margin-right: auto" />
-                <a href=@Url.Action("UpdateBlog", "Contributor", new {blogId = blog.BlogId}) class="btn btn-primary blog-Update">
+                <a href=@Url.Action("UpdateBlog", "Contributor", new {blogId = blog.BlogId}) class="btn btn-success blog-Update">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
                 </a>
-                <a href=@Url.Action("DeactivateBlog", "Contributor", new {blogId = blog.BlogId}) class="btn btn-danger blog-Delete">
+                <a href=@Url.Action("DeactivateBlog", "Contributor", new {blogId = blog.BlogId}) class="btn btn-primary blog-Delete">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Deactivate
                 </a>
                 <h4 class="text-center">@blog.Title</h4>
+                <h6 class="text-center">@((Status)blog.StatusId)</h6>
             </div>
         }
     }
@@ -46,5 +63,9 @@
 <br/>
 
 <div class="text-center">
-    @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }))
+    @Html.PagedListPager((IPagedList) ViewBag.OnePageOfProducts, page => Url.Action("Index", new {page}))
 </div>
+
+@section scripts{
+    <script src="~/Scripts/app/filter-button.js"></script>
+}

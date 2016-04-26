@@ -55,6 +55,7 @@ namespace FoodieBFCapstone.UI.Controllers
         {
             var repo = new BlogPostRepository();
             var post = repo.GetById(blogId);
+            post.Tags = repo.GetBlogPostTags(blogId);
             post.Author = repo.GetAuthorUserNameByBlogId(blogId);
             return View(post);
         }

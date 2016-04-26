@@ -31,7 +31,6 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-
         public List<BlogPost> GetPostByStatus2(int id)
         {
             List<BlogPost> blogs = new List<BlogPost>();
@@ -42,7 +41,7 @@ namespace FoodieBFCapstone.Data
                                   "Inner Join Statuses s on b.StatusId = s.StatusId " +
                                   "Inner Join SubCategories s2 on b.SubCategoryId = s2.SubCategoryId " +
                                   "Where b.StatusId = " + id;
-               
+
                 cmd.Connection = cn;
                 cn.Open();
 
@@ -65,7 +64,7 @@ namespace FoodieBFCapstone.Data
             blog.Title = dr["Title"].ToString();
             blog.PostContent = dr["PostContent"].ToString();
             blog.Summary = dr["Summary"].ToString();
-            
+
             blog.BlogId = (int)dr["BlogId"];
             blog.MainPictureUrl = dr["MainPictureUrl"].ToString();
             blog.Subcategory.SubcategoryName = dr["SubCategory"].ToString();
@@ -78,7 +77,7 @@ namespace FoodieBFCapstone.Data
         {
             using (var _cn = new SqlConnection(constr))
             {
-                var Subcategories = _cn.Query<Subcategory>("SELECT * FROM SubCategories ").ToList();
+                var Subcategories = _cn.Query<Subcategory>("SELECT SubCategoryId, CategoryId, SubCategory AS SubCategoryName FROM SubCategories ").ToList();
                 return Subcategories;
             }
         }
@@ -174,12 +173,42 @@ namespace FoodieBFCapstone.Data
 
         public List<BlogPost> GetByTag(string tagName)
         {
-            throw new NotImplementedException();
+            List<BlogPost> blogPostsWithATag = new List<BlogPost>();
+            using (var _cn = new SqlConnection(constr))
+            {
+               blogPostsWithATag = _cn.Query<BlogPost>("select bp.*, t.Tag as [TagName] from BlogPosts bp " +
+                          "inner join BlogPostsTags bpt on bp.BlogId = bpt.BlogId " +
+                          "inner join Tags t on bpt.TagId = t.TagId " +
+                          "where Tag = @tagName; ", new {TagName = tagName}).ToList();
+                return blogPostsWithATag;
+            }
         }
 
         public void Add(BlogPost model)
         {
-            throw new NotImplementedException();
+            Posts = GetAll();
+            model.CreatedOn = DateTime.Today;
+            model.Status = Status.Pending;
+            int statusId = (int)model.Status;
+
+            using (var _cn = new SqlConnection(constr))
+            {
+                var parameters = new DynamicParameters();
+                //[BlogId],[UserId],[SubCategoryId],[StatusId],[MainPictureUrl],[Title],[PostContent],[CreatedOn],
+                //[PublishDate],[ExpirationDate],[ApprovedOn] FROM[FoodieAndTheBlowFish].[dbo].[BlogPosts]
+                parameters.Add("UserId", model.Author.UserId);
+                parameters.Add("StatusId", statusId);
+                parameters.Add("MainPictureUrl", model.MainPictureUrl);
+                parameters.Add("Title", model.Title);
+                parameters.Add("PostContent", model.PostContent);
+                parameters.Add("CreatedOn", model.CreatedOn);
+                parameters.Add("PublishDate", model.PublishDate);
+                parameters.Add("ExpirationDate", model.ExpirationDate);
+
+                string query = "INSERT INTO BlogPosts (UserId, StatusId, MainPictureUrl, Title, PostContent, CreatedOn, PublishDate, ExpirationDate) " +
+                    " VALUES (@UserId, @StatusId, @MainPictureUrl, @Title, @PostContent, @CreatedOn, @PublishDate, @ExpirationDate) ";
+                _cn.Execute(query, parameters);
+            }
         }
 
         public void Update(int id, BlogPost model)
@@ -208,5 +237,18 @@ namespace FoodieBFCapstone.Data
                 return subgategoryPosts;
             }
         }
+
+        public List<Tag> GetBlogPostTags(int blogId)
+        {
+            List<Tag> Tags = new List<Tag>();
+            using (var _cn = new SqlConnection(constr))
+            {
+                Tags = _cn.Query<Tag>("select bp.BlogId, t.Tag as [TagName],t.TagId from BlogPosts bp " +
+                           "inner join BlogPostsTags bpt on bp.BlogId = bpt.BlogId " +
+                           "inner join Tags t on bpt.TagId = t.TagId " +
+                           "where bp.BlogId = @blogId ; ", new { BlogId = blogId }).ToList();
+                return Tags;
+            }
+        } 
     }
 }

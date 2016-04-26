@@ -11,7 +11,7 @@ namespace FoodieBFCapstone.BLL
     {
         public List<BlogPost> FilterBlogPostsByStatus(List<BlogPost> allPosts, Status status)
         {
-            return allPosts.Where(post => post.Status == status).ToList();
+            return allPosts.Where(post => post.StatusId == (int)status).ToList();
         }
     }
 }
