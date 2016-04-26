@@ -41,7 +41,6 @@ namespace FoodieBFCapstone.Data
                 cmd.CommandText = "Select * From BlogPosts b " +
                                   "Inner Join Statuses s on b.StatusId = s.StatusId " +
                                   "Inner Join SubCategories s2 on b.SubCategoryId = s2.SubCategoryId " +
-                                  "Inner Join BlogPostsTags bp on b.BlogId = bp.BlogId " +
                                   "Where b.StatusId = " + id;
                
                 cmd.Connection = cn;

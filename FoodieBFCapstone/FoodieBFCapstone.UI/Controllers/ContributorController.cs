@@ -29,7 +29,7 @@ namespace FoodieBFCapstone.UI.Controllers
             return View(vm);
         }
 
-        [Authorize(Roles = "Contributor")]
+        
         public ActionResult CreateNewBlog()
         {
             var repo = new BlogPostRepository();

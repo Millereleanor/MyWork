@@ -33,8 +33,16 @@
     </div>
     <div class="row">
         <div class="form-group col-md-12">
-            @Html.LabelFor(m => m.NewBlog.Tags, "Tags:", new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.NewBlog.Tags, new { @class = "form-control input-lg" })
+            @Html.LabelFor(m => m.NewBlog.Tags, "Tags:", new {@class = "control-label"})
+            @Html.TextBoxFor(m => m.NewBlog.Tags, new {@class = "form-control input-lg"})
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label>
+                Blog Post
+            </label>
+            @Html.EditorFor(m => m.NewBlog.PostContent, new {HtmlAttributes = new {@class = "form-control"} })
         </div>
     </div>
     <button class="btn btn-danger" type="reset">Cancel</button>
