@@ -1,5 +1,6 @@
 ﻿@using System.Web.Mvc.Html
 @using FoodieBFCapstone.Models
+@using Microsoft.AspNet.Identity
 @model FoodieBFCapstone.UI.Models.CreatePostVM
 
 @{
@@ -9,6 +10,7 @@
 <h2>CreateNewBlog</h2>
 @using (Html.BeginForm("CreateNewBlog", "Contributor", FormMethod.Post, new { @class = "form-group" }))
 {
+
     <div class="row">
         <div class="form-group col-md-3">
             <label>Subcategory:</label> @Html.DropDownListFor(m => m.NewBlog.Subcategory, Model.Subcats, new { @class = "form-control" })

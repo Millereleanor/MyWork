@@ -21,16 +21,17 @@ namespace FoodieBFCapstone.UI.Models
                 MainPictureUrl = "~/Content/pictures/logo22.png"
             };
 
-            BlogPosts = new List<BlogPost>();
-            BlogPosts.Add(NewPost);
+            BlogPosts = new List<BlogPost> {NewPost};
 
-            BlogStatus = new List<SelectListItem>();
-            BlogStatus.Add(new SelectListItem() { Text = "All", Value = "0"});
-            BlogStatus.Add(new SelectListItem() {Text = "Pending", Value = "1" });
-            BlogStatus.Add(new SelectListItem() { Text = "Active", Value = "2" });
-            BlogStatus.Add(new SelectListItem() { Text = "Inactive", Value = "3" });
-            BlogStatus.Add(new SelectListItem() { Text = "Denied", Value = "4" });
-            BlogStatus.Add(new SelectListItem() { Text = "Featured", Value = "5" });
+            BlogStatus = new List<SelectListItem>
+            {
+                new SelectListItem() {Text = "All", Value = "0"},
+                new SelectListItem() {Text = "Pending", Value = "1"},
+                new SelectListItem() {Text = "Active", Value = "2"},
+                new SelectListItem() {Text = "Inactive", Value = "3"},
+                new SelectListItem() {Text = "Denied", Value = "4"},
+                new SelectListItem() {Text = "Featured", Value = "5"}
+            };
         }
     }
 }

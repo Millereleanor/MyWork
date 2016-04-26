@@ -39,22 +39,6 @@ namespace FoodieBFCapstone.UI.Controllers
         }
 
         [Authorize(Roles = "Contributor")]
-        [HttpPost]
-        public ActionResult CreateNewBlog(BlogPost model)
-        {
-            var repo = new BlogPostRepository();
-            repo.Add(model);
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View();
-            }
-        }
-
-        [Authorize(Roles = "Contributor")]
         public ActionResult UpdateBlog(int blogId)
         {
             BlogPostRepository repo = new BlogPostRepository();
