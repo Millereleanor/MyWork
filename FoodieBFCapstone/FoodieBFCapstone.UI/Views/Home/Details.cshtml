@@ -4,9 +4,15 @@
     ViewBag.Title = "Details";
 }
 
+
+<div id="sidebar" class="sidebar">
+    <h4>Sidebar</h4>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab maxime fugiat perspiciatis.</p>
+</div>
+
 <h2>@Model.Title</h2>
-<h4 align="right">Posted by: @Model.Author.FirstName @Model.Author.LastName</h4>
-<h5 align="right">
+<h4 align="left">Posted by: @Model.Author.FirstName @Model.Author.LastName</h4>
+<h5 align="left">
     Posted on:
     @if (Model.ApprovedOn != null)
     {
@@ -14,3 +20,7 @@
     }
 </h5>
 <p align="justify">@Html.Raw(Model.PostContent)</p>
+
+
+
+@*<script src="~/Scripts/App/sidebar.js"></script>*@

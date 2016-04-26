@@ -185,8 +185,7 @@
     <Compile Include="Controllers\ContributorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RecipeController.cs" />
-    <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\SubcategoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,6 +209,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\App\sidebar.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\flat-ui-icons-regular.eot" />
@@ -523,8 +523,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Recipe\RecipeSubCategory.cshtml" />
-    <Content Include="Views\Review\ReviewSubCategory.cshtml" />
+    <Content Include="Views\SubCategory\SubCategory.cshtml" />
     <Content Include="Views\Contributor\Index.cshtml" />
     <Content Include="Views\Contributor\UpdateBlog.cshtml" />
     <Content Include="Views\Admin\Home.cshtml" />
@@ -535,7 +534,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\SubCategory\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

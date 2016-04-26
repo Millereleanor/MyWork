@@ -89,3 +89,22 @@ a.blog-Delete {
     bottom: 18%;
     right: 15%;
 }
+/*-------------for side bar*-------------------*/
+.sidebar {
+    position: -webkit-sticky;  /* required for Safari*/
+    position: sticky;
+    top: 15px; /* required as well.*/
+}
+.sidebar {
+    padding: 20px;
+    width: 190px;
+    background-color: #e53c37;
+    color: #ffffff;
+}
+.sidebar h4 {
+    margin:0
+}
+.sidebar {
+    float: right;
+}
+

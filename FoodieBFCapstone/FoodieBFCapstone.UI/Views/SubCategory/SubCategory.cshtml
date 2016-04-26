@@ -1,0 +1,48 @@
+﻿@using FoodieBFCapstone.Models
+@model List<BlogPost>
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Subcategory";
+}
+
+
+<h3>@Model[0].SubcategoryName</h3>
+
+<br />
+    @foreach (var post in ViewBag.OnePageOfProducts)
+    {
+        var p = (BlogPost)post;
+        <a href="@Url.Action("Details", "Home", new {blogId = post.BlogId})">
+            <div class="row">
+                <div class="col-sm-2 item">
+                    <img src="@post.MainPictureUrl" class="item" />
+                </div>
+                <div class="col-sm-8" style="margin: 10px;">
+                    <p>
+                        <h4>@post.Title</h4>
+                    </p>
+                    <p style="color:teal">Author: @post.Author.FirstName @post.Author.LastName</p>
+                    <p>@post.Summary</p>
+                    <p>
+                        Posted on:
+                        @if (p.ApprovedOn != null)
+                        {
+                            @p.ApprovedOn.Value.ToShortDateString()
+
+                        }
+                    </p>
+                </div>
+            </div>
+        </a>
+    }
+
+
+
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Subcategory", new { page, subCategory = (string)ViewBag.subcategory }))
+
+    
+    
+</div>

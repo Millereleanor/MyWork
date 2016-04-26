@@ -8,11 +8,12 @@ using PagedList;
 
 namespace FoodieBFCapstone.UI.Controllers
 {
-    public class ReviewController : Controller
+    public class SubcategoryController : Controller
     {
-        // GET: Review
-        public ActionResult ReviewSubCategory(string subcategory, int? page)
+        // GET: Subcategory
+        public ActionResult Subcategory(string subcategory, int? page)
         {
+
             var repo = new BlogPostRepository();
 
             var activeBlogPost = repo.GetActivePostsinSubCategory(subcategory);
@@ -29,6 +30,5 @@ namespace FoodieBFCapstone.UI.Controllers
 
             return View(activeBlogPost);
         }
-        
     }
 }
