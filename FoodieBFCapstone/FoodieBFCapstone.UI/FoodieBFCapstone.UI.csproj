@@ -533,6 +533,7 @@
     <Content Include="Views\Contributor\FilterBlogsByStatus.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Contributor\CreateNewBlog.cshtml" />
+    <Content Include="Views\Home\TagList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
