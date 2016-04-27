@@ -53,21 +53,21 @@ textarea {
     overflow: hidden;
 }
 
-    .thumbnail img {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        height: 100%;
-        width: auto;
-        -webkit-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-        transform: translate(-50%,-50%);
-    }
+.thumbnail img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
 
-        .thumbnail img.portrait {
-            width: 100%;
-            height: auto;
-        }
+.thumbnail img.portrait {
+        width: 100%;
+        height: auto;
+}
 
 /*-----------------------------Contributor CSS Section--------------------------*/
 
@@ -100,12 +100,11 @@ a.blog-Delete {
 }
 /*-------------for side bar-------------------*/
 .sidebar {
-    position: -webkit-sticky; /* required for Safari*/
-    position: sticky;
-    top: 65px; /* required as well.*/
-}
-
-.sidebar {
+    
+    position: absolute;
+    right: 20px;
+    top: 80px; /* required as well.*/
+    z-index: 1000;
     padding: 20px;
     width: 190px;
     background-color: #e53c37;
@@ -116,6 +115,27 @@ a.blog-Delete {
     margin: 0;
 }
 
-.sidebar {
-    float: right;
+.sidebar a {
+    color: #ffffff;
+}
+
+/*-----for left side bar-------*/
+.sidebarleft {
+    
+    position: absolute;
+    left: 20px;
+    top: 80px; /* required as well.*/
+    z-index: 1000;
+    padding: 20px;
+    width: 190px;
+    background-color: #e53c37;
+    color: #ffffff;
+}
+
+.sidebarleft h4 {
+    margin: 0;
+}
+
+.sidebarleft a {
+    color: #ffffff;
 }

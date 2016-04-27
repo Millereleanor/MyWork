@@ -3,6 +3,7 @@
 @model List<BlogPost>
 @using PagedList
 @using PagedList.Mvc
+
 @{
     ViewBag.Title = "TagList";
 }
@@ -10,7 +11,7 @@
 
 @if (Model.Any())
 {
-    @*<h3>tag list name</h3>*@
+    <h3>@ViewBag.tagName</h3>
 
     <br />
     <hr />
@@ -42,9 +43,6 @@
         <hr />
     }
     <div class="text-center">
-        @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Subcategory", new { page, subCategory = (string)ViewBag.subcategory }))
+        @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("TagList", new { page, subCategory = (string)ViewBag.subcategory }))
     </div>
 }
-
-<h3>There is no curent posts that containe this Tag at this time. Why don't you Create one?</h3>
-@*//could have it link to a create page*@

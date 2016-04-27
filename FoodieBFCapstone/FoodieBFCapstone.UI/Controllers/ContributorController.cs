@@ -32,18 +32,17 @@ namespace FoodieBFCapstone.UI.Controllers
         public ActionResult CreateNewBlog()
         {
             var vm = new CreatePostVM();
+            vm.NewBlog.UserId = new Guid(User.Identity.GetUserId());
             return View(vm);
         }
 
         [HttpPost]
         public ActionResult CreateNewBlog(CreatePostVM model)
         {
-            var repo = new BlogPostRepository();
-            model.NewBlog.UserId = new Guid(User.Identity.GetUserId());
-            model.NewBlog.Author = repo.GetAuthorUserGuId(model.NewBlog.UserId);
-            repo.Add(model.NewBlog);
             if (ModelState.IsValid)
             {
+                var repo = new BlogPostRepository();
+                repo.WriteBlogPost(model.NewBlog);
                 return RedirectToAction("Index");
             }
             else
@@ -69,6 +68,9 @@ namespace FoodieBFCapstone.UI.Controllers
             if (ModelState.IsValid)
             {
                 BlogPostRepository repo = new BlogPostRepository();
+                repo.WriteBlogPost(vm.NewBlog);
+                repo.WriteBlogTags(vm.NewBlog.Tags, vm.NewBlog.BlogId);
+                return RedirectToAction("Index");
             }
 
             return View(vm);

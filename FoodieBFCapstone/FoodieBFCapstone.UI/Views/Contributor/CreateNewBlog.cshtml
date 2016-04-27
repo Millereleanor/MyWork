@@ -31,20 +31,19 @@
             @Html.TextAreaFor(m => m.NewBlog.PostContent, new { @id = "Textarea" })
         </div>
     </div>
+    @*<div class="row">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(m => m.NewBlog.Tags, "Tags:", new {@class = "control-label"})
+            @Html.TextBoxFor(m => m.NewBlog.Tags, new {@class = "form-control input-lg"})
+        </div>
+    </div>*@
+
     <div class="row">
         <div class="form-group col-md-12">
-            @Html.LabelFor(m => m.NewBlog.Tags, "Tags:", new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.NewBlog.Tags, new { @class = "form-control input-lg" })
+            @Html.HiddenFor(m => m.NewBlog.UserId)
         </div>
     </div>
-    <div class="row">
-        <div class="form-group col-md-12">
-            <label>
-                Blog Post
-            </label>
-            @Html.EditorFor(m => m.NewBlog.PostContent, new { HtmlAttributes = new { @class = "form-control" } })
-        </div>
-    </div>
+
     <button class="btn btn-danger" type="reset">Cancel</button>
     <button class="btn btn-success" type="submit">Submit</button>
 }
@@ -55,11 +54,12 @@
             selector: '#Textarea',
             theme: 'modern',
             plugins: [
-              'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
-              'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-              'save table contextmenu directionality emoticons template paste textcolor'
+                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'save table contextmenu directionality emoticons template paste textcolor'
             ],
             content_css: 'css/content.css',
             toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
         });
     </script>
+}
