@@ -8,29 +8,12 @@
 @{
     ViewBag.Title = "Home";
 }
-<div id="sidebar" class="sidebar">
-    <h4>Search By Status</h4>
-    <label style="color: white">@Html.ActionLink("Pending", "StatusFilter", "Admin", new { id = "1" }, null)</label>
-    <a href="@Url.Action("StatusFilter", "Admin", new {id = "2"}, null)">
-        <p>Active</p>
-    </a>
-    @Html.ActionLink("Inactive", "StatusFilter", "Admin", new { id = "3" }, null)
-    @Html.ActionLink("Denied", "StatusFilter", "Admin", new { id = "4" }, null)
-    @Html.ActionLink("Featured", "StatusFilter", "Admin", new { id = "5" }, null)
-</div>
+
 <h2 align="center">Pending Articles</h2>
 
 @using (Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new { @class = "form-group" }))
 {
-
-
-
-<br />
-<br />
-<br />
-<br />
-<br />
-
+<br/>
     <div>
         @foreach (var item in Model.Blog)
         {
@@ -38,14 +21,14 @@
                 <div class="col-md-2">
                     <img src="@item.MainPictureUrl" class="item"/>
                 </div>
-                <div class="col-md-4" style="margin: 10px;">
+                <div class="col-md-4" style="margin: 20px;">
                     <p>
                         <h4>@item.Title</h4>
                     </p>
                     <p>Description: @item.Summary</p>
                     @*<p style="color: teal">Author: @item.Author.FirstName @item.Author.LastName</p>*@
                     <p>Created On: @item.CreatedOn.ToShortDateString()</p>
-                   
+
                 </div>
                 <div class="col-md-4">
                     <label style="margin-right: 15px;">Status: @item.Status</label>
@@ -65,7 +48,17 @@
         }
 
     </div>
+    <br/>
 }
+
+<div id="sidebar" class="sidebar">
+    <h4>Search By Status</h4>
+    <p>@Html.ActionLink("Pending", "Home", "Admin", new { id = "1" }, null)</p>
+    <p>@Html.ActionLink("Active", "StatusFilter", "Admin", new { id = "2" }, null)</p>
+    <p>@Html.ActionLink("Inactive", "StatusFilter", "Admin", new { id = "3" }, null)</p>
+    <p>@Html.ActionLink("Denied", "StatusFilter", "Admin", new { id = "4" }, null)</p>
+    <p>@Html.ActionLink("Featured", "StatusFilter", "Admin", new { id = "5" }, null)</p>
+</div>
 
 @section scripts
 {

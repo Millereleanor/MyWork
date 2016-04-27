@@ -3,26 +3,14 @@
 @{
     ViewBag.Title = "StatusFilter";
 }
-<div id="sidebar" class="sidebar" align="left">
-    <h4>Search By Status</h4>
-    <label style="color: white">@Html.ActionLink("Pending", "Home", "Admin", new { id = "1" }, null)</label>
-    @Html.ActionLink("Active", "StatusFilter", "Admin", new { id = "2" }, null)
-    @Html.ActionLink("Inactive", "StatusFilter", "Admin", new { id = "3" }, null)
-    @Html.ActionLink("Denied", "StatusFilter", "Admin", new { id = "4" }, null)
-    @Html.ActionLink("Featured", "StatusFilter", "Admin", new { id = "5" }, null)
-</div>
+
 <h2 align="center">Article</h2>
 
 @using (Html.BeginForm("StatusFilter", "Admin", FormMethod.Post))
 {
 
 
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
+<br/>
 
 
     <div>
@@ -50,8 +38,19 @@
             </div>
         }
     </div>
+}
 
+<div id="sidebar" class="sidebar" align="left">
+    <h4>Search By Status</h4>
+    <p>@Html.ActionLink("Pending", "Home", "Admin", new { id = "1" }, null)</p>
+    <p>@Html.ActionLink("Active", "StatusFilter", "Admin", new { id = "2" }, null)</p>
+    <p>@Html.ActionLink("Inactive", "StatusFilter", "Admin", new { id = "3" }, null)</p>
+    <p>@Html.ActionLink("Denied", "StatusFilter", "Admin", new { id = "4" }, null)</p>
+    <p>@Html.ActionLink("Featured", "StatusFilter", "Admin", new { id = "5" }, null)</p>
+</div>
 
-
-
+@section scripts
+{
+    <script src="~/Scripts/stickyfill.min.js"></script>
+    <script src="~/Scripts/App/sidebar.js"></script>
 }
