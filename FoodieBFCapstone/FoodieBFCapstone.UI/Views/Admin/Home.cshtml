@@ -8,65 +8,69 @@
 @{
     ViewBag.Title = "Home";
 }
-
+<div id="sidebar" class="sidebar">
+    <h4>Search By Status</h4>
+    <label style="color: white">@Html.ActionLink("Pending", "StatusFilter", "Admin", new { id = "1" }, null)</label>
+    <a href="@Url.Action("StatusFilter", "Admin", new {id = "2"}, null)">
+        <p>Active</p>
+    </a>
+    @Html.ActionLink("Inactive", "StatusFilter", "Admin", new { id = "3" }, null)
+    @Html.ActionLink("Denied", "StatusFilter", "Admin", new { id = "4" }, null)
+    @Html.ActionLink("Featured", "StatusFilter", "Admin", new { id = "5" }, null)
+</div>
 <h2 align="center">Pending Articles</h2>
 
-@using(Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new {@class = "form-group"})){
+@using (Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new { @class = "form-group" }))
+{
+
+
 
 <br />
 <br />
 <br />
 <br />
 <br />
-    <div>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Search by Status <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Pending", "StatusFilter", "Admin", new { id = "1" }, null)</li>
-                <li>@Html.ActionLink("Active", "StatusFilter", "Admin", new { id = "2" }, null)</li>
-                <li>@Html.ActionLink("Inactive", "StatusFilter", "Admin", new { id = "3" }, null)</li>
-                <li>@Html.ActionLink("Denied", "StatusFilter", "Admin", new { id = "4" }, null)</li>
-                <li>@Html.ActionLink("Featured", "StatusFilter", "Admin", new { id = "5" }, null)</li>
-            </ul>
-        </li>
-    </div>
 
     <div>
         @foreach (var item in Model.Blog)
         {
-            <div class="row">
+            <div class="row, form-inline">
                 <div class="col-md-2">
                     <img src="@item.MainPictureUrl" class="item"/>
                 </div>
-                <div class="col-md-7" style="margin: 10px;">
+                <div class="col-md-4" style="margin: 10px;">
                     <p>
                         <h4>@item.Title</h4>
                     </p>
-                    <br/>
-                    <br/>
-                    <br/>
+                    <p>Description: @item.Summary</p>
+                    @*<p style="color: teal">Author: @item.Author.FirstName @item.Author.LastName</p>*@
                     <p>Created On: @item.CreatedOn.ToShortDateString()</p>
+                   
                 </div>
-                <div class="col-md-2">
-                    <label style="margin-right: 10px;">Status: @item.Status</label>
-                    <br/>
-                    <button class="btn btn-primary" href="@Url.Action("Details", "Home", new {Id = item.BlogId})" onclick="@item.BlogId" type="submit">Review</button>
+                <div class="col-md-4">
+                    <label style="margin-right: 15px;">Status: @item.Status</label>
+                    <a class="btn btn-primary" href="@Url.Action("Details", "Home", new {blogId = item.BlogId})">Review Article</a>
                     <br/>
                     <br/>
                     <div>
                         <label>Update Status</label>
-                        @Html.DropDownListFor(m => m.BlogPost.Status, Model.BlogStatus,  new {@class="form-control"})
+                        <div class="form-inline">
+                            @Html.DropDownListFor(m => m.BlogPost.StatusId, Model.BlogStatus, new {@class = "form-control", @style = "width: 150px"})
 
-                        <button class="btn btn-primary" type="submit">Save</button>
+                            <button class="btn btn-primary" type="submit" style="margin-left: 40px">Save</button>
+                        </div>
                     </div>
                 </div>
             </div>
         }
+
     </div>
+}
 
-
-
-
+@section scripts
+{
+    <script src="~/Scripts/stickyfill.min.js"></script>
+    <script src="~/Scripts/App/sidebar.js"></script>
 }
 
 

@@ -27,10 +27,10 @@ namespace FoodieBFCapstone.UI.Controllers
         }
 
         
-        public ActionResult UpdateStatus(BlogPost status, int blogId)
+        public ActionResult UpdateStatus(int StatusId, int blogId)
         {
             BlogPostRepository repo = new BlogPostRepository();
-            repo.UpdateStatusByBlogId(blogId, status.Status);
+            repo.UpdateStatusByBlogId(blogId, StatusId);
             return View("Home");
         }
 
