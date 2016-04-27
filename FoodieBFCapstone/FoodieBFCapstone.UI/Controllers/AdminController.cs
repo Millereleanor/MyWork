@@ -16,7 +16,7 @@ namespace FoodieBFCapstone.UI.Controllers
 
         
         // GET: Admin
-        
+        [Authorize(Roles = "Admin")]
         public ActionResult Home()
         {
             BlogPostRepository repo = new BlogPostRepository();
@@ -27,7 +27,7 @@ namespace FoodieBFCapstone.UI.Controllers
             return View(posts);
         }
 
-        
+        [Authorize(Roles = "Admin")]
         public ActionResult UpdateStatus(int StatusId, int blogId)
         {
             BlogPostRepository repo = new BlogPostRepository();
@@ -36,7 +36,7 @@ namespace FoodieBFCapstone.UI.Controllers
         }
 
 
-        
+        [Authorize(Roles = "Admin")]
         public ActionResult StatusFilter(int id)
         {
             BlogPostRepository repo = new BlogPostRepository();
