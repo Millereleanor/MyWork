@@ -69,6 +69,9 @@ namespace FoodieBFCapstone.UI.Controllers
             if (ModelState.IsValid)
             {
                 BlogPostRepository repo = new BlogPostRepository();
+                repo.WriteBlogPost(vm.NewBlog);
+                repo.WriteBlogTags(vm.NewBlog.Tags, vm.NewBlog.BlogId);
+                return RedirectToAction("Index");
             }
 
             return View(vm);

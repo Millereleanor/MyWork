@@ -4,6 +4,7 @@ using FoodieBFCapstone.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -210,6 +211,122 @@ namespace FoodieBFCapstone.Data
                 _cn.Execute(query, parameters);
             }
         }
+
+        public void WriteBlogPost(BlogPost blogPost)
+        {
+            using (var _cn = new SqlConnection(constr))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("UserId", blogPost.UserId);
+                parameters.Add("SubCategoryId", blogPost.Subcategory.SubcategoryId);
+                parameters.Add("StatusId", (int)Status.Pending);
+                parameters.Add("MainPictureUrl", blogPost.MainPictureUrl);
+                parameters.Add("Title", blogPost.Title);
+                parameters.Add("PostContent", blogPost.PostContent);
+                parameters.Add("Summary", blogPost.Summary);
+
+                if ((blogPost.PublishDate == null) || (blogPost.PublishDate.Value.DayOfYear < 1900))
+                {
+                    parameters.Add("PublishDate");
+                }
+                else
+                {
+                    parameters.Add("PublishDate", blogPost.PublishDate);
+                }
+
+                if ((blogPost.ExpirationDate == null) || (blogPost.ExpirationDate.Value.DayOfYear < 1900))
+                {
+                    parameters.Add("ExpirationDate");
+                }
+                else
+                {
+                    parameters.Add("ExpirationDate", blogPost.ExpirationDate);
+                }
+
+                parameters.Add("ApprovedOn");
+
+                if (blogPost.BlogId == 0)
+                {
+                    parameters.Add("CreatedOn", DateTime.Today);
+
+                    string writeNewBlogPost = "INSERT INTO BlogPosts (UserId, SubCategoryId, StatusId, MainPictureUrl, Title, PostContent, Summary, CreatedOn, PublishDate, ExpirationDate, ApprovedOn) " +
+                    " VALUES (@UserId, @SubCategoryId, @StatusId, @MainPictureUrl, @Title, @PostContent, @Summary, @CreatedOn, @PublishDate, @ExpirationDate, @ApprovedOn) ";
+                    _cn.Execute(writeNewBlogPost, parameters);
+                }
+                else
+                {
+                    parameters.Add("BlogId", blogPost.BlogId);
+                    parameters.Add("CreatedOn", blogPost.CreatedOn);
+
+                    string updateExistingBlogPost = "UPDATE BlogPosts " + 
+                                                    "SET UserId = @UserId, SubCategoryId = @SubCategoryId, " + 
+                                                        "StatusId = @StatusId, MainPictureUrl = @MainPictureUrl, " + 
+                                                        "Title = @Title, PostContent = @PostContent, " + 
+                                                        "Summary = @Summary, CreatedOn = @CreatedOn, " + 
+                                                        "PublishDate = @PublishDate, ExpirationDate = @ExpirationDate, " + 
+                                                        "ApprovedOn = @ApprovedOn " + 
+                                                    "WHERE BlogId = @BlogId";
+                    _cn.Execute(updateExistingBlogPost, parameters);
+                }
+            }
+        }
+
+        private void WriteTags(List<Tag> blogTags)
+        {
+            using (var _cn = new SqlConnection(constr))
+            {
+                foreach (var tag in blogTags)
+                {
+                    _cn.Query("BEGIN " + 
+                                "IF NOT EXISTS (SELECT * " + 
+                                                "FROM Tags " + 
+                                                "WHERE Tag = @TagName) " +
+                                    "BEGIN " + 
+                                        "INSERT INTO Tags (Tag) " +
+                                        "VALUES (@TagName) " +
+                                    "END " + 
+                              "END", new { tag.TagName });
+                }
+            }
+        }
+
+        public void WriteBlogTags(List<Tag> tags, int blogId)
+        {
+            if ((tags != null) && (tags.Any()))
+            {
+                WriteTags(tags);
+
+                using (var _cn = new SqlConnection(constr))
+                {
+                    _cn.Query("DELETE FROM BlogPostsTags WHERE BlogId = @BlogId", new {BlogId = blogId});
+
+                    foreach (var tag in tags)
+                    {
+                        _cn.Query("DECLARE @TagId int = (SELECT TOP 1 TagId FROM Tags WHERE Tag = @TagName) " +
+                                  "BEGIN " +
+                                  "IF NOT EXISTS (SELECT * " +
+                                  "FROM BlogPostsTags " +
+                                  "WHERE BlogId = @BlogId AND TagId = @TagId) " +
+                                  "BEGIN " +
+                                  "INSERT INTO BlogPostsTags (TagId, BlogId) " +
+                                  "VALUES (@TagId, @BlogId) " +
+                                  "END " +
+                                  "END", new {tag.TagName, BlogId = blogId});
+                    }
+                }
+            }
+        }
+
+        //public List<Tag> ReadAllTags()
+        //{
+        //    List<Tag> tags = new List<Tag>();
+        //    using (var _cn = new SqlConnection(constr))
+        //    {
+        //        tags = _cn.Query<Tag>("SELECT TagId, Tag AS TagName " +
+        //                  "FROM Tags").ToList();
+        //    }
+        //    return tags;
+        //} 
 
         public void Update(int id, BlogPost model)
         {
