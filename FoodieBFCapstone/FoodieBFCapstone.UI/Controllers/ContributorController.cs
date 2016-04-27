@@ -80,7 +80,7 @@ namespace FoodieBFCapstone.UI.Controllers
         public ActionResult DeactivateBlog(int blogId)
         {
             BlogPostRepository repo = new BlogPostRepository();
-            repo.UpdateStatusByBlogId(blogId, 3);
+            repo.UpdateStatusByBlogId(blogId, (int)Status.Inactive);
             return RedirectToAction("Index", "Contributor");
         }
 
