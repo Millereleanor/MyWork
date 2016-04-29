@@ -11,8 +11,7 @@
 
 <h2 align="center">Pending Articles</h2>
 
-@using (Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new { @class = "form-group" }))
-{
+
 <br/>
     <div>
         @foreach (var item in Model.Blog)
@@ -36,20 +35,24 @@
                     <br/>
                     <br/>
                     <div>
-                        <label>Update Status</label>
-                        <div class="form-inline">
-                            @Html.DropDownListFor(m => m.BlogPost.StatusId, Model.BlogStatus, new {@class = "form-control", @style = "width: 150px"})
+                        @using (Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new {@class = "form-group"}))
+                        {
+                            <label>Update Status</label>
+                            <div class="form-inline">
+                                <input type="hidden" id="BlogPost_BlogId" name="BlogId" value="@item.BlogId"/>
+                              
+                                @Html.DropDownList("StatusId", Model.BlogStatus, new {@class = "form-control", @style = "width: 150px"})
 
-                            <button class="btn btn-primary" type="submit" style="margin-left: 40px">Save</button>
-                        </div>
+                                <button class="btn btn-primary" type="submit" style="margin-left: 40px">Save</button>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         }
-
-    </div>
+       </div>
     <br/>
-}
+
 
 <div id="sidebar" class="sidebar">
     <h4>Search By Status</h4>

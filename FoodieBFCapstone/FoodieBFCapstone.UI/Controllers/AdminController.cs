@@ -16,27 +16,27 @@ namespace FoodieBFCapstone.UI.Controllers
 
         
         // GET: Admin
-        [Authorize(Roles = "Admin")]
+        
         public ActionResult Home()
         {
             BlogPostRepository repo = new BlogPostRepository();
             AdminVM posts = new AdminVM();
             List<BlogPost> stuff = repo.GetPostByStatus2(1);
             posts.Blog = stuff; //passing in status enum/db id 
-
+            
             return View(posts);
         }
 
-        [Authorize(Roles = "Admin")]
+        [HttpPost]
         public ActionResult UpdateStatus(int StatusId, int blogId)
         {
             BlogPostRepository repo = new BlogPostRepository();
             repo.UpdateStatusByBlogId(blogId, StatusId);
-            return View("Home");
+            return RedirectToAction("Home");
         }
 
 
-        [Authorize(Roles = "Admin")]
+        
         public ActionResult StatusFilter(int id)
         {
             BlogPostRepository repo = new BlogPostRepository();
