@@ -215,6 +215,12 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\App\sidebar.js" />
+    <Content Include="Scripts\App\slick\ajax-loader.gif" />
+    <Content Include="Scripts\App\slick\fonts\slick.svg" />
+    <Content Include="Scripts\App\slick\slick-theme.css" />
+    <Content Include="Scripts\App\slick\slick.css" />
+    <Content Include="Scripts\App\slick\slick.js" />
+    <Content Include="Scripts\App\slick\slick.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\flat-ui-icons-regular.eot" />
@@ -228,6 +234,14 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Scripts\App\slick\config.rb" />
+    <Content Include="Scripts\App\slick\slick-theme.less" />
+    <Content Include="Scripts\App\slick\slick-theme.scss" />
+    <Content Include="Scripts\App\slick\slick.less" />
+    <Content Include="Scripts\App\slick\slick.scss" />
+    <Content Include="Scripts\App\slick\fonts\slick.eot" />
+    <Content Include="Scripts\App\slick\fonts\slick.ttf" />
+    <Content Include="Scripts\App\slick\fonts\slick.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -529,7 +543,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-<Content Include="Views\Recipe\RecipeSubCategory.cshtml" />
+    <Content Include="Views\Recipe\RecipeSubCategory.cshtml" />
     <Content Include="Views\Review\ReviewSubCategory.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\SubCategory\SubCategory.cshtml" />
