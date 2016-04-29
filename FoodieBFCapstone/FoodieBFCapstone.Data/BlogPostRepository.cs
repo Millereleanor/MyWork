@@ -96,7 +96,7 @@ namespace FoodieBFCapstone.Data
         {
             using (var _cn = new SqlConnection(constr))
             {
-                Posts = _cn.Query<BlogPost>("SELECT TOP 3 * FROM BlogPosts WHERE BlogPosts.StatusId=5 ORDER BY NewId()").ToList();
+                Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPosts.StatusId=5 ORDER BY NewId()").ToList();
                 return Posts;
             }
         }
@@ -281,13 +281,13 @@ namespace FoodieBFCapstone.Data
                     parameters.Add("BlogId", blogPost.BlogId);
                     parameters.Add("CreatedOn", blogPost.CreatedOn);
 
-                    string updateExistingBlogPost = "UPDATE BlogPosts " + 
-                                                    "SET UserId = @UserId, SubCategoryId = @SubCategoryId, " + 
-                                                        "StatusId = @StatusId, MainPictureUrl = @MainPictureUrl, " + 
-                                                        "Title = @Title, PostContent = @PostContent, " + 
-                                                        "Summary = @Summary, CreatedOn = @CreatedOn, " + 
-                                                        "PublishDate = @PublishDate, ExpirationDate = @ExpirationDate, " + 
-                                                        "ApprovedOn = @ApprovedOn " + 
+                    string updateExistingBlogPost = "UPDATE BlogPosts " +
+                                                    "SET UserId = @UserId, SubCategoryId = @SubCategoryId, " +
+                                                        "StatusId = @StatusId, MainPictureUrl = @MainPictureUrl, " +
+                                                        "Title = @Title, PostContent = @PostContent, " +
+                                                        "Summary = @Summary, CreatedOn = @CreatedOn, " +
+                                                        "PublishDate = @PublishDate, ExpirationDate = @ExpirationDate, " +
+                                                        "ApprovedOn = @ApprovedOn " +
                                                     "WHERE BlogId = @BlogId";
                     _cn.Execute(updateExistingBlogPost, parameters);
                 }
@@ -300,14 +300,14 @@ namespace FoodieBFCapstone.Data
             {
                 foreach (var tag in blogTags)
                 {
-                    _cn.Query("BEGIN " + 
-                                "IF NOT EXISTS (SELECT * " + 
-                                                "FROM Tags " + 
+                    _cn.Query("BEGIN " +
+                                "IF NOT EXISTS (SELECT * " +
+                                                "FROM Tags " +
                                                 "WHERE Tag = @TagName) " +
-                                    "BEGIN " + 
+                                    "BEGIN " +
                                         "INSERT INTO Tags (Tag) " +
                                         "VALUES (@TagName) " +
-                                    "END " + 
+                                    "END " +
                               "END", new { tag.TagName });
                 }
             }
@@ -321,7 +321,7 @@ namespace FoodieBFCapstone.Data
 
                 using (var _cn = new SqlConnection(constr))
                 {
-                    _cn.Query("DELETE FROM BlogPostsTags WHERE BlogId = @BlogId", new {BlogId = blogId});
+                    _cn.Query("DELETE FROM BlogPostsTags WHERE BlogId = @BlogId", new { BlogId = blogId });
 
                     foreach (var tag in tags)
                     {
@@ -334,7 +334,7 @@ namespace FoodieBFCapstone.Data
                                   "INSERT INTO BlogPostsTags (TagId, BlogId) " +
                                   "VALUES (@TagId, @BlogId) " +
                                   "END " +
-                                  "END", new {tag.TagName, BlogId = blogId});
+                                  "END", new { tag.TagName, BlogId = blogId });
                     }
                 }
             }
@@ -349,7 +349,7 @@ namespace FoodieBFCapstone.Data
         //                  "FROM Tags").ToList();
         //    }
         //    return tags;
-        //} 
+        //}
 
         public void Update(int id, BlogPost model)
         {
