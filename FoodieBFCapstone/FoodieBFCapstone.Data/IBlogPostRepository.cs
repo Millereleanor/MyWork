@@ -16,7 +16,7 @@ namespace FoodieBFCapstone.Data
 
         List<BlogPost> GetFeatured();
 
-        List<BlogPost> GetByAuthorUserName(string userName);
+        List<BlogPost> GetByAuthorUserName(string firstName, string lastName);
 
         List<BlogPost> GetBySubcategory(string subcategoryType);
 

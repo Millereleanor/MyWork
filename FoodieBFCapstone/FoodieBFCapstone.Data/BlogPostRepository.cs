@@ -101,6 +101,8 @@ namespace FoodieBFCapstone.Data
             }
         }
 
+        
+
         public BlogPost GetById(int id)
         {
             BlogPost blogPost = new BlogPost();
@@ -124,9 +126,16 @@ namespace FoodieBFCapstone.Data
             return Posts;
         }
 
-        public List<BlogPost> GetByAuthorUserName(string userName)
+        public List<BlogPost> GetByAuthorUserName(string firstName, string lastName)
         {
-            throw new NotImplementedException();
+            using (var _cn = new SqlConnection(constr))
+            {
+                Posts = _cn.Query<BlogPost>("select bp.*, ip.FirstName, ip.LastName from BlogPosts bp " +
+                                            "inner join IdentityProfile ip on bp.UserId = ip.UserId " +
+                                            "where ip.firstname = @firstName and ip.LastName = @lastName and bp.StatusId in (5, 2) " +
+                                            "ORDER BY ApprovedOn DESC; ", new {FirstName = firstName,LastName = lastName}).ToList();
+            }
+            return Posts;
         }
 
         public List<BlogPost> GetBySubcategory(string subcategoryType)
@@ -383,12 +392,35 @@ namespace FoodieBFCapstone.Data
             List<Tag> Tags = new List<Tag>();
             using (var _cn = new SqlConnection(constr))
             {
-                Tags = _cn.Query<Tag>("select bp.BlogId, t.Tag as [TagName],t.TagId from BlogPosts bp " +
+                Tags = _cn.Query<Tag>("select bp.*, t.Tag as [TagName],t.TagId from BlogPosts bp " +
                            "inner join BlogPostsTags bpt on bp.BlogId = bpt.BlogId " +
                            "inner join Tags t on bpt.TagId = t.TagId " +
-                           "where bp.BlogId = @blogId ; ", new { BlogId = blogId }).ToList();
+                           "where bp.BlogId = @blogId  AND  bp.StatusId in (5,2) ORDER BY ApprovedOn DESC; ", new { BlogId = blogId }).ToList();
                 return Tags;
             }
+        }
+
+        public List<BlogPost> GetBlogByTitle(string title)
+        {
+            List<BlogPost> Blogs = new List<BlogPost>();
+            using (var _cn = new SqlConnection(constr))
+            {
+                Blogs = _cn.Query<BlogPost>("select * from BlogPosts bp where bp.Title = @title AND  bp.StatusId in (5,2) ORDER BY ApprovedOn DESC;", new { Title = title }).ToList();
+                return Blogs;
+            }
+        }
+
+        public List<BlogPost> GetBlogThatContains(string contains)
+        {
+            List<BlogPost> Posts = new List<BlogPost>();
+            contains = "%" + contains + "%";
+            using (var _cn = new SqlConnection(constr))
+            {
+                Posts = _cn.Query<BlogPost>("select * from BlogPosts bp " +
+                                            "WHERE bp.PostContent Like @contains" +
+                                            " ORDER BY ApprovedOn DESC; ", new { Contains = contains}).ToList();
+            }
+            return Posts;
         }
     }
 }
