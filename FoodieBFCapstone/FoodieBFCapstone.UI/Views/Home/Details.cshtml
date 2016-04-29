@@ -1,4 +1,5 @@
-﻿@model FoodieBFCapstone.Models.BlogPost
+﻿@using FoodieBFCapstone.Models
+@model FoodieBFCapstone.Models.BlogPost
 
 @{
     ViewBag.Title = "Details";
@@ -25,7 +26,25 @@
         @Model.ApprovedOn.Value.ToShortDateString()
     }
 </h5>
-<p align="justify">@Html.Raw(Model.PostContent)</p>
+    <p align="justify">@Html.Raw(Model.PostContent)</p>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+            using (Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new { @class = "form-group" }))
+            {
+                <label>Update Status</label>
+                            <div class="form-inline">
+                                <input type="hidden" id="BlogPost_BlogId" name="BlogId" value="@Model.BlogId" />
+                                <input type="hidden" id="BlogPost_BlogStatus" name="Status" />
+                                @Html.DropDownList("StatusId", Model.BlogStatus, new { @class = "form-control", @style = "width: 150px" })
+
+                                <button class="btn btn-primary" type="submit" style="margin-left: 40px">Save</button>
+                            </div>
+            }
+        }
+    }
 </div>
 
 @section scripts
