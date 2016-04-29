@@ -14,6 +14,13 @@ namespace FoodieBFCapstone.Models
         public BlogPost()
         {
             this.Subcategory = new Subcategory();
+
+            BlogStatus = new List<SelectListItem>();
+            BlogStatus.Add(new SelectListItem() { Text = "Pending", Value = "1" });
+            BlogStatus.Add(new SelectListItem() { Text = "Active", Value = "2" });
+            BlogStatus.Add(new SelectListItem() { Text = "Inactive", Value = "3" });
+            BlogStatus.Add(new SelectListItem() { Text = "Denied", Value = "4" });
+            BlogStatus.Add(new SelectListItem() { Text = "Featured", Value = "5" });
         }
 
         public int BlogId { get; set; }
@@ -46,5 +53,10 @@ namespace FoodieBFCapstone.Models
         public List<Tag> Tags { get; set; }
 
         public string SubcategoryName { get; set; }
+
+        public List<SelectListItem> BlogStatus { get; set; }
+
+
+       
     }
 }

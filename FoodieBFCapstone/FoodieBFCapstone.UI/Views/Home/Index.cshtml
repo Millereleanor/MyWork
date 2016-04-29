@@ -6,17 +6,17 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
-<div class="row">
-
+<link rel="stylesheet" type="text/css" href="~/Scripts/App/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="~/Scripts/App/slick/slick-theme.css" />
+<div class="row center">
     @foreach (var fpost in Model.FeaturedPosts)
             {
         <a href="@Url.Action("Details", "Home", new {blogId = fpost.BlogId})">
-            <div class="col-sm-4">
+            <div class="col-sm-12 col-lg-12" style="text-align: center; align-content: center;">
                 <img src="@fpost.MainPictureUrl" style="height: 250px; margin-top: 15px;" class="thumbnail" />
-                <h4 align="center">@fpost.Title</h4>
-                <p align="center" style="color:teal">Author: @fpost.Author.FirstName  @fpost.Author.LastName</p>
-                <p align="center">@fpost.Summary</p>
+                <h4>@fpost.Title</h4>
+                <p style="color:teal">Author: @fpost.Author.FirstName  @fpost.Author.LastName</p>
+                <p>@fpost.Summary</p>
             </div>
         </a>
 
@@ -35,12 +35,12 @@
                 <p>
                     <h4>@post.Title</h4>
                 </p>
-                <p style="color:teal">Author: @post.Author.FirstName @post.Author.LastName</p>
+                <p style="color: teal">Author: @post.Author.FirstName @post.Author.LastName</p>
                 <p>@post.Summary</p>
                 <p>
                     Posted on:
                     @if (p.ApprovedOn != null)
-                {
+                    {
                         @p.ApprovedOn.Value.ToShortDateString()
 
                     }
@@ -53,3 +53,19 @@
 <div class="text-center">
     @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }))
 </div>
+
+@section scripts{
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/App/slick/slick.min.js"></script>
+
+    <script type="text/javascript">
+        $('.center').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            adaptiveheight: true
+
+        });
+    </script>
+}

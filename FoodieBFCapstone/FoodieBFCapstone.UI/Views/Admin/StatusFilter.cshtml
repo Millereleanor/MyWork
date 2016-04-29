@@ -1,4 +1,6 @@
-﻿@model FoodieBFCapstone.UI.Models.AdminVM
+﻿@using System.Security.Cryptography.X509Certificates
+@using FoodieBFCapstone.UI.Models
+@model FoodieBFCapstone.UI.Models.AdminVM
 
 @{
     ViewBag.Title = "StatusFilter";
@@ -9,7 +11,7 @@
 @using (Html.BeginForm("StatusFilter", "Admin", FormMethod.Post))
 {
 
-
+   
 <br/>
 
 
@@ -30,7 +32,8 @@
                 </div>
                 <div class="col-md-2">
                     <label style="margin-right: 10px;">Status: @item.Status</label>
-                    <br />
+                    <br/>
+                    
                     <a class="btn btn-primary" href="@Url.Action("Details", "Home", new {blogId = item.BlogId})">View Article</a>
                     <br />
                     <br />
