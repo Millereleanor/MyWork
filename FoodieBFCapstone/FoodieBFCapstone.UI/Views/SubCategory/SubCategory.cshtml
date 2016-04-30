@@ -12,41 +12,52 @@
 {
     <h3>@Model[0].SubcategoryName</h3>
 
-    <br/>
-    <hr/>
+    <br />
+    <hr />
     foreach (var post in ViewBag.OnePageOfProducts)
-     {
-         var p = (BlogPost) post;
-         <a href="@Url.Action("Details", "Home", new {blogId = post.BlogId})">
-             <div class="row">
-                 <div class="col-sm-2 item">
-                     <img src="@post.MainPictureUrl" class="item"/>
-                 </div>
-                 <div class="col-sm-8" style="margin: 10px;">
-                     <p>
-                         <h4>@post.Title</h4>
-                     </p>
-                     <p style="color: teal">Author: @post.Author.FirstName @post.Author.LastName</p>
-                     <p>@post.Summary</p>
-                     <p>
-                         Posted on:
-                         @if (p.ApprovedOn != null)
-                         {
-                             @p.ApprovedOn.Value.ToShortDateString()
+    {
+        var p = (BlogPost)post;
+        <a href="@Url.Action("Details", "Home", new {blogId = post.BlogId})">
+            <div class="row">
+                <div class="col-sm-2 item">
+                    <img src="@post.MainPictureUrl" class="item" />
+                </div>
+                <div class="col-sm-8" style="margin: 10px;">
+                    <p>
+                        <h4>@post.Title</h4>
+                    </p>
+                    <p style="color: teal">Author: @post.Author.FirstName @post.Author.LastName</p>
+                    <p>@post.Summary</p>
+                    <p>
+                        Posted on:
+                        @if (p.ApprovedOn != null)
+                        {
+                            @p.ApprovedOn.Value.ToShortDateString()
 
-                         }
-                     </p>
-                 </div>
-             </div>
-         </a>
-         <hr/>
-     }
+                        }
+                    </p>
+                </div>
+            </div>
+        </a>
+        <hr />
+    }
     <div class="text-center">
-        @Html.PagedListPager((IPagedList) ViewBag.OnePageOfProducts, page => Url.Action("Subcategory", new {page, subCategory = (string) ViewBag.subcategory}))
+        @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Subcategory", new { page, subCategory = (string)ViewBag.subcategory }))
     </div>
 }
 @if (Model.Count <= 0)
 {
     <h3>There is no curent posts in this SubCategory. Why don't you Create one?</h3>
-    @*//could have it link to a create page*@
+    if (User.IsInRole("Contributor"))
+    {
+        <div class="row">
+            <div class="itemsContainer blog-Preview">
+                <h2 class="text-center">Create New</h2>
+                <img class="img-rounded text-center" src="~/Content/pictures/logo22.png" style="width: 300px; height: 200px; display: block; margin-left: auto; margin-right: auto" />
+                <a href=@Url.Action("CreateNewBlog", "Contributor") class="btn btn-danger play">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true" style="position: relative; align-content: center;"></span>
+                </a>
+            </div>
+        </div>
+    }
 }
