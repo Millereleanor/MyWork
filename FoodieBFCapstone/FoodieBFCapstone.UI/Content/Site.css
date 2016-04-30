@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    max-width: 100%;
+    max-width: 75%;
 }
 
 textarea {
@@ -157,3 +157,4 @@ a.blog-Delete {
     .sidebarleft a {
         color: #ffffff;
     }
+/*---------------search bar--------------*/

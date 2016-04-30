@@ -54,30 +54,15 @@ namespace FoodieBFCapstone.UI.Controllers
 
         public ActionResult Details(int blogId)
         {
+            
             var repo = new BlogPostRepository();
             var post = repo.GetById(blogId);
             post.Tags = repo.GetBlogPostTags(blogId);
             post.Author = repo.GetAuthorUserNameByBlogId(blogId);
+            ViewBag.searchTag = "searchTag";
             return View(post);
         }
 
-        public ActionResult TagList(string tagName,int? page)
-        {
-            var repo = new BlogPostRepository();
-
-            var blogsForTags = repo.GetByTag(tagName);
-
-            foreach (var post in blogsForTags)
-            {
-                post.Author = repo.GetAuthorUserNameByBlogId(post.BlogId);
-            }
-            var pageNumber = page ?? 1;
-            var onePageOfProducts = blogsForTags.ToPagedList(pageNumber, 5);
-
-            ViewBag.OnePageOfProducts = onePageOfProducts;
-            ViewBag.TagName = tagName;
-
-            return View(blogsForTags);
-        }
+        
     }
 }

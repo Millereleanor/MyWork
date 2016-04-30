@@ -11,7 +11,7 @@
         <br />
         @foreach (var tag in Model.Tags)
         {
-            <a href="@Url.Action("TagList", "Home", new {tagName = tag.TagName})">#@tag.TagName</a>
+            <a href="@Url.Action("Search", "Search", new {text = tag.TagName, type = ViewBag.searchTag })">#@tag.TagName</a>
         }
   
 </div>

@@ -5,23 +5,23 @@
 @using PagedList.Mvc
 
 @{
-    ViewBag.Title = "TagList";
+    ViewBag.Title = "Search";
 }
 
 
 @if (Model.Any())
 {
-    <h3>@ViewBag.tagName</h3>
+    <h3>@ViewBag.Type</h3>
 
-    <br />
-    <hr />
+    <br/>
+    <hr/>
     foreach (var post in ViewBag.OnePageOfProducts)
     {
-        var p = (BlogPost)post;
+        var p = (BlogPost) post;
         <a href="@Url.Action("Details", "Home", new {blogId = post.BlogId})">
             <div class="row">
                 <div class="col-sm-2 item">
-                    <img src="@post.MainPictureUrl" class="item" />
+                    <img src="@post.MainPictureUrl" class="item"/>
                 </div>
                 <div class="col-sm-8" style="margin: 10px;">
                     <p>
@@ -40,9 +40,10 @@
                 </div>
             </div>
         </a>
-        <hr />
+        <hr/>
     }
+
     <div class="text-center">
-        @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("TagList", new { page, subCategory = (string)ViewBag.subcategory }))
+        @Html.PagedListPager((IPagedList) ViewBag.OnePageOfProducts, page => Url.Action("Search", new {page, type = (string) ViewBag.Type, text = (string) ViewBag.Text}))
     </div>
 }
