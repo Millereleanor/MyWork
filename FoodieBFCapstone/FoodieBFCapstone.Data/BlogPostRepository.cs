@@ -430,8 +430,8 @@ namespace FoodieBFCapstone.Data
             using (var _cn = new SqlConnection(constr))
             {
                 Posts = _cn.Query<BlogPost>("select * from BlogPosts bp " +
-                                            "WHERE bp.PostContent Like @contains" +
-                                            " ORDER BY ApprovedOn DESC; ", new { Contains = contains}).ToList();
+                                            "WHERE bp.PostContent Like ('%' + @contains + '%') " +
+                                            "ORDER BY ApprovedOn DESC; ", new { Contains = contains}).ToList();
             }
             return Posts;
         }
