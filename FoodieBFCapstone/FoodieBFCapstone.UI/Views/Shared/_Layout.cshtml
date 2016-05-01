@@ -10,127 +10,140 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <a class="navbar-brand glyphicon glyphicon-heart" href="@Url.Action("Index", "Home")"></a>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Foodie & the BlowFish <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recipes <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>@Html.ActionLink("Breakfast", "Subcategory", "Subcategory", new { subcategory = "Breakfast" }, null)</li>
-                        <li>@Html.ActionLink("Lunch", "Subcategory", "Subcategory", new { subcategory = "Lunch" }, null)</li>
-                        <li>@Html.ActionLink("Dinner", "Subcategory", "Subcategory", new { subcategory = "Dinner" }, null)</li>
-                        <li>@Html.ActionLink("Dessert", "Subcategory", "Subcategory", new { subcategory = "Dessert" }, null)</li>
-                        <li>@Html.ActionLink("Drinks", "Subcategory", "Subcategory", new { subcategory = "Drinks" }, null)</li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Around The World <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>@Html.ActionLink("North America", "Subcategory", "Subcategory", new { subcategory = "NorthAmerica" }, null)</li>
-                        <li>@Html.ActionLink("South America", "Subcategory", "Subcategory", new { subcategory = "SouthAmerica" }, null)</li>
-                        <li>@Html.ActionLink("Asia", "Subcategory", "Subcategory", new { subcategory = "Asia" }, null)</li>
-                        <li>@Html.ActionLink("Europe", "Subcategory", "Subcategory", new { subcategory = "Europe" }, null)</li>
-                        <li>@Html.ActionLink("Australia", "Subcategory", "Subcategory", new { subcategory = "Australia" }, null)</li>
-                        <li>@Html.ActionLink("Africa", "Subcategory", "Subcategory", new { subcategory = "Africa" }, null)</li>
-                        <li>@Html.ActionLink("Antarctica", "Subcategory", "Subcategory", new { subcategory = "Antarctica" }, null)</li>
-                    </ul>
-                </li>
-                <li>@Html.ActionLink("BlowFish's Travels", "Static", "Home")</li>
-            </ul>
-            @Html.Partial("_LoginPartial")
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container" style="margin-left: 5%; margin-right: 5%;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <a class="navbar-brand glyphicon glyphicon-heart" href="@Url.Action("Index", "Home")"></a>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Foodie & the BlowFish <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recipes <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Breakfast", "Subcategory", "Subcategory", new { subcategory = "Breakfast" }, null)</li>
+                            <li>@Html.ActionLink("Lunch", "Subcategory", "Subcategory", new { subcategory = "Lunch" }, null)</li>
+                            <li>@Html.ActionLink("Dinner", "Subcategory", "Subcategory", new { subcategory = "Dinner" }, null)</li>
+                            <li>@Html.ActionLink("Dessert", "Subcategory", "Subcategory", new { subcategory = "Dessert" }, null)</li>
+                            <li>@Html.ActionLink("Drinks", "Subcategory", "Subcategory", new { subcategory = "Drinks" }, null)</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Around The World <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("North America", "Subcategory", "Subcategory", new { subcategory = "NorthAmerica" }, null)</li>
+                            <li>@Html.ActionLink("South America", "Subcategory", "Subcategory", new { subcategory = "SouthAmerica" }, null)</li>
+                            <li>@Html.ActionLink("Asia", "Subcategory", "Subcategory", new { subcategory = "Asia" }, null)</li>
+                            <li>@Html.ActionLink("Europe", "Subcategory", "Subcategory", new { subcategory = "Europe" }, null)</li>
+                            <li>@Html.ActionLink("Australia", "Subcategory", "Subcategory", new { subcategory = "Australia" }, null)</li>
+                            <li>@Html.ActionLink("Africa", "Subcategory", "Subcategory", new { subcategory = "Africa" }, null)</li>
+                            <li>@Html.ActionLink("Antarctica", "Subcategory", "Subcategory", new { subcategory = "Antarctica" }, null)</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Travels", "Static", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
 
-            <div >
-                <form class="navbar-form navbar-left" role="search" action="/Search/Search/" method="post">
-                    
-                    <div class="form-group" style="margin-left: 35px;">
-                        <input type="text" class="form-control" placeholder="Search" id="search" name="text">
-                    </div>
+                <div>
 
-                    <div class="dropdown">
-                        <select id="Type" name="type">
-                            <option value="searchTag">Tags</option>
-                            <option value="searchAuthor">Author</option>
-                            <option value="searchBlogTitle">Blog Title</option>
-                            <option value="searchBlogContains">Blog Contains</option>
-                        </select>
-                    </div>
-
-    @*---------------------the following commented out code has the look we want-------------------------------*@
-                    @*<div class="navbar-collapse collapse">
+                    @*<div class="dropdown form-group" style="font-size: small; width: 100% !important;">
+                            <select id="Type" name="type">
+                                <option value="searchTag">Tags</option>
+                                <option value="searchAuthor">Author</option>
+                                <option value="searchBlogTitle">Blog Title</option>
+                                <option value="searchBlogContains">Blog Contains</option>
+                            </select>
+                        </div>*@
+                    <div class="navbar-collapse collapse" style="font-size: medium; margin-left: 45px;">
                         <ul class="nav navbar-nav">
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >Seach By... <span class="caret"></span></a>
-                               <ul class="dropdown-menu" role="menu">
-                                    <li>@Html.ActionLink("Tags","TagList", "Search",null,new {id="searchTag"})</li>
-                                    <li>@Html.ActionLink("Author", "AuthorList", "Search", null, new {id = "searchAuthor" })</li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="margin-left: 40px;">Seach By... <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Tags", "TagList", "Search", null, new { id = "searchTag" })</li>
+                                    <li>@Html.ActionLink("Author", "AuthorList", "Search", null, new { id = "searchAuthor" })</li>
                                     <li>@Html.ActionLink("Blog Title", "BlogTitleList", "Search", null, new { id = "searchBlogTitle" })</li>
-                                    <li>@Html.ActionLink("Blog Contains", "BlogContainsList", "Search", null, new { id = "searchBlogContains" })</li>                                </ul>
+                                    <li>@Html.ActionLink("Blog Content", "BlogContainsList", "Search", null, new { id = "searchBlogContains" })</li>
+                                </ul>
                             </li>
                         </ul>
+                        <form class="navbar-form navbar-left" role="search" action="/Search/Search/" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control input-sm form-inline" placeholder="Search" id="search" name="text" style="width: 70%;">
+                                <button type="submit" class="btn btn-default form-inline"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </form>
                     </div>
-       -------------------------------------------------------------------------------------*@
-
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="container body-content">
-    <br>
-    <br>
-    <br>
-    <br>
+    <div class="container body-content">
+        <br>
+        <br>
+        <br>
+        <br>
 
-    @RenderBody()
-    
-</div>
+        @RenderBody()
+    </div>
     <hr>
     <footer>
-        <p>&copy; @DateTime.Now.Year - Foodie and the BlowFish</p>
+        <p style="text-align: center;">&copy; @DateTime.Now.Year - Foodie and the BlowFish</p>
     </footer>
 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            $("#searchTag").on("click", function(e) {
+                e.preventDefault();
+                var search = $("#search").val();
+                var link = $(this);
+                var url = link.attr('href') + '?TagName=' + search;
+                window.location.href = url;
+            });
 
-@*<script type="text/javascript">
-    $(document).ready(function () {
-        $("#searchTag").on("click", function(e) {
-            e.preventDefault();
-            var search = $("#search").val();
-            var link = $(this);
-            var url = link.attr('href') + '?TagName=' + search;
-            window.location.href = url;
+            $("#searchBlogTitle").on("click", function (c) {
+                    c.preventDefault();
+                    var search = $("#search").val();
+                    var link = $(this);
+                    var url = link.attr('href') + '?BlogTitleList=' + search;
+                    window.location.href = url;
+
+            });
         });
-    
-        $("#searchBlogTitle").on("click", function (c) {
+        </script>*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#searchTag").on("click", function (e) {
+                e.preventDefault();
+                var search = $("#search").val();
+                var link = $(this);
+                var url = link.attr('href') + '?TagName=' + search;
+                window.location.href = url;
+            });
+
+            $("#searchBlogTitle").on("click", function (c) {
                 c.preventDefault();
                 var search = $("#search").val();
                 var link = $(this);
                 var url = link.attr('href') + '?BlogTitleList=' + search;
                 window.location.href = url;
-        
-        });
-    });
-    </script>*@
 
+            });
+        });
+    </script>
 </body>
 </html>
