@@ -42,16 +42,16 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Around The World <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("North America", "Subcategory", "Subcategory", new {subcategory = "NorthAmerica"}, null)</li>
-                            <li>@Html.ActionLink("South America", "Subcategory", "Subcategory", new {subcategory = "SouthAmerica"}, null)</li>
-                            <li>@Html.ActionLink("Asia", "Subcategory", "Subcategory", new {subcategory = "Asia"}, null)</li>
-                            <li>@Html.ActionLink("Europe", "Subcategory", "Subcategory", new {subcategory = "Europe"}, null)</li>
-                            <li>@Html.ActionLink("Australia", "Subcategory", "Subcategory", new {subcategory = "Australia"}, null)</li>
-                            <li>@Html.ActionLink("Africa", "Subcategory", "Subcategory", new {subcategory = "Africa"}, null)</li>
-                            <li>@Html.ActionLink("Antarctica", "Subcategory", "Subcategory", new {subcategory = "Antarctica"}, null)</li>
+                            <li>@Html.ActionLink("North America", "Subcategory", "Subcategory", new { subcategory = "NorthAmerica" }, null)</li>
+                            <li>@Html.ActionLink("South America", "Subcategory", "Subcategory", new { subcategory = "SouthAmerica" }, null)</li>
+                            <li>@Html.ActionLink("Asia", "Subcategory", "Subcategory", new { subcategory = "Asia" }, null)</li>
+                            <li>@Html.ActionLink("Europe", "Subcategory", "Subcategory", new { subcategory = "Europe" }, null)</li>
+                            <li>@Html.ActionLink("Australia", "Subcategory", "Subcategory", new { subcategory = "Australia" }, null)</li>
+                            <li>@Html.ActionLink("Africa", "Subcategory", "Subcategory", new { subcategory = "Africa" }, null)</li>
+                            <li>@Html.ActionLink("Antarctica", "Subcategory", "Subcategory", new { subcategory = "Antarctica" }, null)</li>
                         </ul>
                     </li>
-    
+
                     <li>@Html.ActionLink("Travels", "Static", "Home")</li>
                     <form class="navbar-form navbar-left" role="search" action="/Search/Search/" method="post" form="inline">
                         <div class="form-group">
@@ -75,24 +75,6 @@
                     </form>
                 </ul>
                 @Html.Partial("_LoginPartial")
-
-                <div>
-
-                    @*<div class="dropdown form-group" style="font-size: small; width: 100% !important;">
-                         @*</div>
-                    <div class="navbar-collapse collapse" style="font-size: medium; margin-left: 45px;">
-                        <ul class="nav navbar-nav">
-        <li class="dropdown">
-            <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Tags", "TagList", "Search", null, new { id = "searchTag" })</li>
-                <li>@Html.ActionLink("Author", "AuthorList", "Search", null, new { id = "searchAuthor" })</li>
-                <li>@Html.ActionLink("Blog Title", "BlogTitleList", "Search", null, new { id = "searchBlogTitle" })</li>
-                <li>@Html.ActionLink("Blog Content", "BlogContainsList", "Search", null, new { id = "searchBlogContains" })</li>
-            </ul>
-        </li>
-    </ul>
-                    </div>*@
-                </div>
             </div>
         </div>
     </div>
@@ -116,7 +98,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-       
+
             $('#TypeDD li').on("click", function () {
                 var value = "search" + $(this).text().replace(/\s/g, '');
                 $('#type').val(value);
