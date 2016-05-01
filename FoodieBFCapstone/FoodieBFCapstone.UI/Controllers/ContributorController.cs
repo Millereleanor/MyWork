@@ -83,6 +83,13 @@ namespace FoodieBFCapstone.UI.Controllers
             repo.UpdateStatusByBlogId(blogId, (int)Status.Inactive);
             return RedirectToAction("Index", "Contributor");
         }
+        [Authorize(Roles = "Contributor")]
+        public ActionResult ReactivateBlog(int blogId)
+        {
+            BlogPostRepository repo = new BlogPostRepository();
+            repo.UpdateStatusByBlogId(blogId, (int)Status.Active);
+            return RedirectToAction("Index", "Contributor");
+        }
 
         [Authorize(Roles = "Contributor")]
         public ActionResult FilterBlogsByStatus(int? page, Status status)
