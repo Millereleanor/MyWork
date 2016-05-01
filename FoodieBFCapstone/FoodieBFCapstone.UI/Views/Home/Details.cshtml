@@ -6,26 +6,25 @@
 }
 
 <div id="sidebar" class="sidebar">
-  
-        <h4>Tags</h4>
-        <br />
-        @foreach (var tag in Model.Tags)
-        {
-            <a href="@Url.Action("Search", "Search", new {text = tag.TagName, type = ViewBag.searchTag })">#@tag.TagName</a>
-        }
-  
-</div>
-<div class="col-md-10">
-<h2>@Model.Title</h2>
+
+    <h4>Tags</h4>
     <br />
-<h4 align="left">Posted by: @Model.Author.FirstName @Model.Author.LastName</h4>
-<h5 align="left">
-    Posted on:
-    @if (Model.ApprovedOn != null)
+    @foreach (var tag in Model.Tags)
     {
-        @Model.ApprovedOn.Value.ToShortDateString()
+        <a href="@Url.Action("Search", "Search", new {text = tag.TagName, type = ViewBag.searchTag })">#@tag.TagName</a>
     }
-</h5>
+</div>
+<div class="col-md-10" style="margin-top: -8%;">
+    <h2>@Model.Title</h2>
+    <br />
+    <h4 align="left">Posted by: @Model.Author.FirstName @Model.Author.LastName</h4>
+    <h5 align="left">
+        Posted on:
+        @if (Model.ApprovedOn != null)
+        {
+            @Model.ApprovedOn.Value.ToShortDateString()
+        }
+    </h5>
     <p align="justify">@Html.Raw(Model.PostContent)</p>
 
     @if (User.Identity.IsAuthenticated)
@@ -35,13 +34,13 @@
             using (Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new { @class = "form-group" }))
             {
                 <label>Update Status</label>
-                            <div class="form-inline">
-                                <input type="hidden" id="BlogPost_BlogId" name="BlogId" value="@Model.BlogId" />
-                                <input type="hidden" id="BlogPost_BlogStatus" name="Status" />
-                                @Html.DropDownList("StatusId", Model.BlogStatus, new { @class = "form-control", @style = "width: 150px" })
+                <div class="form-inline">
+                    <input type="hidden" id="BlogPost_BlogId" name="BlogId" value="@Model.BlogId" />
+                    <input type="hidden" id="BlogPost_BlogStatus" name="Status" />
+                    @Html.DropDownList("StatusId", Model.BlogStatus, new { @class = "form-control", @style = "width: 150px" })
 
-                                <button class="btn btn-primary" type="submit" style="margin-left: 40px">Save</button>
-                            </div>
+                    <button class="btn btn-primary" type="submit" style="margin-left: 40px">Save</button>
+                </div>
             }
         }
     }
