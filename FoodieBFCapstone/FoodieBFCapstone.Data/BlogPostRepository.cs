@@ -349,16 +349,29 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        //public List<Tag> ReadAllTags()
-        //{
-        //    List<Tag> tags = new List<Tag>();
-        //    using (var _cn = new SqlConnection(constr))
-        //    {
-        //        tags = _cn.Query<Tag>("SELECT TagId, Tag AS TagName " +
-        //                  "FROM Tags").ToList();
-        //    }
-        //    return tags;
-        //}
+        public List<Tag> ReadAllTags()
+        {
+            List<Tag> tags = new List<Tag>();
+            using (var _cn = new SqlConnection(constr))
+            {
+                tags = _cn.Query<Tag>("SELECT TagId, Tag AS TagName " +
+                          "FROM Tags").ToList();
+            }
+            return tags;
+        }
+
+        public List<Tag> ReadAllTagsByBlogId(int blogId)
+        {
+            List<Tag> tags = new List<Tag>();
+            using (var _cn = new SqlConnection(constr))
+            {
+                tags = _cn.Query<Tag>("SELECT t.TagId, t.Tag as TagName " +
+                    "FROM Tags t " +
+                    "INNER JOIN BlogPostsTags b on t.TagId = b.TagId " +
+                    "WHERE b.BlogId = 2", new { BlogId = blogId }).ToList();
+            }
+            return tags;
+        }
 
         public void Update(int id, BlogPost model)
         {
@@ -417,8 +430,8 @@ namespace FoodieBFCapstone.Data
             using (var _cn = new SqlConnection(constr))
             {
                 Posts = _cn.Query<BlogPost>("select * from BlogPosts bp " +
-                                            "WHERE bp.PostContent Like @contains" +
-                                            " ORDER BY ApprovedOn DESC; ", new { Contains = contains}).ToList();
+                                            "WHERE bp.PostContent Like ('%' + @contains + '%') " +
+                                            "ORDER BY ApprovedOn DESC; ", new { Contains = contains}).ToList();
             }
             return Posts;
         }
