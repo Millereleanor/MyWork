@@ -422,5 +422,30 @@ namespace FoodieBFCapstone.Data
             }
             return Posts;
         }
+
+        public void CreateStaticPage(AdminStaticPage staticPage)
+        {
+            using (var _cn = new SqlConnection(constr))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText="CreateStaticPage";
+                cmd.Parameters.AddWithValue("@Title", staticPage.Title);
+                cmd.Parameters.AddWithValue("@MiniTitle", staticPage.MiniTitle);
+                cmd.Parameters.AddWithValue("@AdminPageContent", staticPage.AdminPageContent);
+                cmd.Parameters.AddWithValue("@CreatedOn", staticPage.CreatedOn);
+
+                SqlParameter outputIDparam = new SqlParameter("@AdminPageId", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+
+                cmd.Parameters.Add(outputIDparam);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = _cn;
+                _cn.Open();
+                cmd.ExecuteNonQuery();
+                _cn.Close();
+            }
+        }
     }
 }
