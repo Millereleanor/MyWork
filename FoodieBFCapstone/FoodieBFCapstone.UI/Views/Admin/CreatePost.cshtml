@@ -1,0 +1,46 @@
+﻿@model FoodieBFCapstone.UI.Models.AdminVM
+
+@{
+    ViewBag.Title = "CreatePost";
+}
+
+<h2>CreatePost</h2>
+
+@using (Html.BeginForm("CreatePost", "Admin", FormMethod.Post))
+{
+    <div class="form-group">
+        <div>
+            <label>Title</label>
+            @Html.EditorFor(m => m.StaticPage.Title, new {HtmlAttributes = new {@class = "form-control"}})
+        </div>
+        <div>
+            <label>Link Name</label>
+            @Html.EditorFor(m => m.StaticPage.MiniTitle, new {HtmlAttributes = new {@class = "form-control"}})
+        </div>
+        <div>
+            <label>Page Content</label>
+            @Html.TextAreaFor(m => m.StaticPage.AdminPageContent, new {HtmlAttributes = new {@class = "form-control"}, @id = "Textarea"})
+        </div>
+        <input type="hidden" id="Created"/>
+        <a href="@Url.Action("Home","Admin")" class="btn btn-primary">Cancel</a>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        
+    </div>
+}
+
+@section scripts{
+    <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#Textarea',
+            theme: 'modern',
+            plugins: [
+                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'save table contextmenu directionality emoticons template paste textcolor'
+            ],
+            content_css: 'css/content.css',
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
+        });
+    </script>
+}
