@@ -26,13 +26,13 @@
     </ul>
 </div>
 
-<br/>
-<br/>
+<br />
+<br />
 
 <div class="row">
     @foreach (var blogPost in ViewBag.OnePageOfProducts)
     {
-        var blog = (BlogPost) blogPost;
+        var blog = (BlogPost)blogPost;
         if (blog.Title == "Create New")
         {
             <div class="col-md-4 blog-Preview">
@@ -54,14 +54,19 @@
                 </a>
                 @if (blog.StatusId == 2)
                 {
-                    <a href=@Url.Action("DeactivateBlog", "Contributor", new {blogId = blog.BlogId}) class="btn btn-primary blog-Delete">
+                    
+                   <a href="#" class="btn btn-primary blog-Delete" data-toggle="modal" data-target="#myModal-@blog.BlogId">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Deactivate
                     </a>
+                   
+                    @Html.Partial("_AreYouSureContributor", blog)
+                    
                 }
                 @if (blog.StatusId == 3)
                 {
+
                     <a href=@Url.Action("ReactivateBlog", "Contributor", new {blogId = blog.BlogId}) class="btn btn-primary blog-Delete">
-                        <span class="glyphicon glyphicon-heart-empty"aria-hidden="true"></span> Reactivate
+                        <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Reactivate
                     </a>
                 }
                 <h4 class="text-center">@blog.Title</h4>
@@ -71,13 +76,14 @@
     }
 </div>
 
-<br/>
-<br/>
+<br />
+<br />
 
 <div class="text-center">
-    @Html.PagedListPager((IPagedList) ViewBag.OnePageOfProducts, page => Url.Action("Index", new {page}))
+    @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }))
 </div>
 
 @section scripts{
     <script src="~/Scripts/app/filter-button.js"></script>
 }
+
