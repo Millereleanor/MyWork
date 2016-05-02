@@ -45,6 +45,10 @@ textarea {
         padding: 5px;
     }
 
+    .item img {
+        border-radius: 6px;
+    }
+
 .centered-and-cropped {
     display: inline-block;
     vertical-align: middle;
