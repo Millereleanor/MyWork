@@ -47,7 +47,9 @@
     </div>
 
     <a class="btn btn-danger" href=@Url.Action("Index", "Contributor") type="reset">Cancel</a>
-    <button class="btn btn-success" type="submit">Submit</button>
+
+    <button href="#" data-toggle="modal" data-target="#PendingReview" class="btn btn-success" type="submit">Submit</button>
+    @Html.Partial("_PendingReview")
 }
 
 @section scripts{
@@ -71,14 +73,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="~/Scripts/tag-it.min.js" type="text/javascript" charset="utf-8"></script>
     <script>
-            $(function() {
-                var sampleTags = ['Figure', 'Out', 'How', 'To', 'Load'];
-                $('#singleFieldTags').tagit({
-                    availableTags: sampleTags,
-                    singleField: true,
-                    allowSpaces: true,
-                    singleFieldNode: $('#mySingleField')
-                });
+        $(function () {
+            var sampleTags = ['Figure', 'Out', 'How', 'To', 'Load'];
+            $('#singleFieldTags').tagit({
+                availableTags: sampleTags,
+                singleField: true,
+                allowSpaces: true,
+                singleFieldNode: $('#mySingleField')
             });
+        });
     </script>
 }

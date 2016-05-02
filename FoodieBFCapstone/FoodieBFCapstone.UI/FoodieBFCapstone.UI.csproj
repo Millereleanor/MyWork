@@ -562,6 +562,7 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Admin\CreatePost.cshtml" />
     <Content Include="Views\Shared\_AreYouSureContributor.cshtml" />
+    <Content Include="Views\Shared\_PendingReview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
