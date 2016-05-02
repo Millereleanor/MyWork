@@ -49,7 +49,7 @@
     <button href="#" data-toggle="modal" data-target="#PendingReview" class="btn btn-success" type="submit">Submit</button>
     @Html.Partial("_PendingReview")
 }
-@section scripts{
+@section firstScripts{
     <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
     <script type="text/javascript">
         tinymce.init({
@@ -63,7 +63,9 @@
             toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
         });
     </script>
+}
 
+@section scripts{
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/App/jquery-validate-default.js"></script>
     <script src="~/Scripts/App/BlogPostValidate.js"></script>
@@ -72,15 +74,5 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="~/Scripts/tag-it.min.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-        $(function () {
-            var sampleTags = ['Figure', 'Out', 'How', 'To', 'Load'];
-            $('#singleFieldTags').tagit({
-                availableTags: sampleTags,
-                singleField: true,
-                allowSpaces: true,
-                singleFieldNode: $('#mySingleField')
-            });
-        });
-    </script>
+    <script src="~/Scripts/App/tag-input/tag-input-app.js"></script>
 }
