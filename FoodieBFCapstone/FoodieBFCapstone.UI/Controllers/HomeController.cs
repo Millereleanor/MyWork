@@ -63,6 +63,15 @@ namespace FoodieBFCapstone.UI.Controllers
             return View(post);
         }
 
+
+        
+        public ActionResult Potpourri(int id)
+        {
+           BlogPostRepository post = new BlogPostRepository();
+            post.GetAdminStaticPageById(1);
+            
+            return View("Potpourri");
+        }
         
     }
 }

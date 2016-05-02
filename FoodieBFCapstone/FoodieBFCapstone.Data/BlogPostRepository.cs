@@ -451,20 +451,66 @@ namespace FoodieBFCapstone.Data
                 cmd.Parameters.AddWithValue("@Title", staticPage.Title);
                 cmd.Parameters.AddWithValue("@MiniTitle", staticPage.MiniTitle);
                 cmd.Parameters.AddWithValue("@AdminPageContent", staticPage.AdminPageContent);
-                cmd.Parameters.AddWithValue("@CreatedOn", staticPage.CreatedOn);
+                cmd.Parameters.AddWithValue("@CreatedOn", DateTime.Today);
 
-                SqlParameter outputIDparam = new SqlParameter("@AdminPageId", SqlDbType.Int)
-                {
-                    Direction = ParameterDirection.Output
-                };
+                //SqlParameter outputIDparam = new SqlParameter("@AdminPageId", SqlDbType.Int)
+                //{
+                //    Direction = ParameterDirection.Output
+                //};
 
-                cmd.Parameters.Add(outputIDparam);
+                //cmd.Parameters.Add(outputIDparam);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = _cn;
                 _cn.Open();
                 cmd.ExecuteNonQuery();
                 _cn.Close();
             }
+        }
+
+        public List<AdminStaticPage> GetAdminStaticPages()
+        {
+            List<AdminStaticPage> pages = new List<AdminStaticPage>();
+            using (var _cn = new SqlConnection(constr))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "Select * From AdminStaticPages";
+
+                cmd.Connection = _cn;
+                _cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        pages.Add(PopulatePagesFromDataReader(dr));
+                    }
+                }
+            }
+            return pages;
+        }
+
+        private AdminStaticPage PopulatePagesFromDataReader(SqlDataReader dr)
+        {
+            AdminStaticPage page = new AdminStaticPage();
+            page.AdminPageId = (int) dr["AdminPageId"];
+            page.Title = dr["Title"].ToString();
+            page.MiniTitle = dr["MiniTitle"].ToString();
+            page.AdminPageContent = dr["AdminPageContent"].ToString();
+            page.CreatedOn = (DateTime) dr["CreatedOn"];
+
+            return page;
+        }
+
+        public AdminStaticPage GetAdminStaticPageById(int id)
+        {
+            AdminStaticPage page = new AdminStaticPage();
+            using (var _cn = new SqlConnection(constr))
+            {
+                page = _cn.Query<AdminStaticPage>("SELECT * " +
+                                               "FROM AdminStaticPages " +
+                                               "WHERE AdminPageId = @PageId", new { PageId = id }).FirstOrDefault();
+            }
+            return page;
         }
     }
 }

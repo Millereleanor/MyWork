@@ -1,0 +1,17 @@
+﻿@model FoodieBFCapstone.UI.Models.AdminVM
+@{
+    ViewBag.Title = "Potpourri";
+}
+
+
+
+<div>
+    <div class="col-md-10" style="margin-top: -8%;">
+        <h2>@Model.StaticPage.Title</h2>
+        <br />
+        
+        <p align="justify">@Html.Raw(Model.StaticPage.AdminPageContent)</p>
+            
+        
+    </div>
+</div>
