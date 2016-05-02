@@ -42,6 +42,10 @@ namespace FoodieBFCapstone.UI.Controllers
             if (ModelState.IsValid)
             {
                 var repo = new BlogPostRepository();
+                BlogPostOperations ops = new BlogPostOperations();
+                model.NewBlog.Tags = ops.FormatBlogTagsToList(model.TagString);
+
+                repo.WriteBlogTags(model.NewBlog.Tags, model.NewBlog.BlogId);
                 repo.WriteBlogPost(model.NewBlog);
                 return RedirectToAction("Index");
             }
@@ -89,6 +93,7 @@ namespace FoodieBFCapstone.UI.Controllers
             repo.UpdateStatusByBlogId(blogId, (int)Status.Inactive);
             return RedirectToAction("Index", "Contributor");
         }
+
         [Authorize(Roles = "Contributor")]
         public ActionResult ReactivateBlog(int blogId)
         {

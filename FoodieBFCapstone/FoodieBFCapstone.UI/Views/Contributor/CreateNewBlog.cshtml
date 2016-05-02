@@ -31,12 +31,11 @@
             @Html.TextAreaFor(m => m.NewBlog.PostContent, new { @id = "Textarea" })
         </div>
     </div>
-    @*<div class="row">
-            <div class="form-group col-md-12">
-                @Html.LabelFor(m => m.NewBlog.Tags, "Tags:", new {@class = "control-label"})
-                @Html.TextBoxFor(m => m.NewBlog.Tags, new {@class = "form-control input-lg"})
-            </div>
-        </div>*@
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.TagString, "Tags:", new { @class = "control-label" })
+        @Html.HiddenFor(m => m.TagString, new { @name = "tags", @id = "mySingleField" })
+        <ul id="singleFieldTags"></ul>
+    </div>
 
     <div class="row">
         <div class="form-group col-md-12">
@@ -67,4 +66,20 @@
     <script src="~/Scripts/App/BlogPostValidate.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/App/jquery-validate-default.js"></script>
+    <link href="~/Content/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Scripts/tag-it.min.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        $(function () {
+            var sampleTags = ['Figure', 'Out', 'How', 'To', 'Load'];
+            $('#singleFieldTags').tagit({
+                availableTags: sampleTags,
+                singleField: true,
+                allowSpaces: true,
+                singleFieldNode: $('#mySingleField')
+            });
+        });
+    </script>
 }
