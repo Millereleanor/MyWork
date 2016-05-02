@@ -211,6 +211,7 @@
     <Content Include="Content\pictures\James.png" />
     <Content Include="Content\pictures\Jeane.png" />
     <Content Include="Content\pictures\logo22.png" />
+    <Content Include="Content\pictures\logo22icon.png" />
     <Content Include="Content\tagit.ui-zendesk.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\flat-ui-icons-regular.svg" />
