@@ -3,6 +3,12 @@
     padding-bottom: 20px;
 }
 
+.navbar-center .navbar-inner {
+    text-align: center;
+    display: inline-block;
+    float: none;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 10px;
@@ -160,5 +166,5 @@ a.blog-Delete {
 /*---------------search bar--------------*/
 
 .dropdown a {
-       color: #ffffff;
+    color: #ffffff;
 }
