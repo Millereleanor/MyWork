@@ -7,10 +7,6 @@
     <title>Foodie and the BlowFish</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/")
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    @RenderSection("firstScripts", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -86,22 +82,31 @@
         </div>
     </div>
 
-    <div class="container body-content">
-        <br>
-        <br>
-        <br>
-        <br>
+<div class="container body-content">
+    @*Really?  Brs?  Use margins*@
+    <br>
+    <br>
+    <br>
+    <br>
 
-        @RenderBody()
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    </div>
+    @RenderBody()
+</div>
     <hr>
     <footer>
         <p style="text-align: center;">&copy; @DateTime.Now.Year - Foodie and the BlowFish</p>
     </footer>
 
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/App/jquery-validate-default.js"></script>
+
     @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("firstScripts", required: false)
     @RenderSection("scripts", required: false)
+
+
+
 
     <script type="text/javascript">
         $(document).ready(function () {
