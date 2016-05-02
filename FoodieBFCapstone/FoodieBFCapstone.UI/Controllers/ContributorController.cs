@@ -42,12 +42,17 @@ namespace FoodieBFCapstone.UI.Controllers
             if (ModelState.IsValid)
             {
                 var repo = new BlogPostRepository();
-                repo.WriteBlogPost(model.NewBlog);
+                BlogPostOperations ops = new BlogPostOperations();
+                model.NewBlog.Tags = ops.FormatBlogTagsToList(model.TagString);
+
+                model.NewBlog.BlogId = repo.WriteBlogPost(model.NewBlog);
+                repo.WriteBlogTags(model.NewBlog.Tags, model.NewBlog.BlogId);
+                
                 return RedirectToAction("Index");
             }
             else
             {
-                return View();
+                return View(model);
             }
         }
 
@@ -57,7 +62,9 @@ namespace FoodieBFCapstone.UI.Controllers
             BlogPostRepository repo = new BlogPostRepository();
             CreatePostVM vm = new CreatePostVM();
             vm.NewBlog = repo.GetById(blogId);
-            vm.NewBlog.Tags = repo.GetBlogPostTags(blogId);
+
+            BlogPostOperations ops = new BlogPostOperations();
+            vm.TagString = ops.FormatBlogTagsToString(blogId);
 
             return View(vm);
         }
@@ -69,6 +76,10 @@ namespace FoodieBFCapstone.UI.Controllers
             {
                 BlogPostRepository repo = new BlogPostRepository();
                 repo.WriteBlogPost(vm.NewBlog);
+
+                BlogPostOperations ops = new BlogPostOperations();
+                vm.NewBlog.Tags = ops.FormatBlogTagsToList(vm.TagString);
+
                 repo.WriteBlogTags(vm.NewBlog.Tags, vm.NewBlog.BlogId);
                 return RedirectToAction("Index");
             }
@@ -81,6 +92,14 @@ namespace FoodieBFCapstone.UI.Controllers
         {
             BlogPostRepository repo = new BlogPostRepository();
             repo.UpdateStatusByBlogId(blogId, (int)Status.Inactive);
+            return RedirectToAction("Index", "Contributor");
+        }
+
+        [Authorize(Roles = "Contributor")]
+        public ActionResult ReactivateBlog(int blogId)
+        {
+            BlogPostRepository repo = new BlogPostRepository();
+            repo.UpdateStatusByBlogId(blogId, (int)Status.Active);
             return RedirectToAction("Index", "Contributor");
         }
 

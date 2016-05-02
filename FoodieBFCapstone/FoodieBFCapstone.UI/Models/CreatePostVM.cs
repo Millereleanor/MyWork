@@ -9,6 +9,7 @@ namespace FoodieBFCapstone.UI.Models
     {
         public List<SelectListItem> Subcats { get; set; }
         public BlogPost NewBlog { get; set; }
+        public string TagString { get; set; }
 
         public CreatePostVM()
         {

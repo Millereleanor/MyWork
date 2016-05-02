@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -31,16 +32,22 @@ namespace FoodieBFCapstone.Models
 
         public int StatusId { get; set; }
         public Status Status { get; set; }
+
+        [Required(ErrorMessage = "Please enter a URL for the main picture")]
         public string MainPictureUrl { get; set; }
 
         public bool IsFeatured { get; set; }
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter a title")]
         public string Title { get; set; }
+
         public IdentityProfile Author { get; set; }
 
+        [Required(ErrorMessage = "Please enter some content")]
         [UIHint("tinymce_jquery_full"), AllowHtml]
         public string PostContent { get; set; }
 
+        [Required(ErrorMessage = "Please enter a summary")]
         public string Summary { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -55,8 +62,5 @@ namespace FoodieBFCapstone.Models
         public string SubcategoryName { get; set; }
 
         public List<SelectListItem> BlogStatus { get; set; }
-
-
-       
     }
 }

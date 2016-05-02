@@ -5,8 +5,8 @@
 @{
     ViewBag.Title = "CreateNewBlog";
 }
-<h2>CreateNewBlog</h2>
-@using (Html.BeginForm("CreateNewBlog", "Contributor", FormMethod.Post, new { @class = "form-group" }))
+<h2>Create New Blog</h2>
+@using (Html.BeginForm("CreateNewBlog", "Contributor", FormMethod.Post, new { id = "newBlogPost" }))
 {
 
     <div class="row">
@@ -31,12 +31,11 @@
             @Html.TextAreaFor(m => m.NewBlog.PostContent, new { @id = "Textarea" })
         </div>
     </div>
-    @*<div class="row">
-        <div class="form-group col-md-12">
-            @Html.LabelFor(m => m.NewBlog.Tags, "Tags:", new {@class = "control-label"})
-            @Html.TextBoxFor(m => m.NewBlog.Tags, new {@class = "form-control input-lg"})
-        </div>
-    </div>*@
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.TagString, "Tags:", new { @class = "control-label" })
+        @Html.HiddenFor(m => m.TagString, new { @name = "tags", @id = "mySingleField" })
+        <ul id="singleFieldTags"></ul>
+    </div>
 
     <div class="row">
         <div class="form-group col-md-12">
@@ -46,9 +45,11 @@
 
     <a class="btn btn-danger" href=@Url.Action("Index", "Contributor") type="reset">Cancel</a>
     @*<button class="btn btn-danger" type="reset">Cancel</button>*@
-    <button class="btn btn-success" type="submit">Submit</button>
+
+    <button href="#" data-toggle="modal" data-target="#PendingReview" class="btn btn-success" type="submit">Submit</button>
+    @Html.Partial("_PendingReview")
 }
-@section scripts{
+@section firstScripts{
     <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
     <script type="text/javascript">
         tinymce.init({
@@ -59,8 +60,19 @@
                 'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
                 'save table contextmenu directionality emoticons template paste textcolor'
             ],
-            content_css: 'css/content.css',
             toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
         });
     </script>
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/App/jquery-validate-default.js"></script>
+    <script src="~/Scripts/App/BlogPostValidate.js"></script>
+    <link href="~/Content/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Scripts/tag-it.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Scripts/App/tag-input/tag-input-app.js"></script>
 }
