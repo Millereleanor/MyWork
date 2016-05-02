@@ -10,7 +10,7 @@ namespace FoodieBFCapstone.Models
 {
     public class AdminStaticPage
     {
-        [Required]
+       
         public int AdminPageId { get; set; }
 
         [Required]
@@ -20,7 +20,7 @@ namespace FoodieBFCapstone.Models
         public string MiniTitle { get; set; }
 
         [Required]
-        
+        [UIHint("tinymce_jquery_full"), AllowHtml]
         public string AdminPageContent { get; set; }
 
         public DateTime CreatedOn { get; set; }

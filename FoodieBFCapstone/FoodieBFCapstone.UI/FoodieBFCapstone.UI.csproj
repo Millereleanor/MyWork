@@ -557,6 +557,8 @@
     <Content Include="Views\Admin\StatusFilter.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Admin\CreatePost.cshtml" />
+    <Content Include="Views\Home\Potpourri.cshtml" />
+    <Content Include="Views\Shared\_StaticDropDown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

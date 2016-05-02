@@ -52,12 +52,24 @@ namespace FoodieBFCapstone.UI.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public ActionResult CreatePost(AdminStaticPage page)
+        public ActionResult CreatePost()
         {
-            BlogPostRepository repo = new BlogPostRepository();
-            repo.CreateStaticPage(page);
+            
             return View();
         }
+
+        [HttpPost]
+        public ActionResult CreatePost(AdminVM model)
+        {
+            BlogPostRepository repo = new BlogPostRepository();
+            repo.CreateStaticPage(model.StaticPage);
+            return RedirectToAction("Home");
+        }
+
+        //public ActionResult ViewAdminPost()
+        //{
+            
+        //}
     }
 }
 
