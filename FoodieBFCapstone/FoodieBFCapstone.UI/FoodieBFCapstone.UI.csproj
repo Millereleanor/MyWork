@@ -227,6 +227,7 @@
     <Content Include="Scripts\App\slick\slick.css" />
     <Content Include="Scripts\App\slick\slick.js" />
     <Content Include="Scripts\App\slick\slick.min.js" />
+    <Content Include="Scripts\App\tag-input\tag-input-app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\flat-ui-icons-regular.eot" />
