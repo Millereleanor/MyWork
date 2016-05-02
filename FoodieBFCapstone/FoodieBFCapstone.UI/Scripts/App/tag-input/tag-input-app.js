@@ -1,5 +1,6 @@
 ﻿$(function () {
-    var sampleTags = ['Figure', 'Out', 'How', 'To', 'Load'];
+    var uri = "/api/tags/";
+    var sampleTags = $.getJSON(uri);
     $('#singleFieldTags').tagit({
         availableTags: sampleTags,
         singleField: true,
