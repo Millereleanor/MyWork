@@ -31,16 +31,22 @@ namespace FoodieBFCapstone.Models
 
         public int StatusId { get; set; }
         public Status Status { get; set; }
+
+        [Required]
         public string MainPictureUrl { get; set; }
 
         public bool IsFeatured { get; set; }
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "You need a title")]
         public string Title { get; set; }
+
         public IdentityProfile Author { get; set; }
 
+        [Required]
         [UIHint("tinymce_jquery_full"), AllowHtml]
         public string PostContent { get; set; }
 
+        [Required]
         public string Summary { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -55,8 +61,5 @@ namespace FoodieBFCapstone.Models
         public string SubcategoryName { get; set; }
 
         public List<SelectListItem> BlogStatus { get; set; }
-
-
-       
     }
 }

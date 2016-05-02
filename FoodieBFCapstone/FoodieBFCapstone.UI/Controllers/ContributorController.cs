@@ -47,7 +47,7 @@ namespace FoodieBFCapstone.UI.Controllers
             }
             else
             {
-                return View();
+                return View(model);
             }
         }
 
