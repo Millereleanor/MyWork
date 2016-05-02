@@ -252,8 +252,9 @@ namespace FoodieBFCapstone.Data
         //    }
         //}
 
-        public void WriteBlogPost(BlogPost blogPost)
+        public int WriteBlogPost(BlogPost blogPost)
         {
+            int blogId = 0;
             using (var _cn = new SqlConnection(constr))
             {
                 var parameters = new DynamicParameters();
@@ -280,10 +281,11 @@ namespace FoodieBFCapstone.Data
                 if (blogPost.BlogId == 0)
                 {
                     parameters.Add("CreatedOn", DateTime.Today);
+                    parameters.Add("BlogId", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-                    string writeNewBlogPost = "INSERT INTO BlogPosts (UserId, SubCategoryId, StatusId, MainPictureUrl, Title, PostContent, Summary, CreatedOn, PublishDate, ExpirationDate, ApprovedOn) " +
-                    " VALUES (@UserId, @SubCategoryId, @StatusId, @MainPictureUrl, @Title, @PostContent, @Summary, @CreatedOn, @PublishDate, @ExpirationDate, @ApprovedOn) ";
-                    _cn.Execute(writeNewBlogPost, parameters);
+                    _cn.Execute("InsertBlogPost", parameters, commandType: CommandType.StoredProcedure);
+
+                    blogId = parameters.Get<int>("@BlogId");
                 }
                 else
                 {
@@ -299,8 +301,12 @@ namespace FoodieBFCapstone.Data
                                                         "ApprovedOn = @ApprovedOn " +
                                                     "WHERE BlogId = @BlogId";
                     _cn.Execute(updateExistingBlogPost, parameters);
+
+                    blogId = blogPost.BlogId;
                 }
             }
+
+            return blogId;
         }
 
         private void WriteTags(List<Tag> blogTags)
@@ -368,7 +374,7 @@ namespace FoodieBFCapstone.Data
                 tags = _cn.Query<Tag>("SELECT t.TagId, t.Tag as TagName " +
                     "FROM Tags t " +
                     "INNER JOIN BlogPostsTags b on t.TagId = b.TagId " +
-                    "WHERE b.BlogId = 2", new { BlogId = blogId }).ToList();
+                    "WHERE b.BlogId = @BlogId", new { BlogId = blogId }).ToList();
             }
             return tags;
         }
