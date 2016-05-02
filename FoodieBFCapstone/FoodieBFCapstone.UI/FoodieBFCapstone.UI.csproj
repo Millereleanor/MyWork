@@ -577,9 +577,11 @@
     <Content Include="Views\Admin\StatusFilter.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Admin\CreatePost.cshtml" />
-    <Content Include="Views\Shared\_AreYouSureContributor.cshtml" />
+<Content Include="Views\Home\Potpourri.cshtml" />
+    <Content Include="Views\Shared\_StaticDropDown.cshtml" />
+<Content Include="Views\Shared\_AreYouSureContributor.cshtml" />
     <Content Include="Views\Shared\_PendingReview.cshtml" />
-  </ItemGroup>
+</ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />

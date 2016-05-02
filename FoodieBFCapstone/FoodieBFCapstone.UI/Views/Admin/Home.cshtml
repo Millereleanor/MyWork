@@ -13,43 +13,44 @@
 
 
 <br/>
-    <div>
-        @foreach (var item in Model.Blog)
-        {
-            <div class="row">
-                <div class="col-md-2">
-                    <img src="@item.MainPictureUrl" class="item"/>
-                </div>
-                <div class="col-md-4" style="margin: 20px;">
-                    <p>
-                        <h4>@item.Title</h4>
-                    </p>
-                    <p>Description: @item.Summary</p>
-                    @*<p style="color: teal">Author: @item.Author.FirstName @item.Author.LastName</p>*@
-                    <p>Created On: @item.CreatedOn.ToShortDateString()</p>
+<div>
+    @Html.ActionLink("Create Post", "CreatePost","Admin", new {@class="btn btn-primary"})
+    @foreach (var item in Model.Blog)
+    {
+        <div class="row">
+            <div class="col-md-2">
+                <img src="@item.MainPictureUrl" class="item"/>
+            </div>
+            <div class="col-md-4" style="margin: 20px;">
+                <p>
+                    <h4>@item.Title</h4>
+                </p>
+                <p>Description: @item.Summary</p>
+                @*<p style="color: teal">Author: @item.Author.FirstName @item.Author.LastName</p>*@
+                <p>Created On: @item.CreatedOn.ToShortDateString()</p>
 
-                </div>
-                <div class="col-md-4">
-                   
-                    <br/>
-                    <br/>
-                    <div>
-                        @using (Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new {@class = "form-group"}))
-                        {
-                            
-                            <div class="form-inline">
-                                <input type="hidden" id="BlogPost_BlogId" name="BlogId" value="@item.BlogId"/>
-                                
-                                @Html.DropDownList("StatusId", Model.BlogStatus, new {@class = "form-control", @style = "width: 150px"})
+            </div>
+            <div class="col-md-4">
 
-                                <button class="btn btn-primary" type="submit" style="margin-left: 40px">Save</button>
-                            </div>
-                        }
-                    </div>
+                <br/>
+                <br/>
+                <div>
+                    @using (Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new {@class = "form-group"}))
+                    {
+
+                        <div class="form-inline">
+                            <input type="hidden" id="BlogPost_BlogId" name="BlogId" value="@item.BlogId"/>
+
+                            @Html.DropDownList("StatusId", Model.BlogStatus, new {@class = "form-control", @style = "width: 150px"})
+
+                            <button class="btn btn-primary" type="submit" style="margin-left: 40px">Save</button>
+                        </div>
+                    }
                 </div>
             </div>
-        }
-       </div>
+        </div>
+    }
+</div>
     <br/>
 
 
