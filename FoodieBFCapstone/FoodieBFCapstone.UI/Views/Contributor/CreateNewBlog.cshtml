@@ -5,8 +5,8 @@
 @{
     ViewBag.Title = "CreateNewBlog";
 }
-<h2>CreateNewBlog</h2>
-@using (Html.BeginForm("CreateNewBlog", "Contributor", FormMethod.Post, new { @class = "form-group" }))
+<h2>Create New Blog</h2>
+@using (Html.BeginForm("CreateNewBlog", "Contributor", FormMethod.Post, new { id = "newBlogPost" }))
 {
 
     <div class="row">
@@ -32,11 +32,11 @@
         </div>
     </div>
     @*<div class="row">
-        <div class="form-group col-md-12">
-            @Html.LabelFor(m => m.NewBlog.Tags, "Tags:", new {@class = "control-label"})
-            @Html.TextBoxFor(m => m.NewBlog.Tags, new {@class = "form-control input-lg"})
-        </div>
-    </div>*@
+            <div class="form-group col-md-12">
+                @Html.LabelFor(m => m.NewBlog.Tags, "Tags:", new {@class = "control-label"})
+                @Html.TextBoxFor(m => m.NewBlog.Tags, new {@class = "form-control input-lg"})
+            </div>
+        </div>*@
 
     <div class="row">
         <div class="form-group col-md-12">
@@ -61,8 +61,10 @@
                 'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
                 'save table contextmenu directionality emoticons template paste textcolor'
             ],
-            content_css: 'css/content.css',
             toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
         });
     </script>
+    <script src="~/Scripts/App/BlogPostValidate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/App/jquery-validate-default.js"></script>
 }

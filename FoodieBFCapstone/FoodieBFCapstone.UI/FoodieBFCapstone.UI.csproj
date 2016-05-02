@@ -217,6 +217,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\App\BlogPostValidate.js" />
+    <Content Include="Scripts\App\jquery-validate-default.js" />
     <Content Include="Scripts\App\sidebar.js" />
     <Content Include="Scripts\App\slick\ajax-loader.gif" />
     <Content Include="Scripts\App\slick\fonts\slick.svg" />
