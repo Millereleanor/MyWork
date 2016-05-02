@@ -204,12 +204,14 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery.tagit.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\pictures\Alfred.png" />
     <Content Include="Content\pictures\Elle.png" />
     <Content Include="Content\pictures\James.png" />
     <Content Include="Content\pictures\Jeane.png" />
     <Content Include="Content\pictures\logo22.png" />
+    <Content Include="Content\tagit.ui-zendesk.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\flat-ui-icons-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -257,6 +259,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\stickyfill.min.js" />
+    <Content Include="Scripts\tag-it.js" />
+    <Content Include="Scripts\tag-it.min.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.js" />
     <Content Include="Scripts\tinymce\langs\en.js" />
     <Content Include="Scripts\tinymce\license.txt" />
@@ -558,6 +562,8 @@
     <Content Include="Views\Contributor\CreateNewBlog.cshtml" />
     <Content Include="Views\Admin\StatusFilter.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Admin\CreatePost.cshtml" />
+    <Content Include="Views\Shared\_AreYouSureContributor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

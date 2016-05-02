@@ -1,0 +1,23 @@
+﻿@using FoodieBFCapstone.Models
+@model FoodieBFCapstone.Models.BlogPost
+
+<div class="modal fade" id="myModal-@Model.BlogId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Deactive Blog</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to deactive you post named (@Model.Title)?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">
+
+                    <a href="@Url.Action("DeactivateBlog", "Contributor", new {blogId = Model.BlogId})" style="color: white; text-decoration: none;">Confirm</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
