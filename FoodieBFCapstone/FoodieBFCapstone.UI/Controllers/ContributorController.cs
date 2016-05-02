@@ -45,8 +45,9 @@ namespace FoodieBFCapstone.UI.Controllers
                 BlogPostOperations ops = new BlogPostOperations();
                 model.NewBlog.Tags = ops.FormatBlogTagsToList(model.TagString);
 
+                model.NewBlog.BlogId = repo.WriteBlogPost(model.NewBlog);
                 repo.WriteBlogTags(model.NewBlog.Tags, model.NewBlog.BlogId);
-                repo.WriteBlogPost(model.NewBlog);
+                
                 return RedirectToAction("Index");
             }
             else

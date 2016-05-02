@@ -22,7 +22,7 @@ namespace FoodieBFCapstone.Data
 
         List<BlogPost> GetByTag(string tagName);
 
-        void WriteBlogPost(BlogPost model);
+        int WriteBlogPost(BlogPost model);
 
         void Update(int id, BlogPost model);
 
