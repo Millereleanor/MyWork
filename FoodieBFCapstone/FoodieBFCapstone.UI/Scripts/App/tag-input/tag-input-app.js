@@ -5,6 +5,9 @@
         availableTags: sampleTags,
         singleField: true,
         allowSpaces: true,
+        caseSensitive: false,
+        removeConfirmation: true,
+        placeholderText: "Enter to add",
         singleFieldNode: $('#mySingleField')
     });
 });
