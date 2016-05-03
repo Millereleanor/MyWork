@@ -1,0 +1,30 @@
+USE [FoodieAndTheTestFish]
+
+DELETE FROM AdminStaticPages DBCC CHECKIDENT (AdminStaticPages, RESEED, 1)
+GO
+DELETE FROM BlogPostsTags 
+GO
+DELETE FROM DeniedPosts DBCC CHECKIDENT (DeniedPosts, RESEED, 1)
+GO
+DELETE FROM BlogPosts DBCC CHECKIDENT (BlogPosts, RESEED, 1)
+GO
+DELETE FROM Tags DBCC CHECKIDENT (Tags, RESEED, 1)
+GO
+DELETE FROM SubCategories DBCC CHECKIDENT (SubCategories, RESEED, 1)
+GO
+DELETE FROM Categories DBCC CHECKIDENT (Categories, RESEED, 1)
+GO
+DELETE FROM Statuses DBCC CHECKIDENT (Statuses, RESEED, 1)
+GO
+DELETE FROM IdentityUserRole 
+GO
+DELETE FROM IdentityRole
+GO
+DELETE FROM IdentityProfile 
+GO
+DELETE FROM IdentityClaim 
+GO
+DELETE FROM IdentityLogin 
+GO
+DELETE FROM IdentityUser
+GO
