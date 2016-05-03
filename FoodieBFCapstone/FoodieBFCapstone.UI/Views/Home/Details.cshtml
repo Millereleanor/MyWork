@@ -4,17 +4,8 @@
 @{
     ViewBag.Title = "Details";
 }
+
 <h4 style="text-decoration: underline;"> Category: @Model.SubcategoryName</h4>
-
-<div id="sidebar" class="sidebar">
-
-    <h4>Tags</h4>
-    <br />
-    @foreach (var tag in Model.Tags)
-    {
-        <a href="@Url.Action("Search", "Search", new {text = tag.TagName, type = ViewBag.searchTag })">#@tag.TagName</a>
-    }
-</div>
 <div class="col-md-10">
     <h2>@Model.Title</h2>
     <br />
@@ -46,7 +37,14 @@
         }
     }
 </div>
-
+<div id="sidebar" class="sidebar">
+    <h4>Tags</h4>
+    <br />
+    @foreach (var tag in Model.Tags)
+    {
+        <a href="@Url.Action("Search", "Search", new {text = tag.TagName, type = ViewBag.searchTag})">#@tag.TagName</a>
+    }
+</div>
 @section scripts
 {
     <script src="~/Scripts/stickyfill.min.js"></script>

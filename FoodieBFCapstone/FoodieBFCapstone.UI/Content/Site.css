@@ -17,6 +17,7 @@
 .body-content {
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 6%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists
@@ -105,29 +106,35 @@ textarea {
 
 /*-----------------------------Contributor CSS Section--------------------------*/
 
+/*changes image opacity on hover*/
 .blog-Preview:hover img {
     opacity: 0.6;
 }
 
+/*displays buttons on hover*/
 .blog-Preview:hover a.btn {
     display: block;
 }
 
+/*hides buttons*/
 .blog-Preview a.btn {
     position: absolute;
     display: none;
 }
 
+/*positioning for new button*/
 a.blog-New {
     bottom: 19%;
     left: 15%;
 }
 
+/*positioning for update button*/
 a.blog-Update {
     bottom: 27%;
     left: 15%;
 }
 
+/*positioning for delete button*/
 a.blog-Delete {
     bottom: 27%;
     right: 15%;
