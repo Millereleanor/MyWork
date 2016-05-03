@@ -7,6 +7,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -36,25 +37,7 @@ namespace FoodieBFCapstone.UI.Controllers
             return View(vm);
         }
 
-        [HttpPost]
-        public ActionResult CreateNewBlog(CreatePostVM model)
-        {
-            if (ModelState.IsValid)
-            {
-                var repo = new BlogPostRepository();
-                BlogPostOperations ops = new BlogPostOperations();
-                model.NewBlog.Tags = ops.FormatBlogTagsToList(model.TagString);
-
-                model.NewBlog.BlogId = repo.WriteBlogPost(model.NewBlog);
-                repo.WriteBlogTags(model.NewBlog.Tags, model.NewBlog.BlogId);
-                
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View(model);
-            }
-        }
+       
 
         [Authorize(Roles = "Contributor")]
         public ActionResult UpdateBlog(int blogId)
