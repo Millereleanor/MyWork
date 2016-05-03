@@ -5,6 +5,11 @@
 @{
     ViewBag.Title = "CreateNewBlog";
 }
+<style>
+    .redText {
+        color: #E53C37;
+    }
+</style>
 <h2>Create New Blog</h2>
 @using (Html.BeginForm("CreateNewBlog", "Contributor", FormMethod.Post, new { id = "newBlogPost" }))
 {
@@ -14,25 +19,30 @@
             <label>Subcategory:</label> @Html.DropDownListFor(m => m.NewBlog.Subcategory.SubcategoryId, Model.Subcats, new { @class = "form-control" })
         </div>
         <div class="form-group col-md-9">
-            <label>Title:</label> @Html.EditorFor(m => m.NewBlog.Title, new { HtmlAttributes = new { @class = "form-control" } })
+            <label>Title (max 100 characters):</label>
+            @Html.EditorFor(m => m.NewBlog.Title, new { HtmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.NewBlog.Title, null, new { @class = "redText" })
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-12">
-            @Html.LabelFor(m => m.NewBlog.Summary, "Summary:", new { @class = "control-label" })
+            @Html.LabelFor(m => m.NewBlog.Summary, "Summary (max 255 characters):", new { @class = "control-label" })
             @Html.EditorFor(m => m.NewBlog.Summary, new { HtmlAttributes = new { @class = "form-control form-inline" } })
+            @Html.ValidationMessageFor(m => m.NewBlog.Summary, null, new { @class = "redText" })
         </div>
         <div class="form-group col-md-12">
-            @Html.LabelFor(m => m.NewBlog.MainPictureUrl, "Main Picture URL:", new { @class = "control-label" })
+            @Html.LabelFor(m => m.NewBlog.MainPictureUrl, "Main Picture URL (max 125 characters):", new { @class = "control-label" })
             @Html.EditorFor(m => m.NewBlog.MainPictureUrl, new { HtmlAttributes = new { @class = "form-control form-inline" } })
+            @Html.ValidationMessageFor(m => m.NewBlog.MainPictureUrl, null, new { @class = "redText" })
         </div>
         <div class="form-group col-md-12">
             @Html.LabelFor(m => m.NewBlog.PostContent, "Content:", new { @class = "control-label" })
             @Html.TextAreaFor(m => m.NewBlog.PostContent, new { @id = "Textarea" })
+            @Html.ValidationMessageFor(m => m.NewBlog.PostContent, null, new { @class = "redText" })
         </div>
     </div>
     <div class="form-group col-md-12">
-        @Html.LabelFor(m => m.TagString, "Tags:", new { @class = "control-label" })
+        @Html.LabelFor(m => m.TagString, "Tags (separate by comma ',' or enter key):", new { @class = "control-label" })
         @Html.HiddenFor(m => m.TagString, new { @name = "tags", @id = "mySingleField" })
         <ul id="singleFieldTags"></ul>
     </div>
@@ -46,7 +56,7 @@
     <a class="btn btn-danger" href=@Url.Action("Index", "Contributor") type="reset">Cancel</a>
     @*<button class="btn btn-danger" type="reset">Cancel</button>*@
 
-    <button href="#" data-toggle="modal" data-target="#PendingReview" class="btn btn-success" type="submit">Submit</button>
+    <button href="#" class="btn btn-success" id="SubYo" type="button">Submit</button>
     @Html.Partial("_PendingReview")
 }
 @section firstScripts{
@@ -66,13 +76,59 @@
 }
 
 @section scripts{
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/App/jquery-validate-default.js"></script>
-    <script src="~/Scripts/App/BlogPostValidate.js"></script>
     <link href="~/Content/jquery.tagit.css" rel="stylesheet" type="text/css">
     <link href="~/Content/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="~/Scripts/tag-it.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="~/Scripts/App/tag-input/tag-input-app.js"></script>
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#SubYo").on("click", function (event) {
+                event.preventDefault();
+                var frm = $("#newBlogPost");
+                if (frm.valid()) {
+                    $("#PendingReview").modal("show");
+
+
+                }
+            });
+
+            $("#PendingSubmit").on("click", function (event) {
+                event.preventDefault();
+                var frm = $("#newBlogPost");
+                var post = {
+                    "Title": $("#NewBlog_Title").val(),
+                    "Subcategory": { "SubcategoryId": $("#NewBlog_Subcategory_SubcategoryId").val() },
+                    "Summary": $("#NewBlog_Summary").val(),
+                    "MainPictureUrl": $("#NewBlog_MainPictureUrl").val(),
+                    "PostContent": tinyMCE.activeEditor.getContent({ format: 'raw' }),
+                    "UserId": $("#NewBlog_UserId").val(),
+                    "Tags": []
+
+
+                };
+                $.each($("#singleFieldTags li>span"), function(index, item) {
+                    post.Tags.push({ TagName: $(item).text() });
+                });
+                
+                var settings = {
+                    "url": "/api/ContributorPosts",
+                    "method": "POST",
+                    "headers": {
+                        "content-type": "application/json"
+                    },
+                    "data": JSON.stringify(post)
+                }
+                console.log(JSON.stringify(post));
+                $.ajax(settings).success(function (response) {
+                       //alert("Yo");
+                        window.location.href = '@Url.Action("Index")';
+                   }).error(function (error, status) {
+                    alert(error, status);
+                });
+            });
+        });
+    </script>
 }

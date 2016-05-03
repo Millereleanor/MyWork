@@ -22,7 +22,7 @@ namespace FoodieBFCapstone.UI.Controllers
 
                     break;
 
-                case "searchBlogTitle":
+                case "searchTitle":
                     posts = repo.GetBlogByTitle(text);
 
                     break;
@@ -35,7 +35,7 @@ namespace FoodieBFCapstone.UI.Controllers
 
                     break;
 
-                case "searchBlogContains":
+                case "searchContains":
                     posts = repo.GetBlogThatContains(text);
 
                     break;

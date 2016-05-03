@@ -101,15 +101,16 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        
-
         public BlogPost GetById(int id)
         {
             BlogPost blogPost = new BlogPost();
             using (var _cn = new SqlConnection(constr))
             {
-                blogPost = _cn.Query<BlogPost>("SELECT * " +
-                                               "FROM BlogPosts " +
+                blogPost = _cn.Query<BlogPost>("SELECT BlogPosts.BlogId, BlogPosts.UserId, BlogPosts.SubCategoryId, " +
+                                                       "BlogPosts.StatusId, BlogPosts.MainPictureUrl, BlogPosts.Title, " +
+                                                       "BlogPosts.PostContent, BlogPosts.Summary, BlogPosts.CreatedOn, " +
+                                                       "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn, SubCategories.SubCategory AS [SubcategoryName]" +
+                                               "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
                                                "WHERE BlogId = @BlogId", new { BlogId = id }).FirstOrDefault();
             }
             return blogPost;
@@ -121,7 +122,8 @@ namespace FoodieBFCapstone.Data
             {
                 Posts = _cn.Query<BlogPost>("SELECT * " +
                                                "FROM BlogPosts " +
-                                               "WHERE UserId = @UserId", new { UserId = userId }).ToList();
+                                               "WHERE UserId = @UserId " + 
+                                               "ORDER BY CreatedOn DESC", new { UserId = userId }).ToList();
             }
             return Posts;
         }
@@ -133,7 +135,7 @@ namespace FoodieBFCapstone.Data
                 Posts = _cn.Query<BlogPost>("select bp.*, ip.FirstName, ip.LastName from BlogPosts bp " +
                                             "inner join IdentityProfile ip on bp.UserId = ip.UserId " +
                                             "where ip.firstname = @firstName and ip.LastName = @lastName and bp.StatusId in (5, 2) " +
-                                            "ORDER BY ApprovedOn DESC; ", new {FirstName = firstName,LastName = lastName}).ToList();
+                                            "ORDER BY ApprovedOn DESC; ", new { FirstName = firstName, LastName = lastName }).ToList();
             }
             return Posts;
         }
@@ -437,7 +439,7 @@ namespace FoodieBFCapstone.Data
             {
                 Posts = _cn.Query<BlogPost>("select * from BlogPosts bp " +
                                             "WHERE bp.PostContent Like ('%' + @contains + '%') " +
-                                            "ORDER BY ApprovedOn DESC; ", new { Contains = contains}).ToList();
+                                            "ORDER BY ApprovedOn DESC; ", new { Contains = contains }).ToList();
             }
             return Posts;
         }
@@ -447,7 +449,7 @@ namespace FoodieBFCapstone.Data
             using (var _cn = new SqlConnection(constr))
             {
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText="CreateStaticPage";
+                cmd.CommandText = "CreateStaticPage";
                 cmd.Parameters.AddWithValue("@Title", staticPage.Title);
                 cmd.Parameters.AddWithValue("@MiniTitle", staticPage.MiniTitle);
                 cmd.Parameters.AddWithValue("@AdminPageContent", staticPage.AdminPageContent);
@@ -492,11 +494,11 @@ namespace FoodieBFCapstone.Data
         private AdminStaticPage PopulatePagesFromDataReader(SqlDataReader dr)
         {
             AdminStaticPage page = new AdminStaticPage();
-            page.AdminPageId = (int) dr["AdminPageId"];
+            page.AdminPageId = (int)dr["AdminPageId"];
             page.Title = dr["Title"].ToString();
             page.MiniTitle = dr["MiniTitle"].ToString();
             page.AdminPageContent = dr["AdminPageContent"].ToString();
-            page.CreatedOn = (DateTime) dr["CreatedOn"];
+            page.CreatedOn = (DateTime)dr["CreatedOn"];
 
             return page;
         }
