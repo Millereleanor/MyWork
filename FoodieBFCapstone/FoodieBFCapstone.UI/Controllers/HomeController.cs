@@ -47,10 +47,10 @@ namespace FoodieBFCapstone.UI.Controllers
             return View();
         }
 
-        public ActionResult Static()
-        {
-            return View();
-        }
+        //public ActionResult Static()
+        //{
+        //    return View();
+        //}
 
         public ActionResult Details(int blogId)
         {
@@ -63,14 +63,32 @@ namespace FoodieBFCapstone.UI.Controllers
             return View(post);
         }
 
+        //public ActionResult StaticDropDown()
+        //{
+        //    var repo = new BlogPostRepository();
+            
+        //    AdminVM pageList = new AdminVM();
+        //    List<AdminStaticPage> stuff = repo.GetAdminStaticPages();
+        //    pageList.ListStaticPage = stuff;
+        //    return View(pageList);
+        //}
 
+        public PartialViewResult StaticPageDropDown()
+        {
+            var repo = new BlogPostRepository();
+
+            AdminVM pageList = new AdminVM();
+            List<AdminStaticPage> stuff = repo.GetAdminStaticPages();
+            pageList.ListStaticPage = stuff;
+            return PartialView(pageList);
+        }
         
-        public ActionResult Potpourri(int id)
+        public ActionResult Static(int id)
         {
            BlogPostRepository post = new BlogPostRepository();
-            post.GetAdminStaticPageById(1);
+            var staticPost = post.GetAdminStaticPageById(id);
             
-            return View("Potpourri");
+            return View(staticPost);
         }
         
     }

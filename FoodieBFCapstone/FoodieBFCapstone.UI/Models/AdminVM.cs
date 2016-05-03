@@ -14,8 +14,8 @@ namespace FoodieBFCapstone.UI.Models
         public BlogPost BlogPost { get; set; }
         public List<SelectListItem> BlogStatus { get; set; }
         public AdminStaticPage StaticPage { get; set; }
-        public List<AdminStaticPage> ListStaticPage { get; set; } 
-        
+        public List<AdminStaticPage> ListStaticPage { get; set; }
+
 
 
         public AdminVM()

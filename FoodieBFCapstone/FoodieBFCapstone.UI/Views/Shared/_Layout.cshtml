@@ -55,10 +55,12 @@
                         </ul>
                     </li>
 
-                    @*@Html.Partial("_StaticDropDown")*@
+                    @{
+                        Html.RenderAction("StaticPageDropDown", "Home", "Travels");
+                    }
     
 
-                    <li>@Html.ActionLink("Travels", "Static", "Home")</li>
+                    @*<li>@Html.ActionLink("Travels", "Static", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
                 <ul class="nav navbar-nav navbar-right">

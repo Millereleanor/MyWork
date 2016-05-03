@@ -10,5 +10,6 @@ namespace FoodieBFCapstone.UI.Models
     {
         public List<BlogPost> AllPosts;
         public List<BlogPost> FeaturedPosts;
+        
     }
 }
