@@ -4,25 +4,17 @@
 @{
     ViewBag.Title = "Details";
 }
-<h4 style="text-decoration: underline;"> Category: @Model.SubcategoryName</h4>
 
-<div id="sidebar" class="sidebar">
-
-    <h4>Tags</h4>
-    <br />
-    @foreach (var tag in Model.Tags)
-    {
-        <a href="@Url.Action("Search", "Search", new {text = tag.TagName, type = ViewBag.searchTag })">#@tag.TagName</a>
-    }
-</div>
 <div class="col-md-10">
     <h2>@Model.Title</h2>
     <br />
     <h4 align="left">Posted by: @Model.Author.FirstName @Model.Author.LastName</h4>
     <h5 align="left">
+        Category: @Model.SubcategoryName
+        <br />
         Posted on:
         @if (Model.ApprovedOn != null)
-            {
+        {
             @Model.ApprovedOn.Value.ToShortDateString()
         }
     </h5>
@@ -46,7 +38,14 @@
         }
     }
 </div>
-
+<div id="sidebar" class="sidebar">
+    <h4>Tags</h4>
+    <br />
+    @foreach (var tag in Model.Tags)
+    {
+        <a href="@Url.Action("Search", "Search", new {text = tag.TagName, type = ViewBag.searchTag})">#@tag.TagName</a>
+    }
+</div>
 @section scripts
 {
     <script src="~/Scripts/stickyfill.min.js"></script>

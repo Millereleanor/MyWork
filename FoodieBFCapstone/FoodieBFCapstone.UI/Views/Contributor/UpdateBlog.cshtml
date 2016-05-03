@@ -1,0 +1,70 @@
+﻿@using System.Web.Mvc.Html
+@using FoodieBFCapstone.Models
+@using Microsoft.AspNet.Identity
+@model FoodieBFCapstone.UI.Models.CreatePostVM
+
+@{
+    ViewBag.Title = "UpdateBlog";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("UpdateBlog", "Contributor", FormMethod.Post, new { @class = "form-group" }))
+{
+
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Subcategory:</label> @Html.DropDownListFor(m => m.NewBlog.Subcategory.SubcategoryId, Model.Subcats, new {@class = "form-control"})
+        </div>
+        <div class="form-group col-md-9">
+            <label>Title:</label> @Html.EditorFor(m => m.NewBlog.Title, new {HtmlAttributes = new {@class = "form-control"}})
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(m => m.NewBlog.Summary, "Summary:", new { @class = "control-label" })
+            @Html.EditorFor(m => m.NewBlog.Summary, new { HtmlAttributes = new { @class = "form-control form-inline" } })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(m => m.NewBlog.MainPictureUrl, "Main Picture URL:", new { @class = "control-label" })
+            @Html.EditorFor(m => m.NewBlog.MainPictureUrl, new { HtmlAttributes = new { @class = "form-control form-inline" } })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.LabelFor(m => m.NewBlog.PostContent, "Content:", new { @class = "control-label" })
+            @Html.TextAreaFor(m => m.NewBlog.PostContent, new { @id = "Textarea" })
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        @Html.LabelFor(m => m.TagString, "Tags:", new { @class = "control-label" })
+        @Html.HiddenFor(m => m.TagString, new { @name = "tags", @id = "mySingleField" })
+        <ul id="singleFieldTags"></ul>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            @Html.HiddenFor(m => m.NewBlog.BlogId)
+            @Html.HiddenFor(m => m.NewBlog.UserId)
+            @Html.HiddenFor(m => m.NewBlog.CreatedOn)
+        </div>
+    </div>
+
+    <a class="btn btn-danger" href=@Url.Action("Index", "Contributor") type="reset">Cancel</a>
+
+    <button href="#" data-toggle="modal" data-target="#PendingReview" class="btn btn-success" type="submit">Submit</button>
+    @Html.Partial("_PendingReview")
+}
+
+@section firstScripts{
+    <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script src="~/Scripts/App/modernTinyMCE.js"></script>
+}
+
+
+@section scripts{
+    <link href="~/Content/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Scripts/tag-it.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Scripts/App/tag-input/tag-input-app.js"></script>
+}
