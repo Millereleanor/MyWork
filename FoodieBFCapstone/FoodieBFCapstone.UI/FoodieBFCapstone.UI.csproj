@@ -227,6 +227,7 @@
     <Content Include="Content\pictures\Jeane.png" />
     <Content Include="Content\pictures\logo22.png" />
     <Content Include="Content\pictures\logo22icon.png" />
+    <Content Include="Content\pictures\logoback.png" />
     <Content Include="Content\tagit.ui-zendesk.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -615,15 +616,15 @@
     <Content Include="Views\Admin\StatusFilter.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Admin\CreatePost.cshtml" />
-<Content Include="Views\Home\Static.cshtml" />
+    <Content Include="Views\Home\Static.cshtml" />
     <Content Include="Views\Shared\_AreYouSureContributor.cshtml" />
     <Content Include="Views\Shared\_PendingReview.cshtml" />
     <Content Include="Views\Home\StaticPageDropDown.cshtml" />
-<Content Include="Views\Home\Potpourri.cshtml" />
+    <Content Include="Views\Home\Potpourri.cshtml" />
     <Content Include="Views\Shared\_StaticDropDown.cshtml" />
     <Content Include="Views\Shared\_AreYouSureContributor.cshtml" />
     <Content Include="Views\Shared\_PendingReview.cshtml" />
-</ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
