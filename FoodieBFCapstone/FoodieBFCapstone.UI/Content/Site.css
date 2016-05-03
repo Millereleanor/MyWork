@@ -1,6 +1,10 @@
 ﻿body {
     padding-top: 0px;
     padding-bottom: 20px;
+    background-image: url("pictures/logoback.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom right;
 }
 
 .navbar-center .navbar-inner {
