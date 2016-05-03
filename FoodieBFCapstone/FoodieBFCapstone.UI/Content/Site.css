@@ -1,6 +1,10 @@
 ﻿body {
     padding-top: 0px;
     padding-bottom: 20px;
+    background-image: url("pictures/logoback.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom right;
 }
 
 .navbar-center .navbar-inner {
@@ -13,6 +17,7 @@
 .body-content {
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 6%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists
@@ -101,29 +106,35 @@ textarea {
 
 /*-----------------------------Contributor CSS Section--------------------------*/
 
+/*changes image opacity on hover*/
 .blog-Preview:hover img {
     opacity: 0.6;
 }
 
+/*displays buttons on hover*/
 .blog-Preview:hover a.btn {
     display: block;
 }
 
+/*hides buttons*/
 .blog-Preview a.btn {
     position: absolute;
     display: none;
 }
 
+/*positioning for new button*/
 a.blog-New {
     bottom: 19%;
     left: 15%;
 }
 
+/*positioning for update button*/
 a.blog-Update {
     bottom: 27%;
     left: 15%;
 }
 
+/*positioning for delete button*/
 a.blog-Delete {
     bottom: 27%;
     right: 15%;
@@ -173,4 +184,46 @@ a.blog-Delete {
 
 .dropdown a {
     color: #ffffff;
+}
+
+/*-------------------------Flip!-------------------------------*/
+/* entire container, keeps perspective */
+.flip-container {
+    perspective: 1000;
+}
+    /* flip the pane when hovered */
+    .flip-container:hover .flipper, .flip-container.hover .flipper {
+        transform: rotateY(180deg);
+    }
+
+.flip-container, .front, .back {
+    width: 450px;
+    height: 300px;
+}
+
+/* flip speed goes here */
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+    transform: rotateY(180deg);
 }

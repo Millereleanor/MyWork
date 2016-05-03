@@ -20,18 +20,13 @@ namespace FoodieBFCapstone.UI.Controllers
             if (ModelState.IsValid)
             {
                 var repo = new BlogPostRepository();
-                BlogPostOperations ops = new BlogPostOperations();
-                //model.Tags = ops.FormatBlogTagsToList(model.TagString);
 
                 model.BlogId = repo.WriteBlogPost(model);
                 repo.WriteBlogTags(model.Tags, model.BlogId);
 
                 return Request.CreateResponse(HttpStatusCode.Created);
             }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest,"Errors");
-            }
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest,"Errors");
         }
     }
 }

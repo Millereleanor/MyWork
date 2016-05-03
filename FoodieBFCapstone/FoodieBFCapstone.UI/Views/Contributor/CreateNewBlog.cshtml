@@ -3,17 +3,17 @@
 @using Microsoft.AspNet.Identity
 @model FoodieBFCapstone.UI.Models.CreatePostVM
 @{
-    ViewBag.Title = "CreateNewBlog";
+    ViewBag.Title = Model.NewBlog.BlogId != 0 ? "Update Blog" : "Create New Blog";
 }
 <style>
     .redText {
         color: #E53C37;
     }
 </style>
-<h2>Create New Blog</h2>
+
+<h2>@ViewBag.Title</h2>
 @using (Html.BeginForm("CreateNewBlog", "Contributor", FormMethod.Post, new { id = "newBlogPost" }))
 {
-
     <div class="row">
         <div class="form-group col-md-3">
             <label>Subcategory:</label> @Html.DropDownListFor(m => m.NewBlog.Subcategory.SubcategoryId, Model.Subcats, new { @class = "form-control" })
@@ -49,7 +49,15 @@
 
     <div class="row">
         <div class="form-group col-md-12">
+            @Html.HiddenFor(m => m.NewBlog.BlogId)
             @Html.HiddenFor(m => m.NewBlog.UserId)
+            @*@if (Model.NewBlog.BlogId != 0)
+            {*@
+                @Html.HiddenFor(m => m.NewBlog.CreatedOn)
+                @Html.HiddenFor(m => m.NewBlog.PublishDate)
+                @Html.HiddenFor(m => m.NewBlog.ExpirationDate)
+                @Html.HiddenFor(m => m.NewBlog.ApprovedOn)
+            @*}*@
         </div>
     </div>
 
@@ -79,24 +87,24 @@
                 var frm = $("#newBlogPost");
                 if (frm.valid()) {
                     $("#PendingReview").modal("show");
-
-
                 }
             });
 
             $("#PendingSubmit").on("click", function (event) {
                 event.preventDefault();
-                var frm = $("#newBlogPost");
                 var post = {
-                    "Title": $("#NewBlog_Title").val(),
-                    "Subcategory": { "SubcategoryId": $("#NewBlog_Subcategory_SubcategoryId").val() },
-                    "Summary": $("#NewBlog_Summary").val(),
-                    "MainPictureUrl": $("#NewBlog_MainPictureUrl").val(),
-                    "PostContent": tinyMCE.activeEditor.getContent({ format: 'raw' }),
+                    "BlogId": $("#NewBlog_BlogId").val(),
                     "UserId": $("#NewBlog_UserId").val(),
+                    "Subcategory": { "SubcategoryId": $("#NewBlog_Subcategory_SubcategoryId").val() },
+                    "MainPictureUrl": $("#NewBlog_MainPictureUrl").val(),
+                    "Title": $("#NewBlog_Title").val(),
+                    "PostContent": tinyMCE.activeEditor.getContent({ format: 'raw' }),
+                    "Summary": $("#NewBlog_Summary").val(),
+                    "CreatedOn": $("#NewBlog_CreatedOn").val(),
+                    "PublishDate": $("#NewBlog_PublishDate").val(),
+                    "ExpirationDate": $("#NewBlog_ExpirationDate").val(),
+                    "ApprovedOn": $("#NewBlog_ApprovedOn").val(),
                     "Tags": []
-
-
                 };
                 $.each($("#singleFieldTags li>span"), function(index, item) {
                     post.Tags.push({ TagName: $(item).text() });
@@ -112,7 +120,6 @@
                 }
                 console.log(JSON.stringify(post));
                 $.ajax(settings).success(function (response) {
-                       //alert("Yo");
                         window.location.href = '@Url.Action("Index")';
                    }).error(function (error, status) {
                     alert(error, status);

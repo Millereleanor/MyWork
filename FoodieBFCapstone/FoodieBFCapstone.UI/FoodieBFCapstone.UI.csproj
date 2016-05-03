@@ -227,6 +227,7 @@
     <Content Include="Content\pictures\Jeane.png" />
     <Content Include="Content\pictures\logo22.png" />
     <Content Include="Content\pictures\logo22icon.png" />
+    <Content Include="Content\pictures\logoback.png" />
     <Content Include="Content\tagit.ui-zendesk.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -608,7 +609,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\SubCategory\SubCategory.cshtml" />
     <Content Include="Views\Contributor\Index.cshtml" />
-    <Content Include="Views\Contributor\UpdateBlog.cshtml" />
     <Content Include="Views\Admin\Home.cshtml" />
     <Content Include="Views\Contributor\FilterBlogsByStatus.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
@@ -624,8 +624,8 @@
     <Content Include="Views\Shared\_StaticDropDown.cshtml" />
     <Content Include="Views\Shared\_AreYouSureContributor.cshtml" />
     <Content Include="Views\Shared\_PendingReview.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\tinymce_jquery_full.cshtml" />
-  </ItemGroup>
+<Content Include="Views\Shared\EditorTemplates\tinymce_jquery_full.cshtml" />
+</ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
