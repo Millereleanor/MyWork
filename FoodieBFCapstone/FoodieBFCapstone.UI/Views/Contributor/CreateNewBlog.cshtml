@@ -9,6 +9,10 @@
     .redText {
         color: #E53C37;
     }
+
+    .error {
+        border: 2px solid #E53C37;
+    }
 </style>
 
 <h2>@ViewBag.Title</h2>
@@ -18,7 +22,7 @@
         <div class="form-group col-md-3">
             <label>Subcategory:</label> @Html.DropDownListFor(m => m.NewBlog.Subcategory.SubcategoryId, Model.Subcats, new { @class = "form-control" })
         </div>
-        <div class="form-group col-md-9">
+        <div class="form-group col-md-9" name="title">
             <label>Title (max 100 characters):</label>
             @Html.EditorFor(m => m.NewBlog.Title, new { HtmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(m => m.NewBlog.Title, null, new { @class = "redText" })
@@ -52,11 +56,11 @@
             @Html.HiddenFor(m => m.NewBlog.BlogId)
             @Html.HiddenFor(m => m.NewBlog.UserId)
             @*@if (Model.NewBlog.BlogId != 0)
-            {*@
-                @Html.HiddenFor(m => m.NewBlog.CreatedOn)
-                @Html.HiddenFor(m => m.NewBlog.PublishDate)
-                @Html.HiddenFor(m => m.NewBlog.ExpirationDate)
-                @Html.HiddenFor(m => m.NewBlog.ApprovedOn)
+                {*@
+            @Html.HiddenFor(m => m.NewBlog.CreatedOn)
+            @Html.HiddenFor(m => m.NewBlog.PublishDate)
+            @Html.HiddenFor(m => m.NewBlog.ExpirationDate)
+            @Html.HiddenFor(m => m.NewBlog.ApprovedOn)
             @*}*@
         </div>
     </div>
@@ -80,8 +84,13 @@
 
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/App/jquery-validate-default.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            //document.getElementById("title").className = document.getElementById("fName").className + " error";  // this adds the error class
+
+            //document.getElementById("title").className = document.getElementById("fName").className.replace(" error", ""); // this removes the error class
+
             $("#SubYo").on("click", function (event) {
                 event.preventDefault();
                 var frm = $("#newBlogPost");
@@ -106,10 +115,10 @@
                     "ApprovedOn": $("#NewBlog_ApprovedOn").val(),
                     "Tags": []
                 };
-                $.each($("#singleFieldTags li>span"), function(index, item) {
+                $.each($("#singleFieldTags li>span"), function (index, item) {
                     post.Tags.push({ TagName: $(item).text() });
                 });
-                
+
                 var settings = {
                     "url": "/api/ContributorPosts",
                     "method": "POST",
@@ -120,8 +129,8 @@
                 }
                 console.log(JSON.stringify(post));
                 $.ajax(settings).success(function (response) {
-                        window.location.href = '@Url.Action("Index")';
-                   }).error(function (error, status) {
+                    window.location.href = '@Url.Action("Index")';
+                }).error(function (error, status) {
                     alert(error, status);
                 });
             });
