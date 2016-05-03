@@ -2,15 +2,21 @@
     ViewBag.Title = "About";
 }
 
-<div align="center">
-    <img src="~/Content/pictures/logo22.png" alt="Logo" width="50%"/>
-</div>
-
-<div>
-    <h4>The wonderful world of ..</h4>
-    <h3>Foodie and the Blow Fish</h3>
-    <br/>
-    <p>We are an elite blog site with the goal to bring the worlds food to your home. Our founder is traveling the world in search of the best food.</p>
-    <p>On his travails he met other foodies who shared his quest. One late night while sitting around a fire in the Appalacian mountains drinking the natives toka toka beverage, Our founder's spirit animal the blow fish appeared to him and told him of the future and the future was blogging.</p>
-
+<div class="row">
+    <div class="flip-container col-sm-4" ontouchstart="this.classList.toggle('hover');">
+        <div class="flipper">
+            <div class="front">
+                <img src="~/Content/pictures/logo22.png" alt="Logo" style="width: 75%;" />
+            </div>
+            <div class="back">
+                <img src="~/Content/pictures/logo22.png" alt="Logo" style="width: 75%;" />
+            </div>
+        </div>
+    </div><div class="col-sm-7">
+        <h4>The wonderful world of ..</h4>
+        <h3>Foodie and the Blow Fish</h3>
+        <br />
+        <p>We are an elite blog site with the goal to bring the worlds food to your home. Our founder is traveling the world in search of the best food.</p>
+        <p>On his travails he met other foodies who shared his quest. One late night while sitting around a fire in the Appalacian mountains drinking the natives toka toka beverage, Our founder's spirit animal the blow fish appeared to him and told him of the future and the future was blogging.</p>
+    </div>
 </div>
