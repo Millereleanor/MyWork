@@ -122,7 +122,8 @@ namespace FoodieBFCapstone.Data
             {
                 Posts = _cn.Query<BlogPost>("SELECT * " +
                                                "FROM BlogPosts " +
-                                               "WHERE UserId = @UserId", new { UserId = userId }).ToList();
+                                               "WHERE UserId = @UserId " + 
+                                               "ORDER BY CreatedOn DESC", new { UserId = userId }).ToList();
             }
             return Posts;
         }
