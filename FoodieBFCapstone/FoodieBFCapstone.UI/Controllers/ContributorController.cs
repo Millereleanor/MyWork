@@ -37,8 +37,6 @@ namespace FoodieBFCapstone.UI.Controllers
             return View(vm);
         }
 
-       
-
         [Authorize(Roles = "Contributor")]
         public ActionResult UpdateBlog(int blogId)
         {
@@ -49,25 +47,7 @@ namespace FoodieBFCapstone.UI.Controllers
             BlogPostOperations ops = new BlogPostOperations();
             vm.TagString = ops.FormatBlogTagsToString(blogId);
 
-            return View(vm);
-        }
-
-        [HttpPost]
-        public ActionResult UpdateBlog(CreatePostVM vm)
-        {
-            if (ModelState.IsValid)
-            {
-                BlogPostRepository repo = new BlogPostRepository();
-                repo.WriteBlogPost(vm.NewBlog);
-
-                BlogPostOperations ops = new BlogPostOperations();
-                vm.NewBlog.Tags = ops.FormatBlogTagsToList(vm.TagString);
-
-                repo.WriteBlogTags(vm.NewBlog.Tags, vm.NewBlog.BlogId);
-                return RedirectToAction("Index");
-            }
-
-            return View(vm);
+            return View("CreateNewBlog", vm);
         }
 
         [Authorize(Roles = "Contributor")]
