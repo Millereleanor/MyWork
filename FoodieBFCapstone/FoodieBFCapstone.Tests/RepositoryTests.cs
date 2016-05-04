@@ -311,7 +311,7 @@ namespace FoodieBFCapstone.Tests
         [TestCase(1, 1)]
         [TestCase(2, 3)]
         [TestCase(6, 2)]
-        public void ReadTagsByBlogId(int blogId, int expected) 
+        public void ReadTagsByBlogId(int blogId, int expected)
         {
             int actual = _repo.ReadAllTagsByBlogId(blogId).Count;
 
@@ -319,7 +319,7 @@ namespace FoodieBFCapstone.Tests
             Assert.AreEqual(actual, expected);
         }
 
-        [TestCase("NorthAmerica", 1)]
+        [TestCase("NorthAmerica", 0)]
         [TestCase("Dinner", 1)]
         [TestCase("Asia", 0)]
         public void GetActivePostsinSubCategory(string subcategoryType, int expected)
@@ -328,8 +328,8 @@ namespace FoodieBFCapstone.Tests
             Assert.AreEqual(actual, expected);
         }
 
-        [TestCase(1, 1)]
-        [TestCase(2, 3)]
+        [TestCase(4, 3)]
+        [TestCase(7, 2)]
         public void GetBlogPostTags(int blogId, int expected)
         {
             int actual = _repo.GetBlogPostTags(blogId).Count;
@@ -343,7 +343,7 @@ namespace FoodieBFCapstone.Tests
             Assert.AreEqual(actual, expected);
         }
 
-        [TestCase("Strawberry", 1)]
+        [TestCase("Strawberry", 2)]
         public void GetBlogThatContains(string contains, int expected)
         {
             int actual = _repo.GetBlogThatContains(contains).Count;
@@ -353,25 +353,20 @@ namespace FoodieBFCapstone.Tests
         [Test]
         public void CreateStaticPage()
         {
-            
             var page = new AdminStaticPage
             {
                 Title = "Southern Style Cooking",
                 MiniTitle = "Best of the South",
                 AdminPageContent = "Writing some fake information"
-                
             };
 
-           page.AdminPageId = _repo.CreateStaticPage(page);
+            page.AdminPageId = _repo.CreateStaticPage(page);
 
-           AdminStaticPage actual = _repo.GetAdminStaticPageById(page.AdminPageId);
+            AdminStaticPage actual = _repo.GetAdminStaticPageById(page.AdminPageId);
 
             Assert.AreEqual(actual.Title, page.Title);
             Assert.AreEqual(actual.MiniTitle, page.MiniTitle);
             Assert.AreEqual(actual.AdminPageContent, page.AdminPageContent);
-
-
-
         }
     }
 }
