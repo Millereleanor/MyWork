@@ -33,6 +33,7 @@ namespace FoodieBFCapstone.Models
         public int StatusId { get; set; }
         public Status Status { get; set; }
 
+
         [Required(ErrorMessage = "Please enter a URL for the main picture")]
         [MaxLength(125, ErrorMessage = "Your URL is too long, please go to https://goo.gl/ to shorten it")]
         public string MainPictureUrl { get; set; }
