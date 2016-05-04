@@ -354,15 +354,22 @@ namespace FoodieBFCapstone.Tests
         public void CreateStaticPage()
         {
             
-            AdminStaticPage page = new AdminStaticPage
+            var page = new AdminStaticPage
             {
                 Title = "Southern Style Cooking",
                 MiniTitle = "Best of the South",
-                AdminPageContent = "Writing some fake information",
-                CreatedOn = DateTime.Today
+                AdminPageContent = "Writing some fake information"
+                
             };
 
-            _repo.CreateStaticPage(page);
+           page.AdminPageId = _repo.CreateStaticPage(page);
+
+           AdminStaticPage actual = _repo.GetAdminStaticPageById(page.AdminPageId);
+
+            Assert.AreEqual(actual.Title, page.Title);
+            Assert.AreEqual(actual.MiniTitle, page.MiniTitle);
+            Assert.AreEqual(actual.AdminPageContent, page.AdminPageContent);
+
 
 
         }
