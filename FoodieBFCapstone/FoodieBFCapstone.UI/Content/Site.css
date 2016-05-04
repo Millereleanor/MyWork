@@ -20,7 +20,6 @@
     padding-top: 6%;
 }
 
-
 /* Override the default bootstrap behavior where horizontal description lists
    will truncate terms that are too long to fit in the left column
 */
@@ -163,6 +162,12 @@ a.blog-Delete {
         color: #ffffff;
     }
 
+/*----------Admin nav bar------------*/
+
+.red a:hover {
+    color: #EB6864;
+}
+
 /*---------------search bar--------------*/
 
 .dropdown a {
@@ -215,4 +220,3 @@ a.blog-Delete {
 .back {
     transform: rotateY(180deg);
 }
-
