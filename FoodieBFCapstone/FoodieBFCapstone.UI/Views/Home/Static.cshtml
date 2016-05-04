@@ -5,11 +5,11 @@
 
 
 
-<div>g
-    <div class="col-md-10" style="margin-top: -8%;">
-        <h4>@Model.Title</h4>
-        <br />
-        <br/>
+<div>
+    <div class="col-md-10" style="">
+        <h2>@Model.Title</h2>
+        <p>Administrator</p>
+        <h5>Written On: @Model.CreatedOn.ToShortDateString()</h5>
         <br/>
         <br/>
         <p align="justify">@Html.Raw(Model.AdminPageContent)</p>

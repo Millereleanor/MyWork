@@ -1,4 +1,5 @@
 ﻿@using System.Security.Cryptography.X509Certificates
+@using FoodieBFCapstone.Models
 @using FoodieBFCapstone.UI.Models
 @model FoodieBFCapstone.UI.Models.AdminVM
 
@@ -6,41 +7,43 @@
     ViewBag.Title = "StatusFilter";
 }
 
-<h2 align="center">Article</h2>
-
-@using (Html.BeginForm("StatusFilter", "Admin", FormMethod.Post))
+<h2 align="center">@(((Status)ViewBag.status).ToString()) Articles</h2>
+@if (@Model.Blog.Count > 0)
 {
+    using (Html.BeginForm("StatusFilter", "Admin", FormMethod.Post))
+    {
 
    
-<br/>
+    <br/>
+    
+     <div>
 
-
-    <div>
-        @foreach (var item in Model.Blog)
-        {
-            <div class="row">
-                <div class="col-md-2">
-                    <img src="@item.MainPictureUrl" class="item"/>
-                </div>
-                <div class="col-md-5" style="margin: 10px;">
-                    <p>
-                        <h4>@item.Title</h4>
-                    </p>
-                    <p>Description: @item.Summary</p>
-                    @*<p style="color: teal">Author: @item.Author.FirstName @item.Author.LastName</p>*@
-                    <p>Created On: @item.CreatedOn.ToShortDateString()</p>
-                </div>
-                <div class="col-md-2">
-                    <label style="margin-right: 10px;">Status: @item.Status</label>
-                    <br/>
-                    
-                    <a class="btn btn-primary" href="@Url.Action("Details", "Home", new {blogId = item.BlogId})">View Article</a>
-                    <br />
-                    <br />
-                </div>
-            </div>
-        }
-    </div>
+         @foreach (var item in Model.Blog)
+         {
+             <a href="@Url.Action("Details", "Home", new {blogId = item.BlogId})">
+                 <div class="row">
+                     <div class="col-md-2">
+                         <img src="@item.MainPictureUrl" class="item"/>
+                     </div>
+                     <div class="col-md-5" style="margin: 10px;">
+                         <p>
+                             <h4>@item.Title</h4>
+                         </p>
+                         <br/>
+                         <p>@item.Summary</p>
+                         <p style="color: teal">Author: @item.Author.FirstName @item.Author.LastName</p>
+                         <p>Created On: @item.CreatedOn.ToShortDateString()</p>
+                     </div>
+                 </div>
+             </a>
+             <hr/>
+         }
+     </div>
+    }
+}
+else
+{
+    <h3 align="center">There Are No @(((Status)ViewBag.status).ToString()) Posts To Review</h3>
 }
 
 <div id="sidebar" class="sidebar" align="left">

@@ -23,7 +23,10 @@ namespace FoodieBFCapstone.UI.Controllers
             AdminVM posts = new AdminVM();
             List<BlogPost> stuff = repo.GetPostByStatus2(1);
             posts.Blog = stuff; //passing in status enum/db id 
-            
+            foreach (var post in posts.Blog)
+            {
+                post.Author = repo.GetAuthorUserNameByBlogId(post.BlogId);
+            }
             return View(posts);
         }
 
@@ -44,10 +47,11 @@ namespace FoodieBFCapstone.UI.Controllers
             AdminVM posts = new AdminVM();
             List<BlogPost> stuff = repo.GetPostByStatus2(id);
             posts.Blog = stuff;
-            BlogPost blog  = new BlogPost();
-            
-                
-
+            ViewBag.status = (Status) id;
+            foreach (var post in posts.Blog)
+            {
+                post.Author = repo.GetAuthorUserNameByBlogId(post.BlogId);
+            }
             return View(posts);
         }
 
