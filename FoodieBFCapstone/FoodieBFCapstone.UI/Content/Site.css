@@ -151,7 +151,6 @@ a.blog-Delete {
     -webkit-box-shadow: 10px 10px 26px 0px rgba(66,65,66,1);
     -moz-box-shadow: 10px 10px 26px 0px rgba(66,65,66,1);
     box-shadow: 10px 10px 26px 0px rgba(66,65,66,1);
-   
 }
 
     .sidebar h4 {
@@ -163,13 +162,15 @@ a.blog-Delete {
         color: #ffffff;
     }
 
-
 /*---------------search bar--------------*/
 
 .dropdown a {
     color: #ffffff;
 }
 
+.searchItems > li {
+    cursor: pointer;
+}
 /*-------------------------Flip!-------------------------------*/
 /* entire container, keeps perspective */
 .flip-container {
@@ -177,7 +178,8 @@ a.blog-Delete {
 }
     /* flip the pane when hovered */
     .flip-container:hover .flipper, .flip-container.hover .flipper {
-        transform: rotateY(180deg);
+        transform: rotateY(520deg);
+        transform-origin: center center;
     }
 
 .flip-container, .front, .back {
@@ -187,9 +189,10 @@ a.blog-Delete {
 
 /* flip speed goes here */
 .flipper {
-    transition: 0.6s;
+    transition: 0.9s;
     transform-style: preserve-3d;
     position: relative;
+    transform-origin: center center;
 }
 
 /* hide back of pane during swap */
@@ -211,3 +214,4 @@ a.blog-Delete {
 .back {
     transform: rotateY(180deg);
 }
+
