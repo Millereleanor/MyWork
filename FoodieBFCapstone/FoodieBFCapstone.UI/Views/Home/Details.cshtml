@@ -7,11 +7,12 @@
 
 <div class="col-md-10">
     <h2>@Model.Title</h2>
-    <br/>
-    
-    <a href="@Url.Action("Search", "Search", new {text = ViewBag.Author , type = ViewBag.searchAuthor })">
-        <h4 align="left">Posted by: @Model.Author.FirstName @Model.Author.LastName</h4>
-    </a>
+    <br />
+    <h4 align="left">
+        Posted by: <a href="@Url.Action("Search", "Search", new {text = ViewBag.Author , type = ViewBag.searchAuthor })">
+            @Model.Author.FirstName @Model.Author.LastName
+        </a>
+    </h4>
     <h5 align="left">
         Category: @Model.SubcategoryName
         <br />
