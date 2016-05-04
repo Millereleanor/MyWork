@@ -1,4 +1,8 @@
-﻿using System;
+﻿using FoodieBFCapstone.Data;
+using FoodieBFCapstone.Identity;
+using FoodieBFCapstone.Models;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -7,10 +11,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using FoodieBFCapstone.Data;
-using FoodieBFCapstone.Identity;
-using FoodieBFCapstone.Models;
-using NUnit.Framework;
 
 namespace FoodieBFCapstone.Tests
 {
@@ -24,7 +24,7 @@ namespace FoodieBFCapstone.Tests
         private string AssemblyLocation()
         {
             //var assembly = Assembly.GetExecutingAssembly();
-            var assembly = typeof (RepositoryTests).Assembly; //Gets assembly by class name
+            var assembly = typeof(RepositoryTests).Assembly; //Gets assembly by class name
             var codebase = new Uri(assembly.CodeBase);
             var path = codebase.LocalPath.Substring(0,
                 codebase.LocalPath.LastIndexOf("\\", StringComparison.Ordinal) + 1);
@@ -75,7 +75,7 @@ namespace FoodieBFCapstone.Tests
         [TestCase(Status.Featured)]
         public void ReadBlogsByStatus(Status status)
         {
-            List<BlogPost> blogs = _repo.GetPostsByStatus((int) status);
+            List<BlogPost> blogs = _repo.GetPostsByStatus((int)status);
             int actual = 0;
             int expected = blogs.Count();
 
@@ -113,7 +113,7 @@ namespace FoodieBFCapstone.Tests
             // Spot checking against hard coded blog info inserted from Seed script
             Assert.AreEqual(actual.BlogId, 1);
             Assert.AreEqual(actual.UserId, new Guid("87e8fca7-c2fa-40d6-b9de-b226056455ac"));
-            Assert.AreEqual(actual.StatusId, (int) Status.Pending);
+            Assert.AreEqual(actual.StatusId, (int)Status.Pending);
             Assert.AreEqual(actual.MainPictureUrl,
                 "https://grubamericana.files.wordpress.com/2012/08/hamburger_love-normal.jpg");
             Assert.AreEqual(actual.Title, "Best Burger Ever!");
@@ -187,8 +187,8 @@ namespace FoodieBFCapstone.Tests
             Assert.AreEqual(actual.LastName, expected.LastName);
         }
 
-        [TestCase(1, (int) Status.Denied, (int) Status.Pending)]
-        [TestCase(4, (int) Status.Pending, (int) Status.Featured)]
+        [TestCase(1, (int)Status.Denied, (int)Status.Pending)]
+        [TestCase(4, (int)Status.Pending, (int)Status.Featured)]
         public void UpdateStatusByBlogId(int blogId, int newStatus, int originalStatus)
         {
             // Load blog and check initial status
@@ -203,8 +203,8 @@ namespace FoodieBFCapstone.Tests
             Assert.AreEqual(actual.StatusId, newStatus);
         }
 
-        [TestCase("Noodles", new[] {6, 8})]
-        [TestCase("Korean food", new[] {2, 6})]
+        [TestCase("Noodles", new[] { 6, 8 })]
+        [TestCase("Korean food", new[] { 2, 6 })]
         public void ReadBlogsByTag(string tagName, int[] blogsWithTags)
         {
             List<BlogPost> blogs = _repo.GetByTag(tagName);
@@ -235,7 +235,7 @@ namespace FoodieBFCapstone.Tests
             BlogPost newBlog = new BlogPost
             {
                 UserId = new Guid(userId),
-                Subcategory = {SubcategoryId = subCategory},
+                Subcategory = { SubcategoryId = subCategory },
                 MainPictureUrl = picUrl,
                 Title = title,
                 PostContent = postContent,
@@ -247,7 +247,7 @@ namespace FoodieBFCapstone.Tests
             BlogPost actual = _repo.GetById(newBlog.BlogId);
 
             Assert.AreEqual(actual.UserId, new Guid(userId));
-            Assert.AreEqual(actual.StatusId, (int) Status.Pending);
+            Assert.AreEqual(actual.StatusId, (int)Status.Pending);
             Assert.AreEqual(actual.MainPictureUrl, picUrl);
             Assert.AreEqual(actual.Title, title);
             Assert.AreEqual(actual.PostContent, postContent);
@@ -317,5 +317,35 @@ namespace FoodieBFCapstone.Tests
             Assert.AreEqual(actual, expected);
         }
 
+        [TestCase("NorthAmerica", 1)]
+        [TestCase("Dinner", 1)]
+        [TestCase("Asia", 0)]
+        public void GetActivePostsinSubCategory(string subcategoryType, int expected)
+        {
+            int actual = _repo.GetActivePostsinSubCategory(subcategoryType).Count;
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestCase(1, 1)]
+        [TestCase(2, 3)]
+        public void GetBlogPostTags(int blogId, int expected)
+        {
+            int actual = _repo.GetBlogPostTags(blogId).Count;
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestCase("Korea", 1)]
+        public void GetBlogByTitle(string title, int expected)
+        {
+            int actual = _repo.GetBlogByTitle(title).Count;
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestCase("Strawberry", 1)]
+        public void GetBlogThatContains(string contains, int expected)
+        {
+            int actual = _repo.GetBlogThatContains(contains).Count;
+            Assert.AreEqual(actual, expected);
+        }
     }
 }
