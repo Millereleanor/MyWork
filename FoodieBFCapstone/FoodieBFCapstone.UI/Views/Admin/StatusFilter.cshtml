@@ -19,11 +19,11 @@
                 @foreach (var item in Model.Blog)
                 {
                     <a href="@Url.Action("Details", "Home", new {blogId = item.BlogId})">
-                        <div class="row">
+                        <div class="row" style="margin-bottom: -6px">
                             <div class="col-md-2">
                                 <img src="@item.MainPictureUrl" class="item" style="border-radius: 8px;" />
                             </div>
-                            <div class="col-md-5" style="margin-left: 20px;">
+                            <div class="col-md-5" style="margin-left: 36px; margin-top: 6px;">
                                 <p>
                                     <h4>@item.Title</h4>
                                 </p>
