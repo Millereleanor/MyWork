@@ -6,6 +6,7 @@
 /// <reference path="App/sidebar.js" />
 /// <reference path="app/slick/slick.js" />
 /// <reference path="app/tag-input/tag-input-app.js" />
+/// <reference path="app/validate-static-page.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="jquery.validate.min.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />

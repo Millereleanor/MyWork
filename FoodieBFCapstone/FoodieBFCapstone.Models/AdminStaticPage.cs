@@ -13,11 +13,11 @@ namespace FoodieBFCapstone.Models
        
         public int AdminPageId { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Your title is too long!")]
         [Required(ErrorMessage = "Please enter a Title for your post!")]
         public string Title { get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(20, ErrorMessage = "Your Link Name is too long!")]
         [Required(ErrorMessage = "Give your link a title.")]
         public string MiniTitle { get; set; }
 
