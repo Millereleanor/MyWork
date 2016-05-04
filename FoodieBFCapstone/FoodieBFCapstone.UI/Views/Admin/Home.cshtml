@@ -13,7 +13,7 @@
 {
     @Html.ActionLink("Create Post", "CreatePost", "Admin", new { @class = "btn btn-primary" })
     <div>
-        <hr/>
+        <hr />
         @foreach (var item in Model.Blog)
         {
 
@@ -67,12 +67,14 @@ else
 
 <div id="sidebar" class="sidebar">
     <h4>Search By Status</h4>
-    <br/>
-    <p>@Html.ActionLink("Pending", "Home", "Admin", new { id = "1" }, null)</p>
-    <p>@Html.ActionLink("Active", "StatusFilter", "Admin", new { id = "2" }, null)</p>
-    <p>@Html.ActionLink("Inactive", "StatusFilter", "Admin", new { id = "3" }, null)</p>
-    <p>@Html.ActionLink("Denied", "StatusFilter", "Admin", new { id = "4" }, null)</p>
-    <p>@Html.ActionLink("Featured", "StatusFilter", "Admin", new { id = "5" }, null)</p>
+    <br />
+    <ul class="nav nav-pills nav-stacked red">
+        <li>@Html.ActionLink("Pending", "Home", "Admin", new { id = "1" }, null)</li>
+        <li>@Html.ActionLink("Active", "StatusFilter", "Admin", new { id = "2" }, null)</li>
+        <li>@Html.ActionLink("Inactive", "StatusFilter", "Admin", new { id = "3" }, null)</li>
+        <li>@Html.ActionLink("Denied", "StatusFilter", "Admin", new { id = "4" }, null)</li>
+        <li>@Html.ActionLink("Featured", "StatusFilter", "Admin", new { id = "5" }, null)</li>
+    </ul>
 </div>
 
 @section scripts
