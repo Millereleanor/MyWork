@@ -13,13 +13,15 @@ namespace FoodieBFCapstone.Models
        
         public int AdminPageId { get; set; }
 
-        [Required]
+        [MaxLength(100)]
+        [Required(ErrorMessage = "Please enter a Title for your post!")]
         public string Title { get; set; }
 
-        [Required]
+        [MaxLength(20)]
+        [Required(ErrorMessage = "Give your link a title.")]
         public string MiniTitle { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Don't you want to share your latest adventure? Enter in some content!")]
         [UIHint("tinymce_jquery_full"), AllowHtml]
         public string AdminPageContent { get; set; }
 
