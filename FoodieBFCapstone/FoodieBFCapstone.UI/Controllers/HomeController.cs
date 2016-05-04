@@ -60,6 +60,8 @@ namespace FoodieBFCapstone.UI.Controllers
             post.Tags = repo.GetBlogPostTags(blogId);
             post.Author = repo.GetAuthorUserNameByBlogId(blogId);
             ViewBag.searchTag = "searchTag";
+            ViewBag.searchAuthor = "searchAuthor";
+            ViewBag.Author = post.Author.FirstName + " " + post.Author.LastName;
             return View(post);
         }
 
