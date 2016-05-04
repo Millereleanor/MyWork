@@ -69,14 +69,8 @@ namespace FoodieBFCapstone.Data
             blog.MainPictureUrl = dr["MainPictureUrl"].ToString();
             blog.Subcategory.SubcategoryName = dr["SubCategory"].ToString();
             blog.CreatedOn = (DateTime)dr["CreatedOn"];
-            if (blog.ApprovedOn != null)
-            {
-                blog.ApprovedOn = (DateTime)dr["ApprovedOn"];
-            }
-            else
-            {
-                blog.ApprovedOn = null;
-            }
+            blog.ApprovedOn = (DateTime)dr["ApprovedOn"];
+           
 
             return blog;
         }

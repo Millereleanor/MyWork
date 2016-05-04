@@ -7,62 +7,62 @@
 @{
     ViewBag.Title = "Home";
 }
+<div class="col-md-12">
+    <h2 align="center">Pending Articles</h2>
+    @if (@Model.Blog.Count > 0)
+    {
+        @Html.ActionLink("Create Post", "CreatePost", "Admin", new { @class = "btn btn-primary" })
+        <div>
+            <hr />
+            @foreach (var item in Model.Blog)
+            {
 
-<h2 align="center">Pending Articles</h2>
-@if (@Model.Blog.Count > 0)
-{
-    @Html.ActionLink("Create Post", "CreatePost", "Admin", new { @class = "btn btn-primary" })
-    <div>
-        <hr />
-        @foreach (var item in Model.Blog)
-        {
+                <div class="row" style="margin-bottom: -6px;">
+                    <a href="@Url.Action("Details","Home", new {blogId = item.BlogId})">
+                        <div class="col-md-2">
+                            <img src="@item.MainPictureUrl" class="item" style="border-radius: 8px;" />
+                        </div>
+                        <div class="col-md-4" style="margin-left: 36px; margin-top: 6px;">
+                            <p>
+                                <h4>@item.Title</h4>
+                            </p>
+                            <p style="color: teal">Author: @item.Author.FirstName @item.Author.LastName</p>
+                            <p>@item.Summary</p>
+                            <p>Created On: @item.CreatedOn.ToShortDateString()</p>
+                        </div>
+                    </a>
+                    <div class="col-md-4">
 
-            <div class="row">
-                <a href="@Url.Action("Details","Home", new {blogId = item.BlogId})">
-                    <div class="col-md-2">
-                        <img src="@item.MainPictureUrl" class="item" style="border-radius: 8px;" />
-                    </div>
-                    <div class="col-md-4" style="margin-left: 20px;">
-                        <p>
-                            <h4>@item.Title</h4>
-                        </p>
-                        <p style="color: teal">Author: @item.Author.FirstName @item.Author.LastName</p>
-                        <p>@item.Summary</p>
-                        <p>Created On: @item.CreatedOn.ToShortDateString()</p>
-                    </div>
-                </a>
-                <div class="col-md-4">
+                        <br />
+                        <br />
+                        <div>
+                            @using (Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new { @class = "form-group" }))
+                            {
 
-                    <br />
-                    <br />
-                    <div>
-                        @using (Html.BeginForm("UpdateStatus", "Admin", FormMethod.Post, new { @class = "form-group" }))
-                        {
+                                <div class="form-inline">
+                                    <input type="hidden" id="BlogPost_BlogId" name="BlogId" value="@item.BlogId" />
 
-                            <div class="form-inline">
-                                <input type="hidden" id="BlogPost_BlogId" name="BlogId" value="@item.BlogId" />
+                                    @Html.DropDownList("StatusId", Model.BlogStatus, new { @class = "form-control", @style = "width: 150px" })
 
-                                @Html.DropDownList("StatusId", Model.BlogStatus, new { @class = "form-control", @style = "width: 150px" })
-
-                                <button class="btn btn-primary" type="submit" style="margin-left: 40px">Save</button>
-                            </div>
-                        }
+                                    <button class="btn btn-primary" type="submit" style="margin-left: 40px">Save</button>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr />
-        }
-    </div>
-}
-else
-{
-    @Html.ActionLink("Create Post", "CreatePost", "Admin", new { @class = "btn btn-primary" })
-    <h3 align="center">No Pending Posts To Review...</h3>
-    <h4 align="center">why not have some fun?</h4>
-    <div align="center"><object width="640" height="480"><param name="movie" value="http://www.embeddablegames.net/embedgames/superflashmariobros.swf"><param name="quality" value="high"><embed src="http://www.embeddablegames.net/embedgames/superflashmariobros.swf" quality="high" width="640" height="400" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed></object><br /><a href="http://www.knugo.com/games/Mario_Games"><strong>Mario by knugo.com</strong></a></div>
+                <hr />
+            }
+        </div>
+    }
+    else
+    {
+        @Html.ActionLink("Create Post", "CreatePost", "Admin", new { @class = "btn btn-primary" })
+        <h3 align="center">No Pending Posts To Review...</h3>
+        <h4 align="center">why not have some fun?</h4>
+        <div align="center"><object width="640" height="480"><param name="movie" value="http://www.embeddablegames.net/embedgames/superflashmariobros.swf"><param name="quality" value="high"><embed src="http://www.embeddablegames.net/embedgames/superflashmariobros.swf" quality="high" width="640" height="400" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed></object><br /><a href="http://www.knugo.com/games/Mario_Games"><strong>Mario by knugo.com</strong></a></div>
 
-}
-
+    }
+</div>
 <br />
 
 <div id="sidebar" class="sidebar">

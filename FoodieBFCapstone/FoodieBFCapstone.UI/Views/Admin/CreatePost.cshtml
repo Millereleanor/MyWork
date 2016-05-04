@@ -18,19 +18,19 @@
 {
     <div class="form-group" >
         <div class="form-group">
-            @Html.LabelFor(m => m.StaticPage.Title, "Title", new { @class = "control-label" })
+            @Html.LabelFor(m => m.StaticPage.Title, "Title:", new { @class = "control-label" })
             @Html.ValidationMessageFor(m => m.StaticPage.Title, null, new { @class = "redText" })
             @Html.EditorFor(m => m.StaticPage.Title, new {HtmlAttributes = new {@class = "form-control", @placeholder="Maximum of 100 characters"}})
             
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.StaticPage.MiniTitle, "Link Name", new {@class = "control-label"})
+            @Html.LabelFor(m => m.StaticPage.MiniTitle, "Link Name:", new {@class = "control-label"})
             @Html.ValidationMessageFor(m => m.StaticPage.MiniTitle, null, new { @class = "redText" })
             @Html.EditorFor(m => m.StaticPage.MiniTitle, new {HtmlAttributes = new {@class = "form-control", @placeholder = "Maximum of 20 characters" } })
             
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.StaticPage.AdminPageContent, "Page Content", new { @class = "control-label", id="tinyLabel"})
+            @Html.LabelFor(m => m.StaticPage.AdminPageContent, "Page Content:", new { @class = "control-label", id="tinyLabel"})
             @Html.ValidationMessageFor(m => m.StaticPage.AdminPageContent, null, new { @class = "redText" })
             @Html.TextAreaFor(m => m.StaticPage.AdminPageContent, new { @id = "Textarea", name = "tinyPost" })
             <span id="tinyError" class="redText"></span>
