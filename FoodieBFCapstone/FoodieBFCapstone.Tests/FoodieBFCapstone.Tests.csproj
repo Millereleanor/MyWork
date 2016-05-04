@@ -61,6 +61,10 @@
       <Project>{f1c73d7f-4f2b-45b7-bc71-1f7b8cab3fa0}</Project>
       <Name>FoodieBFCapstone.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FoodieBFCapstone.Identity\FoodieBFCapstone.Identity.csproj">
+      <Project>{1a8ecf8c-5f1b-4274-8a8c-7b976dad1e3b}</Project>
+      <Name>FoodieBFCapstone.Identity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FoodieBFCapstone.Models\FoodieBFCapstone.Models.csproj">
       <Project>{19994e4d-64d7-45bc-9653-fddbecc610ef}</Project>
       <Name>FoodieBFCapstone.Models</Name>

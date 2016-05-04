@@ -16,12 +16,14 @@ namespace FoodieBFCapstone.UI.Controllers
         {
             var repo = new BlogPostRepository();
             var vm = new IndexVM();
-            vm.AllPosts = repo.GetActivePosts();
+            //vm.AllPosts = repo.GetActivePosts();
+            vm.AllPosts = repo.GetPostsByStatus((int) Status.Active);
             foreach (var post in vm.AllPosts)
             {
                 post.Author = repo.GetAuthorUserNameByBlogId(post.BlogId);
             }
-            vm.FeaturedPosts = repo.GetFeatured();
+            //vm.FeaturedPosts = repo.GetFeatured();
+            vm.FeaturedPosts = repo.GetPostsByStatus((int)Status.Featured);
             foreach (var post in vm.FeaturedPosts)
             {
                 post.Author = repo.GetAuthorUserNameByBlogId(post.BlogId);
