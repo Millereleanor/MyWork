@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [FoodieAndTheTestFish]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Database [FoodieAndTheTestFish]    Script Date: 5/4/2016 7:45:18 PM ******/
 CREATE DATABASE [FoodieAndTheTestFish]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -75,7 +75,7 @@ ALTER DATABASE [FoodieAndTheTestFish] SET DELAYED_DURABILITY = DISABLED
 GO
 USE [FoodieAndTheTestFish]
 GO
-/****** Object:  Table [dbo].[AdminStaticPages]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[AdminStaticPages]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -97,7 +97,7 @@ CREATE TABLE [dbo].[AdminStaticPages](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[BlogPosts]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[BlogPosts]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -126,7 +126,7 @@ CREATE TABLE [dbo].[BlogPosts](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[BlogPostsTags]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[BlogPostsTags]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -142,7 +142,7 @@ CREATE TABLE [dbo].[BlogPostsTags](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Categories]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[Categories]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -161,7 +161,7 @@ CREATE TABLE [dbo].[Categories](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[DeniedPosts]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[DeniedPosts]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -182,7 +182,7 @@ CREATE TABLE [dbo].[DeniedPosts](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[IdentityClaim]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[IdentityClaim]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -199,7 +199,7 @@ CREATE TABLE [dbo].[IdentityClaim](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[IdentityLogin]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[IdentityLogin]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -217,7 +217,7 @@ CREATE TABLE [dbo].[IdentityLogin](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[IdentityProfile]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[IdentityProfile]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -242,7 +242,7 @@ CREATE TABLE [dbo].[IdentityProfile](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[IdentityRole]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[IdentityRole]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -257,7 +257,7 @@ CREATE TABLE [dbo].[IdentityRole](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[IdentityUser]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[IdentityUser]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -286,7 +286,7 @@ CREATE TABLE [dbo].[IdentityUser](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[IdentityUserRole]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[IdentityUserRole]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -302,7 +302,7 @@ CREATE TABLE [dbo].[IdentityUserRole](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Statuses]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[Statuses]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -321,7 +321,7 @@ CREATE TABLE [dbo].[Statuses](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[SubCategories]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[SubCategories]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -341,7 +341,7 @@ CREATE TABLE [dbo].[SubCategories](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Tags]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  Table [dbo].[Tags]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -433,11 +433,12 @@ REFERENCES [dbo].[Categories] ([CategoryId])
 GO
 ALTER TABLE [dbo].[SubCategories] CHECK CONSTRAINT [FK_SubCategories_Categories]
 GO
-/****** Object:  StoredProcedure [dbo].[CreateStaticPage]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  StoredProcedure [dbo].[CreateStaticPage]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 -- =============================================
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
@@ -448,7 +449,8 @@ CREATE PROCEDURE [dbo].[CreateStaticPage]
 	@Title varchar(100),
 	@MiniTitle varchar(20),
 	@AdminPageContent varchar(max),
-	@CreatedOn date
+	@CreatedOn date,
+	@AdminPageId int output
 	
 AS
 BEGIN
@@ -460,10 +462,13 @@ BEGIN
 	Insert into AdminStaticPages (Title, MiniTitle, AdminPageContent, CreatedOn)
 	Values (@Title, @MiniTitle, @AdminPageContent, @CreatedOn)
 	
+	SET @AdminPageId = SCOPE_IDENTITY();
+
 END
 
+
 GO
-/****** Object:  StoredProcedure [dbo].[InsertBlogPost]    Script Date: 5/3/2016 5:27:33 PM ******/
+/****** Object:  StoredProcedure [dbo].[InsertBlogPost]    Script Date: 5/4/2016 7:45:18 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

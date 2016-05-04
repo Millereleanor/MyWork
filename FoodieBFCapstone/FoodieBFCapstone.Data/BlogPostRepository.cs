@@ -401,23 +401,26 @@ namespace FoodieBFCapstone.Data
             int pageId = 0;
             using (var _cn = new SqlConnection(constr))
             {
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "CreateStaticPage";
+                SqlCommand cmd = new SqlCommand("CreateStaticPage", _cn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                
                 cmd.Parameters.AddWithValue("@Title", staticPage.Title);
                 cmd.Parameters.AddWithValue("@MiniTitle", staticPage.MiniTitle);
                 cmd.Parameters.AddWithValue("@AdminPageContent", staticPage.AdminPageContent);
                 cmd.Parameters.AddWithValue("@CreatedOn", DateTime.Today);
 
-                //SqlParameter outputIDparam = new SqlParameter("@AdminPageId", SqlDbType.Int)
-                //{
-                //    Direction = ParameterDirection.Output
-                //};
+                SqlParameter outputParameter = new SqlParameter();
+                outputParameter.ParameterName = "@AdminPageId";
+                outputParameter.SqlDbType = SqlDbType.Int;
+                outputParameter.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(outputParameter);
 
-                //cmd.Parameters.Add(outputIDparam);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = _cn;
                 _cn.Open();
                 cmd.ExecuteNonQuery();
+
+                pageId = int.Parse(outputParameter.Value.ToString());
+
                 _cn.Close();
             }
             return pageId;
