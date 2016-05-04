@@ -23,17 +23,17 @@ namespace FoodieBFCapstone.BLL
             return tagString;
         }
 
-        public List<Tag> FormatBlogTagsToList(string tagString)
-        {
-            List<string> placeHolder = tagString.Split(',').ToList();
-            List<Tag> tags = new List<Tag>();
+        //public List<Tag> FormatBlogTagsToList(string tagString)
+        //{
+        //    List<string> placeHolder = tagString.Split(',').ToList();
+        //    List<Tag> tags = new List<Tag>();
 
-            foreach (var p in placeHolder)
-            {
-                Tag tag = new Tag { TagName = p };
-                tags.Add(tag);
-            }
-            return tags;
-        }
+        //    foreach (var p in placeHolder)
+        //    {
+        //        Tag tag = new Tag { TagName = p };
+        //        tags.Add(tag);
+        //    }
+        //    return tags;
+        //}
     }
 }

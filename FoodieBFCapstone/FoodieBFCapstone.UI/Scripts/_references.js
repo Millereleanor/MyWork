@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="app/blogpostvalidate.js" />
+/// <reference path="app/create-post-validate.js" />
 /// <reference path="app/jquery-validate-default.js" />
 /// <reference path="app/moderntinymce.js" />
 /// <reference path="App/sidebar.js" />

@@ -269,6 +269,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\App\BlogPostValidate.js" />
+    <Content Include="Scripts\App\Create-Post-Validate.js" />
     <Content Include="Scripts\App\jquery-validate-default.js" />
     <Content Include="Scripts\App\modernTinyMCE.js" />
     <Content Include="Scripts\App\sidebar.js" />
