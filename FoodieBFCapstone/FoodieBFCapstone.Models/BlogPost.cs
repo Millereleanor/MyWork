@@ -33,14 +33,14 @@ namespace FoodieBFCapstone.Models
         public int StatusId { get; set; }
         public Status Status { get; set; }
 
-        [Required(ErrorMessage = "Please enter a URL for the main picture")]
-        [MaxLength(125)]
+        [Required(ErrorMessage = "Please enter a URL for the main picture.")]
+        [MaxLength(125,ErrorMessage = "Your URL is to long.Please use try using http://tinyurl.com/")]
         public string MainPictureUrl { get; set; }
 
         public bool IsFeatured { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter a title")]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Your title must be under 100 characters")]
         public string Title { get; set; }
 
         public IdentityProfile Author { get; set; }
@@ -50,7 +50,7 @@ namespace FoodieBFCapstone.Models
         public string PostContent { get; set; }
 
         [Required(ErrorMessage = "Please enter a summary")]
-        [MaxLength(255)]
+        [MaxLength(255, ErrorMessage ="Your summary must be less than 255 characters ")]
         public string Summary { get; set; }
 
         public DateTime CreatedOn { get; set; }
