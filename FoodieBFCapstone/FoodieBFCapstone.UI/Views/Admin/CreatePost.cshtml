@@ -9,19 +9,25 @@
 @using (Html.BeginForm("CreatePost", "Admin", FormMethod.Post))
 {
     <div class="form-group">
-        <div>
+        <div class="form-group">
             <label>Title</label>
-            @Html.EditorFor(m => m.StaticPage.Title, new {HtmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(m => m.StaticPage.Title, null, new { @class = "redText" })
+            @Html.EditorFor(m => m.StaticPage.Title, new {HtmlAttributes = new {@class = "form-control", @placeholder="Maximum of 100 characters"}})
+            
         </div>
-        <div>
+        <div class="form-group">
             <label>Link Name</label>
-            @Html.EditorFor(m => m.StaticPage.MiniTitle, new {HtmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(m => m.StaticPage.MiniTitle, null, new { @class = "redText" })
+            @Html.EditorFor(m => m.StaticPage.MiniTitle, new {HtmlAttributes = new {@class = "form-control", @placeholder = "Maximum of 20 characters" } })
+            
         </div>
-        <div>
+        <div class="form-group">
             <label>Page Content</label>
-            @Html.TextAreaFor(m => m.StaticPage.AdminPageContent, new {HtmlAttributes = new {@class = "form-control"}, @id = "Textarea"})
+            @Html.ValidationMessageFor(m => m.StaticPage.AdminPageContent, null, new { @class = "redText" })
+            @Html.TextAreaFor(m => m.StaticPage.AdminPageContent, new { HtmlAttributes = new { @class = "form-control" }, @id = "Textarea" })
+
         </div>
-        <input type="hidden" id="Created"/>
+        @*<input type="hidden" id="Created"/>*@
         <a href="@Url.Action("Home","Admin")" class="btn btn-primary">Cancel</a>
         <button class="btn btn-primary" type="submit">Submit</button>
         
@@ -31,4 +37,12 @@
 @section scripts{
     <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
     <script src="~/Scripts/App/modernTinyMCE.js"></script>
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/App/jquery-validate-default.js"></script> 
+        
+
+
 }
+

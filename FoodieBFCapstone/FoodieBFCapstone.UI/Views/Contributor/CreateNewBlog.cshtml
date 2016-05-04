@@ -23,7 +23,7 @@
             <label>Subcategory:</label> @Html.DropDownListFor(m => m.NewBlog.Subcategory.SubcategoryId, Model.Subcats, new { @class = "form-control" })
         </div>
         <div class="form-group col-md-9" name="title">
-            <label>Title (max 100 characters):</label>
+            @Html.LabelFor(m => m.NewBlog.Title, "Title (max 100 characters):", new {@class = "control-label"})
             @Html.EditorFor(m => m.NewBlog.Title, new { HtmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(m => m.NewBlog.Title, null, new { @class = "redText" })
         </div>
@@ -40,9 +40,10 @@
             @Html.ValidationMessageFor(m => m.NewBlog.MainPictureUrl, null, new { @class = "redText" })
         </div>
         <div class="form-group col-md-12">
-            @Html.LabelFor(m => m.NewBlog.PostContent, "Content:", new { @class = "control-label" })
-            @Html.TextAreaFor(m => m.NewBlog.PostContent, new { @id = "Textarea" })
+            @Html.LabelFor(m => m.NewBlog.PostContent, "Content:", new { @class = "control-label", id = "tinyLabel" })
+            @Html.TextAreaFor(m => m.NewBlog.PostContent, new { @id = "Textarea", name = "tinyPost" })
             @Html.ValidationMessageFor(m => m.NewBlog.PostContent, null, new { @class = "redText" })
+            <span class="redText" id="tinyError"></span>
         </div>
     </div>
     <div class="form-group col-md-12">
@@ -55,18 +56,14 @@
         <div class="form-group col-md-12">
             @Html.HiddenFor(m => m.NewBlog.BlogId)
             @Html.HiddenFor(m => m.NewBlog.UserId)
-            @*@if (Model.NewBlog.BlogId != 0)
-                {*@
             @Html.HiddenFor(m => m.NewBlog.CreatedOn)
             @Html.HiddenFor(m => m.NewBlog.PublishDate)
             @Html.HiddenFor(m => m.NewBlog.ExpirationDate)
             @Html.HiddenFor(m => m.NewBlog.ApprovedOn)
-            @*}*@
         </div>
     </div>
 
     <a class="btn btn-danger" href=@Url.Action("Index", "Contributor") type="reset">Cancel</a>
-    @*<button class="btn btn-danger" type="reset">Cancel</button>*@
 
     <button href="#" class="btn btn-success" id="SubYo" type="button">Submit</button>
     @Html.Partial("_PendingReview")
@@ -85,52 +82,5 @@
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Scripts/App/jquery-validate-default.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-           
-            $("#SubYo").on("click", function (event) {
-                event.preventDefault();
-                var frm = $("#newBlogPost");
-                if (frm.valid()) {
-                    $("#PendingReview").modal("show");
-                }
-            });
-
-            $("#PendingSubmit").on("click", function (event) {
-                event.preventDefault();
-                var post = {
-                    "BlogId": $("#NewBlog_BlogId").val(),
-                    "UserId": $("#NewBlog_UserId").val(),
-                    "Subcategory": { "SubcategoryId": $("#NewBlog_Subcategory_SubcategoryId").val() },
-                    "MainPictureUrl": $("#NewBlog_MainPictureUrl").val(),
-                    "Title": $("#NewBlog_Title").val(),
-                    "PostContent": tinyMCE.activeEditor.getContent({ format: 'raw' }),
-                    "Summary": $("#NewBlog_Summary").val(),
-                    "CreatedOn": $("#NewBlog_CreatedOn").val(),
-                    "PublishDate": $("#NewBlog_PublishDate").val(),
-                    "ExpirationDate": $("#NewBlog_ExpirationDate").val(),
-                    "ApprovedOn": $("#NewBlog_ApprovedOn").val(),
-                    "Tags": []
-                };
-                $.each($("#singleFieldTags li>span"), function (index, item) {
-                    post.Tags.push({ TagName: $(item).text() });
-                });
-
-                var settings = {
-                    "url": "/api/ContributorPosts",
-                    "method": "POST",
-                    "headers": {
-                        "content-type": "application/json"
-                    },
-                    "data": JSON.stringify(post)
-                }
-                console.log(JSON.stringify(post));
-                $.ajax(settings).success(function (response) {
-                    window.location.href = '@Url.Action("Index")';
-                }).error(function (error, status) {
-                    alert(error, status);
-                });
-            });
-        });
-    </script>
+    <script type="text/javascript" src="~/Scripts/App/Create-Post-Validate.js"></script>
 }
