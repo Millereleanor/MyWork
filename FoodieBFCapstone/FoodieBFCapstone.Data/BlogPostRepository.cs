@@ -122,7 +122,7 @@ namespace FoodieBFCapstone.Data
             {
                 Posts = _cn.Query<BlogPost>("SELECT * " +
                                                "FROM BlogPosts " +
-                                               "WHERE UserId = @UserId " + 
+                                               "WHERE UserId = @UserId " +
                                                "ORDER BY CreatedOn DESC", new { UserId = userId }).ToList();
             }
             return Posts;
@@ -194,7 +194,7 @@ namespace FoodieBFCapstone.Data
             {
                 _cn.Query("UPDATE BlogPosts " +
                           "SET StatusId = @statusId " +
-                          "WHERE BlogId = @BlogId", new {statusId, BlogId = blogId });
+                          "WHERE BlogId = @BlogId", new { statusId, BlogId = blogId });
             }
         }
 
@@ -373,7 +373,7 @@ namespace FoodieBFCapstone.Data
             List<BlogPost> Blogs = new List<BlogPost>();
             using (var _cn = new SqlConnection(constr))
             {
-                Blogs = _cn.Query<BlogPost>("select * from BlogPosts bp where bp.Title = @title AND  bp.StatusId in (5,2) ORDER BY ApprovedOn DESC;", new { Title = title }).ToList();
+                Blogs = _cn.Query<BlogPost>("select * from BlogPosts bp where bp.Title LIKE  ('%' + @title + '%') AND  bp.StatusId in (5,2) ORDER BY ApprovedOn DESC;", new { Title = title }).ToList();
                 return Blogs;
             }
         }
