@@ -32,7 +32,7 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        public List<BlogPost> GetPostByStatus2(int id)
+        public List<BlogPost> GetPostsByStatus(int id)
         {
             List<BlogPost> blogs = new List<BlogPost>();
             using (var cn = new SqlConnection(constr))
@@ -83,23 +83,23 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        public List<BlogPost> GetActivePosts()
-        {
-            using (var _cn = new SqlConnection(constr))
-            {
-                Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPosts.StatusId=2 Order by BlogPosts.ApprovedOn Desc ").ToList();
-                return Posts;
-            }
-        }
+        //public List<BlogPost> GetActivePosts()
+        //{
+        //    using (var _cn = new SqlConnection(constr))
+        //    {
+        //        Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPosts.StatusId=2 Order by BlogPosts.ApprovedOn Desc ").ToList();
+        //        return Posts;
+        //    }
+        //}
 
-        public List<BlogPost> GetFeatured()
-        {
-            using (var _cn = new SqlConnection(constr))
-            {
-                Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPosts.StatusId=5 ORDER BY NewId()").ToList();
-                return Posts;
-            }
-        }
+        //public List<BlogPost> GetFeatured()
+        //{
+        //    using (var _cn = new SqlConnection(constr))
+        //    {
+        //        Posts = _cn.Query<BlogPost>("SELECT * FROM BlogPosts WHERE BlogPosts.StatusId=5 ORDER BY NewId()").ToList();
+        //        return Posts;
+        //    }
+        //}
 
         public BlogPost GetById(int id)
         {
@@ -122,7 +122,7 @@ namespace FoodieBFCapstone.Data
             {
                 Posts = _cn.Query<BlogPost>("SELECT * " +
                                                "FROM BlogPosts " +
-                                               "WHERE UserId = @UserId " + 
+                                               "WHERE UserId = @UserId " +
                                                "ORDER BY CreatedOn DESC", new { UserId = userId }).ToList();
             }
             return Posts;
@@ -140,21 +140,21 @@ namespace FoodieBFCapstone.Data
             return Posts;
         }
 
-        public List<BlogPost> GetBySubcategory(string subcategoryType)
-        {
-            List<BlogPost> subgategoryPosts = new List<BlogPost>();
-            using (var _cn = new SqlConnection(constr))
-            {
-                subgategoryPosts = _cn.Query<BlogPost>("SELECT BlogPosts.BlogId, BlogPosts.UserId, BlogPosts.SubCategoryId, " +
-                                                       "BlogPosts.StatusId, BlogPosts.MainPictureUrl, BlogPosts.Title, " +
-                                                       "BlogPosts.PostContent AS [Content], BlogPosts.Summary, BlogPosts.CreatedOn, " +
-                                                       "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn, SubCategories.SubCategory AS [SubcategoryName]" +
-                                                       "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
-                                                       "WHERE (SubCategories.SubCategory = @subcategoryType) " +
-                                                       "ORDER BY ApprovedOn DESC", new { subcategoryType = subcategoryType }).ToList();
-                return subgategoryPosts;
-            }
-        }
+        //public List<BlogPost> GetBySubcategory(string subcategoryType)
+        //{
+        //    List<BlogPost> subgategoryPosts = new List<BlogPost>();
+        //    using (var _cn = new SqlConnection(constr))
+        //    {
+        //        subgategoryPosts = _cn.Query<BlogPost>("SELECT BlogPosts.BlogId, BlogPosts.UserId, BlogPosts.SubCategoryId, " +
+        //                                               "BlogPosts.StatusId, BlogPosts.MainPictureUrl, BlogPosts.Title, " +
+        //                                               "BlogPosts.PostContent AS [Content], BlogPosts.Summary, BlogPosts.CreatedOn, " +
+        //                                               "BlogPosts.PublishDate, BlogPosts.ExpirationDate, BlogPosts.ApprovedOn, SubCategories.SubCategory AS [SubcategoryName]" +
+        //                                               "FROM BlogPosts INNER JOIN SubCategories ON SubCategories.SubCategoryId = BlogPosts.SubCategoryId " +
+        //                                               "WHERE (SubCategories.SubCategory = @subcategoryType) " +
+        //                                               "ORDER BY ApprovedOn DESC", new { subcategoryType = subcategoryType }).ToList();
+        //        return subgategoryPosts;
+        //    }
+        //}
 
         public IdentityProfile GetAuthorUserNameByBlogId(int id)
         {
@@ -188,13 +188,13 @@ namespace FoodieBFCapstone.Data
             }
         }
 
-        public void UpdateStatusByBlogId(int blogId, int StatusId)
+        public void UpdateStatusByBlogId(int blogId, int statusId)
         {
             using (var _cn = new SqlConnection(constr))
             {
                 _cn.Query("UPDATE BlogPosts " +
                           "SET StatusId = @statusId " +
-                          "WHERE BlogId = @BlogId", new { statusId = StatusId, BlogId = blogId });
+                          "WHERE BlogId = @BlogId", new { statusId, BlogId = blogId });
             }
         }
 
@@ -210,49 +210,6 @@ namespace FoodieBFCapstone.Data
                 return blogPostsWithATag;
             }
         }
-
-        //public void Add(BlogPost model)
-        //{
-        //    Posts = GetAll();
-        //    model.CreatedOn = DateTime.Today;
-        //    model.Status = Status.Pending;
-        //    int statusId = (int)model.Status;
-
-        //    using (var _cn = new SqlConnection(constr))
-        //    {
-        //        var parameters = new DynamicParameters();
-        //        //[BlogId],[UserId],[SubCategoryId],[StatusId],[MainPictureUrl],[Title],[PostContent],[CreatedOn],
-        //        //[PublishDate],[ExpirationDate],[ApprovedOn] FROM[FoodieAndTheBlowFish].[dbo].[BlogPosts]
-        //        parameters.Add("UserId", model.UserId);
-        //        parameters.Add("SubCategoryId", model.Subcategory.SubcategoryId);
-        //        parameters.Add("Summary", model.Summary);
-        //        parameters.Add("StatusId", statusId);
-        //        parameters.Add("MainPictureUrl", model.MainPictureUrl);
-        //        parameters.Add("Title", model.Title);
-        //        parameters.Add("PostContent", model.PostContent);
-        //        parameters.Add("CreatedOn", model.CreatedOn.ToShortDateString());
-        //        if (model.PublishDate != null)
-        //        {
-        //            parameters.Add("PublishDate", model.PublishDate.Value.ToShortDateString());
-        //        }
-        //        else
-        //        {
-        //            parameters.Add("PublishDate", null);
-        //        }
-
-        //        if (model.ExpirationDate != null)
-        //        {
-        //            parameters.Add("ExpirationDate", model.ExpirationDate.Value.ToShortDateString());
-        //        }
-        //        else
-        //        {
-        //            parameters.Add("ExpirationDate", null);
-        //        }
-        //        string query = "INSERT INTO BlogPosts (UserId, StatusId, SubCategoryId, Summary, MainPictureUrl, Title, PostContent, CreatedOn, PublishDate, ExpirationDate) " +
-        //            " VALUES (@UserId, @StatusId, @SubCategoryId, @Summary, @MainPictureUrl, @Title, @PostContent, @CreatedOn, @PublishDate, @ExpirationDate) ";
-        //        _cn.Execute(query, parameters);
-        //    }
-        //}
 
         public int WriteBlogPost(BlogPost blogPost)
         {
@@ -381,16 +338,6 @@ namespace FoodieBFCapstone.Data
             return tags;
         }
 
-        public void Update(int id, BlogPost model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<BlogPost> GetActivePostsinSubCategory(string subcategoryType)
         {
             List<BlogPost> subgategoryPosts = new List<BlogPost>();
@@ -426,7 +373,7 @@ namespace FoodieBFCapstone.Data
             List<BlogPost> Blogs = new List<BlogPost>();
             using (var _cn = new SqlConnection(constr))
             {
-                Blogs = _cn.Query<BlogPost>("select * from BlogPosts bp where bp.Title = @title AND  bp.StatusId in (5,2) ORDER BY ApprovedOn DESC;", new { Title = title }).ToList();
+                Blogs = _cn.Query<BlogPost>("select * from BlogPosts bp where bp.Title LIKE  ('%' + @title + '%') AND  bp.StatusId in (5,2) ORDER BY ApprovedOn DESC;", new { Title = title }).ToList();
                 return Blogs;
             }
         }

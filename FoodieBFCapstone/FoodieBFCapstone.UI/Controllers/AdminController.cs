@@ -1,5 +1,5 @@
-
-﻿using System;
+﻿
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,7 +21,7 @@ namespace FoodieBFCapstone.UI.Controllers
         {
             BlogPostRepository repo = new BlogPostRepository();
             AdminVM posts = new AdminVM();
-            List<BlogPost> stuff = repo.GetPostByStatus2(1);
+            List<BlogPost> stuff = repo.GetPostsByStatus((int)Status.Pending);
             posts.Blog = stuff; //passing in status enum/db id 
             foreach (var post in posts.Blog)
             {
@@ -45,7 +45,7 @@ namespace FoodieBFCapstone.UI.Controllers
         {
             BlogPostRepository repo = new BlogPostRepository();
             AdminVM posts = new AdminVM();
-            List<BlogPost> stuff = repo.GetPostByStatus2(id);
+            List<BlogPost> stuff = repo.GetPostsByStatus(id);
             posts.Blog = stuff;
             ViewBag.status = (Status) id;
             foreach (var post in posts.Blog)

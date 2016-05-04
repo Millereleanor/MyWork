@@ -226,6 +226,7 @@
     <Content Include="Content\pictures\James.png" />
     <Content Include="Content\pictures\Jeane.png" />
     <Content Include="Content\pictures\logo22.png" />
+    <Content Include="Content\pictures\logo22backcard.png" />
     <Content Include="Content\pictures\logo22icon.png" />
     <Content Include="Content\pictures\logoback.png" />
     <Content Include="Content\tagit.ui-zendesk.css" />
@@ -624,8 +625,8 @@
     <Content Include="Views\Shared\_StaticDropDown.cshtml" />
     <Content Include="Views\Shared\_AreYouSureContributor.cshtml" />
     <Content Include="Views\Shared\_PendingReview.cshtml" />
-<Content Include="Views\Shared\EditorTemplates\tinymce_jquery_full.cshtml" />
-</ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\tinymce_jquery_full.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
