@@ -142,8 +142,8 @@ a.blog-Delete {
 /*-------------for side bar-------------------*/
 .sidebar {
     position: absolute;
-    right: 20px;
-    top: 80px; /* required as well.*/
+    right: 40px;
+    top: 100px; /* required as well.*/
     z-index: 1000;
     padding: 20px;
     width: 190px;
@@ -151,35 +151,19 @@ a.blog-Delete {
     -webkit-box-shadow: 10px 10px 26px 0px rgba(66,65,66,1);
     -moz-box-shadow: 10px 10px 26px 0px rgba(66,65,66,1);
     box-shadow: 10px 10px 26px 0px rgba(66,65,66,1);
+   
 }
 
     .sidebar h4 {
         margin: 0;
+        color: #ffffff;
     }
 
     .sidebar a {
         color: #ffffff;
     }
 
-/*-----for left side bar-------*/
-.sidebarleft {
-    position: absolute;
-    left: 20px;
-    top: 80px; /* required as well.*/
-    z-index: 1000;
-    padding: 20px;
-    width: 190px;
-    background-color: #e53c37;
-    color: #ffffff;
-}
 
-    .sidebarleft h4 {
-        margin: 0;
-    }
-
-    .sidebarleft a {
-        color: #ffffff;
-    }
 /*---------------search bar--------------*/
 
 .dropdown a {
