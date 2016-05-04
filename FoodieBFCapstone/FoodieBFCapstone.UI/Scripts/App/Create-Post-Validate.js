@@ -53,7 +53,7 @@
         }
         console.log(JSON.stringify(post));
         $.ajax(settings).success(function (response) {
-            window.location.href = '@Url.Action("Index","Contributor")';
+            window.location.href = 'Index';
         }).error(function (error, status) {
             alert(error, status);
         });

@@ -193,8 +193,9 @@ namespace FoodieBFCapstone.Data
             using (var _cn = new SqlConnection(constr))
             {
                 _cn.Query("UPDATE BlogPosts " +
-                          "SET StatusId = @statusId " +
-                          "WHERE BlogId = @BlogId", new { statusId, BlogId = blogId });
+                          "SET StatusId = @statusId, ApprovedOn = @date " +
+                        
+                          "WHERE BlogId = @BlogId", new { statusId, BlogId = blogId, date = DateTime.Today });
             }
         }
 
@@ -391,8 +392,9 @@ namespace FoodieBFCapstone.Data
             return Posts;
         }
 
-        public void CreateStaticPage(AdminStaticPage staticPage)
+        public int CreateStaticPage(AdminStaticPage staticPage)
         {
+            int pageId = 0;
             using (var _cn = new SqlConnection(constr))
             {
                 SqlCommand cmd = new SqlCommand();
@@ -414,6 +416,7 @@ namespace FoodieBFCapstone.Data
                 cmd.ExecuteNonQuery();
                 _cn.Close();
             }
+            return pageId;
         }
 
         public List<AdminStaticPage> GetAdminStaticPages()
