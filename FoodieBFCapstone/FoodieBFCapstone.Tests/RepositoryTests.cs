@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -347,6 +348,23 @@ namespace FoodieBFCapstone.Tests
         {
             int actual = _repo.GetBlogThatContains(contains).Count;
             Assert.AreEqual(actual, expected);
+        }
+
+        [Test]
+        public void CreateStaticPage()
+        {
+            
+            AdminStaticPage page = new AdminStaticPage
+            {
+                Title = "Southern Style Cooking",
+                MiniTitle = "Best of the South",
+                AdminPageContent = "Writing some fake information",
+                CreatedOn = DateTime.Today
+            };
+
+            _repo.CreateStaticPage(page);
+
+
         }
     }
 }

@@ -168,6 +168,9 @@ a.blog-Delete {
     color: #ffffff;
 }
 
+.searchItems > li {
+    cursor: pointer;
+}
 /*-------------------------Flip!-------------------------------*/
 /* entire container, keeps perspective */
 .flip-container {
@@ -211,3 +214,4 @@ a.blog-Delete {
 .back {
     transform: rotateY(180deg);
 }
+

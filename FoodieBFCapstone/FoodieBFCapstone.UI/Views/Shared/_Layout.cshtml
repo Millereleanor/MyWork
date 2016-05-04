@@ -9,6 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("firstScripts", required: false)
+    
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -62,14 +63,14 @@
                     @*<li>@Html.ActionLink("Travels", "Static", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
-                <ul class="nav navbar-nav" style="margin-left: 15px;">
+                <ul class="nav navbar-nav" style="margin-left: 15px;" class="dropdown-menu">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" id="searchDrop" data-toggle="dropdown" role="button" aria-expanded="false">Seach By... <span class="caret"></span></a>
-                        <ul id="TypeDD" class="dropdown-menu" role="menu">
-                            <li role="menuitem">Tag</li>
-                            <li role="menuitem">Author</li>
-                            <li role="menuitem">Title</li>
-                            <li role="menuitem">Contains</li>
+                        <ul id="TypeDD" class="dropdown-menu searchItems" role="menu">
+                            <li role="menuitem"><a href="#" onclick="return false;">Tag</a></li>
+                            <li role="menuitem"><a href="#" onclick="return false;">Author</a></li>
+                            <li role="menuitem"><a href="#" onclick="return false;">Title</a></li>
+                            <li role="menuitem"><a href="#" onclick="return false;">Contains</a></li>
                         </ul>
                     </li>
                     <li>
