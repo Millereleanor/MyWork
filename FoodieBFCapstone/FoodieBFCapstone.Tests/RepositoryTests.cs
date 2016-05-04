@@ -311,10 +311,11 @@ namespace FoodieBFCapstone.Tests
         [TestCase(1, 1)]
         [TestCase(2, 3)]
         [TestCase(6, 2)]
-        public void ReadTagsByBlogId(int blogId, int expected)
+        public void ReadTagsByBlogId(int blogId, int expected) 
         {
             int actual = _repo.ReadAllTagsByBlogId(blogId).Count;
 
+            // Expected is hard coded number of tags for blogId inserted by Seed script
             Assert.AreEqual(actual, expected);
         }
 
