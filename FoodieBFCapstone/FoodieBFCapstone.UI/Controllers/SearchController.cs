@@ -28,11 +28,13 @@ namespace FoodieBFCapstone.UI.Controllers
                     break;
 
                 case "searchAuthor":
-                    var searchterms = text.Split(' ');
-                    string firstName = searchterms[0];
-                    string lastName = searchterms[1];
-                    posts = repo.GetByAuthorUserName(firstName, lastName);
-
+                    if (text.Contains(' '))
+                    {
+                        var searchterms = text.Split(' ');
+                        string firstName = searchterms[0];
+                        string lastName = searchterms[1];
+                        posts = repo.GetByAuthorUserName(firstName, lastName);
+                    }
                     break;
 
                 case "searchContains":
