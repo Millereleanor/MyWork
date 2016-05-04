@@ -65,12 +65,18 @@ namespace FoodieBFCapstone.Data
             blog.Title = dr["Title"].ToString();
             blog.PostContent = dr["PostContent"].ToString();
             blog.Summary = dr["Summary"].ToString();
-
             blog.BlogId = (int)dr["BlogId"];
             blog.MainPictureUrl = dr["MainPictureUrl"].ToString();
             blog.Subcategory.SubcategoryName = dr["SubCategory"].ToString();
             blog.CreatedOn = (DateTime)dr["CreatedOn"];
-            blog.ApprovedOn = (DateTime) dr["ApprovedOn"];
+            if (blog.ApprovedOn != null)
+            {
+                blog.ApprovedOn = (DateTime)dr["ApprovedOn"];
+            }
+            else
+            {
+                blog.ApprovedOn = null;
+            }
 
             return blog;
         }
@@ -195,7 +201,7 @@ namespace FoodieBFCapstone.Data
             {
                 _cn.Query("UPDATE BlogPosts " +
                           "SET StatusId = @statusId, ApprovedOn = @date " +
-                        
+
                           "WHERE BlogId = @BlogId", new { statusId, BlogId = blogId, date = DateTime.Today });
             }
         }
