@@ -245,6 +245,7 @@ namespace FoodieBFCapstone.Data
                 if (blogPost.BlogId == 0)
                 {
                     parameters.Add("CreatedOn", DateTime.Today);
+                    parameters.Add("ApprovedOn", DateTime.Today);
                     parameters.Add("BlogId", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                     _cn.Execute("InsertBlogPost", parameters, commandType: CommandType.StoredProcedure);
